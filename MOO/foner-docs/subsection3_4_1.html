@@ -1,0 +1,142 @@
+<HTML> <HEAD>
+<TITLE>What's an agent?  Crucial notions</TITLE>
+</HEAD>
+<BODY>
+<P>
+<B> Next:</B> <A NAME=tex2html136 HREF=subsection3_4_2.html>What's an agent?</A>
+<B>Up:</B> <A NAME=tex2html134 HREF=section3_4.html>What's an agent?</A>
+<B> Previous:</B> <A NAME=tex2html128 HREF=section3_4.html>What's an agent?</A>
+<HR> <P>
+<H2><A NAME=SECTION0004100000000000000> What's an agent?  Crucial notions</A></H2>
+<P>
+<UL><LI> <b>Autonomy.</b>  Any agent should have a measure of autonomy from its
+user.  Otherwise, it's just a glorified front-end, irrevocably fixed,
+lock-step, to the actions of its user.  A more autonomous agent can
+pursue agenda independently of its user.  This requires aspects of
+<i>periodic action</i>, <i>spontaneous execution</i>, and <i>initiative</i>, in
+that the agent must be able to take preemptive or independent actions
+that will eventually benefit the user.
+<P>
+<LI> <b>Personalizability.</b>  The point of an agent is to enable people to do
+some task better.  Since people don't all do the same tasks, and even
+those who share the same task do it in different ways, an agent must be
+educable in the task and hand and how to do it.  Ideally, there should
+be components of <i>learning</i> (so the user does not necessarily have to
+program the agent explicitly; certain agents can already learn by
+`looking over the user's shoulder) and <i>memory</i> (so this education is
+not repeatedly lost).
+<P>
+<LI> 
+<b>Discourse.</b>  For all but the simplest of tasks, we generally need to
+be assured that the agent shares our agenda and can carry out the task
+the way we want it done.  This generally requires a <i>discourse</i> with
+the agent, a two-way feedback, in which both parties make their
+intentions and abilities known, and mutually agree on something
+resembling a <i>contract</i> about what is to be done, and by whom.  This
+discourse may be in the form of a single conversation, or a higher-level
+discourse in which the user and the agent repeatedly interact, but both
+parties remember previous interactions.
+<P>
+By this metric, for example, a hammer is <i>not</i> an agent-I don't have
+a discourse with my hammer!  Neither is a Lisp garbage collector, even
+though it takes spontaneous action to keep my computational environment
+clean, nor is an automatic transmission in a car; both are autonomous
+and relatively spontaneous, but it can hardly be said that I have much
+of a discourse with them.
+<P>
+Booking a flight through a human travel agent, <i>in my case</i>, is only
+partially a discourse:  since I don't have direct access to the actual
+booking computer, I have no other option.  And since I do not have a
+regular travel agent who knows me, every travel agent is a new
+experience (albeit, one that travel agencies try to standardize a bit,
+so as to align everyone's expectations).  Now, in one respect, the
+conversational interchange is a discourse, because, for the duration of
+the task at hand (booking that one flight), there is a two-way
+communication of desires and capabilities.  However, viewed in a larger
+context, there is no discourse that `teaches' the travel agent what my
+preferences are on when I like to travel, on which airline, and so
+forth.  Viewed this way, a `travel agent' is nothing more than a
+somewhat more `user-friendly' interface to the flight reservation data
+system.
+<P>
+<LI> <b>Risk and trust.</b>  The idea of an agent is intimately tied up with the
+notion of <i>delegation</i>.  We cannot delegate a task to someone or
+something else if we do not have at least a reasonable assurance that
+the entity to which we delegated can carry out the task <i>we</i> wanted,
+to <i>our</i> specifications.  However, by definition, delegation implies
+relinquishing control of a task to an entity with different memories,
+experiences, and possibly agendas.  Thus, by not doing something
+ourselves, we open ourselves up to a certain risk that the agent will do
+something wrong.  This means that we have to balance the <i>risk</i> that
+the agent will do something wrong with the <i>trust</i> that it will do it
+right.  This decision must be based on both our internal mental model of
+what the agent will do (hence how much we trust it) and the domain of
+interest (hence how much a mistake will cost us).
+<P>
+<LI> <b>Domain.</b>  The domain of interest is crucial, as mentioned above when
+talking about risk and trust.  If the domain is a game or a social
+pursuit, most failures of the agent carry relatively low risk, meaning
+that we can afford to invest the agent with a considerable degree of
+trust.  On the other hand, the `fuzziness' and unpredictability of most
+agent-based systems might make one think twice about using such a
+system, say, for the control rod feedback system of a nuclear reactor.
+<P>
+<LI> <b>Graceful degradation.</b>  Bound up in the notions of risk, trust, and
+domain, agents work best when they exhibit graceful degradation in cases
+of a communications mismatch (the two parties do not necessarily
+communicate well, and may not realize it) or a domain mismatch (one or
+both parties are simply out of their element, and again may not realize
+it).  If most of a task can still be accomplished, instead of failing to
+accomplish <i>any</i> of the task, this is generally a better outcome, and
+gives the user more trust in the agent's performance.
+<P>
+<LI> <b>Cooperation.</b>  The user and the agent are essentially
+<i>collaborating</i> in constructing a contract.  The user is specifying
+what actions should be performed on his or her behalf, and the agent is
+specifying what it can do and providing results.  This is often best
+viewed as a two-way conversation, in which each party may ask questions
+of the other to verify that both sides are in agreement about what is
+going on.  As such, the two parties interact more as peers in
+agent-oriented systems; in non-agent-oriented systems, the user
+typically `commands', through some interface, a particular action, and
+is probably never asked a question about the action unless something
+goes wrong.  In a strictly agent-less situation (e.g., a text editor),
+the feel of the interaction is different than in the case of an agent,
+primarily due to the discourse-oriented nature of the interaction with
+the agent and the more `stimulus-response' or `non-conversational' feel
+of the text editor.
+<P>
+<LI> <b>Anthropomorphism.</b>  There is a great debate over anthropomorphism in
+user interface design, and agent-oriented systems would find it
+difficult to stay out of the morass.  However, let me make the point
+that there are several extent systems that might fit the `agent' mold
+that are clearly <i>not</i> anthropomorphic (e.g., mail-sorting programs
+that learn how to sort based on watching the user's actions and making
+inferences), while there are some that clearly <i>are</i> (e.g., Julia).
+Hence, agency does not necessarily imply a need for anthropomorphism.
+Conversely, just because a program pretends to be anthropomorphic does
+not make it an agent:  ELIZA pretends to be human, but no one could call
+it an agent; it lacks most of the crucial notions above, such as being
+useful for a domain, being personalizable, or having any degree of
+autonomy.
+<P>
+<LI> <b>Expectations.</b>  Whenever one interacts with some other entity,
+whether that entity is human or cybernetic, the interaction goes better
+if one's expectations match reality.  By the very nature of delegation,
+assuming perfect operation, especially in a changing world where tasks,
+goals, and means may be constantly changing, is likely to lead to
+disappointment.  Agents are most useful in domains in which graceful
+degradation and the correct balance of risk to trust can be obtained,
+and users' expectations are very important in establishing this domain
+and making the agent useful.
+</UL>
+<P>
+<B> Next:</B> <A NAME=tex2html136 HREF=subsection3_4_2.html>What's an agent?</A>
+<B>Up:</B> <A NAME=tex2html134 HREF=section3_4.html>What's an agent?</A>
+<B> Previous:</B> <A NAME=tex2html128 HREF=section3_4.html>What's an agent?</A>
+<HR>
+<P><ADDRESS>
+Lenny Foner
+</ADDRESS><p>
+
+</BODY> </HTML>

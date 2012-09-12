@@ -1,0 +1,411 @@
+<HTML> <HEAD>
+<TITLE>Julia's utility:  simple examples</TITLE>
+</HEAD>
+<BODY>
+<P>
+<B> Next:</B> <A NAME=tex2html86 HREF=subsection3_2_3.html>More of Julia:</A>
+<B>Up:</B> <A NAME=tex2html84 HREF=section3_2.html>A prototypical agent:</A>
+<B> Previous:</B> <A NAME=tex2html78 HREF=subsection3_2_1.html>Introduction</A>
+<HR> <P>
+<H2><A NAME=SECTION0002200000000000000> Julia's utility:  simple examples</A></H2>
+<P>
+So what does Julia do?  I'll demonstrate, by example.  A player would
+gain access to her numerous talents in exactly the same way that a
+player would talk to any other player-by either speaking or gesturing
+in the same room, or by paging from somewhere else:
+<P>
+<PRE><TT>
+&gt;page julia
+You sent your summons to Julia.
+Julia pages from Stevi's Kitchen: `I'm on my way to you, Lenny.'
+Julia is briefly visible through the mist.
+Julia says, `I was called here by Lenny.'
+You say, `julia?'
+Julia says, `Yes?'
+You say, `julia?'
+Julia nods to Lenny.
+[ . . . ]
+Julia whispers, `Excuse me, Xerxes is paging me from Connie's place.'
+Julia walks south to the airship landing field.
+Julia has left.</TT></PRE>
+<P>
+This is a continuing thread in my discussion of Julia:  players interact
+with her <i>as if she was another player</i>.  Muds blur the distinction
+between players and 'bots (mud slang for a robot-since a mud simulates
+a reality, a software-only construct can be as `real' and physical as
+anything else, hence even a piece of software with no hardware attached
+`in the real world' can be a `robot' in the simulated world).  This is a
+great strength of both muds and Julia, and the deliberate blurriness of
+the boundaries both enhances Julia's effectiveness and makes her
+operation possible.
+<P>
+One of Julia's most useful talents is to keep maps of the
+interconnections between rooms.  (Note that if multiple copies of Julia
+are running on some workstation(s) at Pittsburgh, each one connected to
+a different mud, these separate copies of the same code would contain
+separate databases.  Thus, rooms, players, and all the other information
+that makes a mud unique from all its brethren will not be confused
+across multiple instantiations of the same code.)
+<P>
+The way to get Julia to help you navigate is to ask her a question, as
+usual.
+<P>
+<PRE><TT>
+You say, `julia, how do I get to electronics den?'
+Julia says, `From here, go south, 7, airlock, 9, up, down'
+
+Minotaur says, `Julia, how do you get to the gold sector?'
+Julia says, `From here, go highport, gold, library'</TT></PRE>
+<P>
+Since Julia keeps track of various statistics about rooms (rooms being
+very important objects in any mud), she can answer certain questions
+that might be important to a mudder:
+<P>
+<PRE><TT>
+You say, `julia, what are the noisiest rooms?'
+Julia says, `The 10 noisiest rooms are:'
+Julia |  Connie's place averages 613.95 messages per hour
+Julia |  Bedroom averages 483.58 messages per hour
+Julia |  oops!  SNAFU lounge averages 472.18 messages per hour
+Julia |  (&gt; The Hearts Room! averages 416.70 messages per hour
+Julia |  Veritech Launch Bay averages 399.12 messages per hour
+Julia |  West Corner of the Park averages 397.26 messages per hour
+Julia |  Sickbay averages 366.90 messages per hour
+Julia |  Inter Temporal Chat Lounge averages 337.66 messages per hour
+Julia |  kitchen averages 326.75 messages per hour
+Julia |  US Robots averages 315.99 messages per hour
+
+You say, `where can we go from here?'
+Julia says, `Here are the 13 exits for Kingdom Highport: Customs, Lenny:'
+Julia  &lt;highport&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;earth&gt; goes to Kingdom Highport: Ticket Counters.
+Julia  &lt;south&gt; goes to Kingdom Highport: South Concourse.
+Julia  &lt;hub&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;s&gt; goes to Kingdom Highport: South Concourse.
+Julia  &lt;back&gt; goes to The Inter Nexus.
+Julia  &lt;kingdom&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;station&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;port&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;out&gt; goes to The Inter Nexus.
+Julia  &lt;up&gt; goes to Kingdom Highport: Hub.
+Julia  &lt;d&gt; goes to Kingdom Highport: Ticket Counters.
+Julia  &lt;down&gt; goes to Kingdom Highport: Ticket Counters.
+Julia done.</TT></PRE>
+<P>
+In fact, her navigational skills can be helpful if you're bored, or confused...
+<P>
+<PRE><TT>
+TheHighMage says, `Julia, I'm bored. Where should I go?'
+Julia says, `You should go see gilded door, TheHighMage.'
+Julia says, `From here, go  present, out, north, n, w, n, up, up, 7, up, up, s.'
+
+You whisper, `Where should I go?' to Julia.
+Julia whispers, `Hmm...you should visit WNDU Main Control Room, Lenny.'
+Julia whispers, `From here, go  present, out, north, n, n, n, n, n, e, in, in,
+    in, east, in.'</TT></PRE>
+<P>
+(Note also that Julia will whisper<A NAME=tex2html13 HREF=Julia.foot.html#40><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A> to you if you whisper to her, hence protecting your privacy
+if there was some reason you whispered.  She also tends not to respond
+to random conversation or gestures unless they mention her name; unless
+they are from a player who was talking to her very recently; or unless
+she was the target of a directed communication such as a page or a
+whisper:  this helps to prevent her from becoming a pest.  Most 'bots
+need similar social skills or they quickly get relegated to the
+scrapheap.  Human players without such skills are not so easy to get rid
+of.)
+<P>
+Many muds employ an artifact called money.  (There are even some muds
+which are set up to explore alternate economic systems, but I won't
+touch on them here.)  For muds which are essentially roleplaying games,
+the value of money is obvious.  But why would a mud such as Time
+Traveller or DruidMUCK employ money, when there is no RPG system around?
+<P>
+To keep the load on the server reasonable, that's why.  In general, the
+load on any mud server grows without bound, if the mud is popular.  More
+players connect, and the server starts to <i>lag</i>, or get slow, as it
+handles the increasing number of events per second.  This problem tends
+to correct itself, however, as a very lagged server will tend to lose
+players to other servers.  (Lag is psychologically objectionable if it
+is too large, and the large number of extant servers mean that there is
+something of a freeware-based economy happening-lagged servers, unless
+they offer some spectacular value in community or resources [e.g.,
+LambdaMOO] tend to be passed over for others.  This is the same
+principle that tends to even out queues in a bank or supermarket.)
+<P>
+However, there <i>is</i> a server resource that is <i>not</i> self-correcting,
+and that is database size.  Every time a player builds an object, the
+database must contain it.  Left totally unrestricted, players would
+eventually outbuild any disk capacity allocated to the database.  (This
+unrestricted growth has in fact been the downfall of some muds whose
+servers were running on machines that had more `legitimate' user
+populations who resented the competition for disk space or CPU cycles.)
+<P>
+Certain types of muds, such as MOOs, use a quota system to restrict
+building.  Players may build only so many objects, and must then appeal
+to some human (a wizard) to get more quota.  If the wizard deems the
+already-built objects uninteresting uses of resources, the player cannot
+build any more.
+<P>
+TinyMUDs, on the other hand, use money.  Building something takes money.
+Players can give each other money, and money is often `found' lying
+around at some constant rate (which can be adjusted by the wizards).
+The rate at which money enters the economy in effect determines its rate
+of inflation, and thus how fast the database may grow.
+<P>
+In her wanderings around the maze, Julia finds a great deal of money.
+She can be quite a bit of help to a new player with few resources:
+<P>
+<PRE><TT>
+You say, `julia, can you give me some money?'
+Julia says, `Sorry, you're too new.  Wait an hour and ask again.'
+You say, `julia, how much money do you have?'
+Julia says, `I have enough pennies'
+[ . . . ]
+You say, `julia, can you give me money?'
+Julia gives you 22 pennies.
+You say, `thanks, julia!'
+Julia says, `You're welcome, Lenny.'
+Brandi says, `she gives you more if you put please in the sentence.'</TT></PRE>
+<P>
+Julia is also a consumer of money, but in a slightly different way than
+building.  She keeps a stock of interesting quotes gleaned via a much
+older program called Gloria.  The quotes originally came mostly from
+.plan files (or the moral equivalent on non-UNIX systems) which belonged
+to users who tended to put interesting or funny snippets in them.  Julia
+doles these out, but charges money to keep a person or a program from
+simply dumping the entire database in one swell foop:
+<P>
+<PRE><TT>
+give julia=1
+You give 1 penny to Julia.
+Julia says, `Thank you for buying a quote.'
+Julia |
+Julia |Another Great Moment in Criticism:
+Julia |
+Julia |`I think Harvard has gathered all the wisest people in the
+Julia |kingdom to admire the emperor's new clothes.'
+Julia |
+Julia |--Doris Mathieson on the Harvard-Atari conference `Video Games and
+Julia |Human Development: A research agenda for the 80's'
+Julia |
+Julia |**==&gt; That was a classic plan from Bob Chansler's plan file.
+
+give julia=1
+Julia says, `Thank you for buying a quote.'
+Julia |
+Julia |`I'm going to Pittsburgh to get a PhD. You wait here.'
+Julia |
+Julia |--Larry Matthies
+Julia |
+Julia |**==&gt; That was a classic plan from Anthony Stentz's plan file.</TT></PRE>
+<P>
+Someone who has never interacted with Julia before might be a trifle
+confused about what to say to her.  A standard conversational gambit
+yields some useful information, as well as some dirt on other players:
+<P>
+<PRE><TT>
+You say, `hi, julia.  what do you do?'
+Julia says, `I gossip, Lenny.'
+You whisper, `julia, tell me some gossip.' to Julia.
+Julia whispers, `I once heard baba says, 'Drop kick me Jesus Through the
+    goal posts of life''
+
+Conundrum says, `Julia, quote Tristor'
+Julia says, `I once heard tristor says, 'well, not in the FLESH, but I am
+    here. :)''
+Teri says, `julia quote me'
+Julia says, `I once heard You say, 'why forlorn''
+Perdita says, `Julia, Quote TheHighMage'
+Julia says, `I once heard thehighmage says, 'Hmmmmm... Where are you all
+    going when Time falls''</TT></PRE>
+<P>
+She is also useful for obtaining certain information that might be
+hard or impossible to get through the standard tools available. For
+example, while MOOs generally keep track of when players were around
+(the <tt>@lastlog</tt> command), TinyMUCKs generally don't.  But Julia
+does, if she happens to run into the player while they were around, or
+notices them anytime she scans the wholist:
+<P>
+<PRE><TT>
+You say, `julia, where is leira?'
+Julia says, `Leira was in Inter Temporal Chat Lounge about 6 weeks ago.'
+
+You say, `julia, when did you last see julia?'
+Julia says, `I'm right here in The Inter Nexus.'</TT></PRE>
+<P>
+Note also that Julia `understands' who she is, and the fact that she is
+situated.
+<P>
+She knows about more than rooms, being able to describe players:
+<P>
+<PRE><TT>
+You say, `julia, who is leira'
+Julia whispers, `As of 6 weeks ago, leira's description was: Leira isn't a
+    redhead, but she plays one on TT.'
+Julia whispers, `leira's Email address: leira@athena.mit.edu'
+Julia whispers, `I first saw leira logged in 1 year and 10 weeks ago'
+Julia whispers, `I once heard leira says, 'Julia, who wrote you''
+Julia whispers, `leira last gave me money 7 weeks ago, and has given me a
+    total of 10 pennies.'
+
+You whisper, `describe pattie' to Julia.
+Julia whispers, `I first saw pattie logged in 1 day ago'
+Julia whispers, `I once heard pattie says, 'Do you play Hockey, Julia''
+Julia whispers, `pattie last gave me money 1 day ago, and had the generosity
+    to give me 1 whole penny.'
+Julia whispers, `I don't really know who pattie is.'</TT></PRE>
+<P>
+...and her surroundings:
+<P>
+<PRE><TT>
+You whisper, `where are we?' to Julia.
+Julia whispers, `We are in 'The Inter Nexus`'
+
+You whisper, `who is here?' to Julia.
+Julia whispers, `Well Lenny, I see 8 players awake here:
+    guest byte MadraRua Leda Lenny Mandi TheHighMage Samuel'
+You whisper, `who is asleep here?' to Julia.
+Julia whispers, `Well Lenny, I see 1 player asleep here: Jacques'
+
+You whisper, `describe this place' to Julia.
+Julia whispers, `Here's what I know about (&gt; The Hearts Room!, as of a few minutes ago, Lenny:'
+Julia whispers, `description: (&gt; The room glows brightly and welcomes you!'
+Julia whispers, `contents: (&gt; Type `help hearts' for the rules.,
+    (&gt; Set yourself _hearts_ok:yes to be summoned when there is a game starting.,
+    (&gt; Type `push button' to summon other players.'
+
+You whisper, `describe here, in detail' to Julia.
+Julia whispers, `Here's what I know about (&gt; The Hearts Room!, as of a few minutes ago, Lenny:'
+Julia whispers, `description: (&gt; The room glows brightly and welcomes you!'
+Julia whispers, `contents: (&gt; Type `help hearts' for the rules.,
+    (&gt; Set yourself _hearts_ok:yes to be summoned when there is a game starting.,
+    (&gt; Type `push button' to summon other players.'
+Julia whispers, `Julia number is 26809'
+Julia whispers, `first saw on Jul  9 03:09:59 1992'
+Julia whispers, `last seen on Oct 17 13:22:01 1992'
+Julia whispers, `Julia total time in 5 days'
+Julia whispers, `Julia visits 1554'
+Julia whispers, `Julia awake 1945'
+Julia whispers, `Julia sleep 635'
+Julia whispers, `Julia msgs 49950 (8 to me, today)'
+Julia whispers, `(&gt; The Hearts Room! is a private room'</TT></PRE>
+<P>
+Note in the above that Julia is not always so human-appearing as she
+might be.  I'll have more to say about that when I talk about her
+Turing-test mode later.  (You might also note the peculiar <tt>(&gt;</tt>
+symbols in the above; those are actually a part of the textual
+description of the room, for whatever reason.)<A NAME=tex2html14 HREF=Julia.foot.html#46><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>
+<P>
+Many MUDs don't really have a mail system.  This makes it hard to
+communicate with people who don't happen to be connected when you are.
+Julia solves this problem:
+<P>
+<PRE><TT>
+You say, `julia, what can you do?'
+Julia says, `I relay messages, Lenny.'
+
+You say, `do you have a message for me, julia?'
+Julia says, `I have no messages for you.'
+You say, `julia, tell leira I've figured out how to find and talk to Julia'
+Julia says, `Message for Leira saved.'
+You say, `julia, how many messages are you carrying?'
+Julia says, `I am holding 144 messages for 98 players, Lenny.'</TT></PRE>
+<P>
+Julia regularly scans the <i>wholist</i>, the list of all connected
+players.  If she sees someone connect for whom she has a message, she
+will generally walk into the room that they are in and then deliver the
+message.  Sometimes, she's more direct:
+<P>
+<PRE><TT>
+
+&gt;page Julia=Julia, please tell Lenny that he can talk to himself through you.
+Your message has been sent.
+Julia pages from The Bar: `Message for Lenny saved.'
+[ . . . a few dozen seconds pass . . . ]
+Julia pages from The Kitchen: `less than a minute ago, Lenny said 'Julia,
+    please tell Lenny that he can talk to himself through you''</TT></PRE>
+<P>
+(She'll never teleport into a room to deliver a message (or for any
+other reason, actually), since she generally knows how to walk anywhere,
+and walking gives her better feedback that the maze is as her mapper
+mapped it the first time.  So that she doesn't <i>spam</i><A NAME=tex2html15 HREF=Julia.foot.html#49><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A> the server, she waits a second or two between movements.  One
+can watch her walk around the maze, or come to you when paged, on those
+muds that show player locations in their wholists.)
+<P>
+Julia can describe the more global environment as well as the strictly
+local descriptions above:
+<P>
+<PRE><TT>
+You say, `julia, how many messages are you carrying?'
+Julia says, `I am holding 144 messages for 98 players, Lenny.'
+You say, `julia, how many players are there?'
+Julia says, `I have seen at least 2688 different names on the WHO list'
+You say, `julia, how many rooms are there?'
+Julia says, `I have been to 1605 rooms altogether, here are the last few:
+    Dark Room,
+    Roland's bedroom,
+    Room of Lamentation,
+    Room of Exaltation,
+    Top of Stairs,
+    Entertainment Room,
+    Roland's Control Room,
+    penthouse,
+    Electronics Den,
+    Kadi's Korner.'</TT></PRE>
+<P>
+She has other interesting talents, including being able to do a fair job
+of guessing the genders of other players based on their names:
+<P>
+<PRE><TT>
+You say, `julia, what sex am i?'
+Julia says, `I guess that you are male, Lenny.'
+You say, `julia, what sex is phi?'
+Julia says, `I guess that phi is male, Lenny.'
+You say, `julia, what sex is leira?'
+Julia says, `I guess that leira is female, Lenny.'
+You say, `julia, what sex is robyn?'
+Julia says, `I think that robyn is female, Lenny.'
+You say, `julia, what sex is pattie?'
+Julia says, `I guess that pattie is female, Lenny.'</TT></PRE>
+<P>
+Note that neither Robyn nor Pattie were familiar enough with muds at
+this time to have set their gender property (useful so that people who
+look at you know what gender you claim to be, and so that programs that
+must do pronoun substitution can make the right decisions), so Julia was
+forced to guess entirely from their names.
+<P>
+Her ability to quote others makes her useful for conducting a Delphi
+poll<A NAME=tex2html16 HREF=Julia.foot.html#50><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A> the
+about a particular subject, if you're lucky, as Robyn was below:
+<P>
+<PRE><TT>
+Robyn says, `julia, what is a good computer'
+Julia says, `I don't know about a good computer, but I once heard
+    TheHighMage say, 'julia, this is the definition of a good computer:
+    the good computer is the one that you do your best work on and that
+    you enjoy using the most', Robyn.'</TT></PRE>
+<P>
+She also has more prosaic calculating abilities:
+<P>
+<PRE><TT>
+You whisper, `what is 6 times 7?' to Julia.
+Julia whispers, `I think it's 42, Lenny.'
+You whisper, `what is 5 divided by 6?' to Julia.
+Julia whispers, `I think it's 0.833, Lenny.'
+You whisper, `what is 2147483648 plus 2147483648?' to Julia.
+Julia whispers, `I think it's 0, Lenny.'</TT></PRE>
+<P>
+... although note from the last example above that Julia does her
+arithmetic mod 2[tex2html_wrap158], two's-complement, and hence is using 32-bit
+signed arithmetic on her host machine.<A NAME=tex2html17 HREF=Julia.foot.html#52><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>  She apparently does <i>not</i>
+deliberately screw up her arithmetic to emulate a human more closely.
+<P>
+<B> Next:</B> <A NAME=tex2html86 HREF=subsection3_2_3.html>More of Julia:</A>
+<B>Up:</B> <A NAME=tex2html84 HREF=section3_2.html>A prototypical agent:</A>
+<B> Previous:</B> <A NAME=tex2html78 HREF=subsection3_2_1.html>Introduction</A>
+<HR>
+<P><ADDRESS>
+Lenny Foner
+</ADDRESS><p>
+
+</BODY> </HTML>

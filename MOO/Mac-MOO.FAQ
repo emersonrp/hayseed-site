@@ -1,0 +1,90 @@
+Message  inbox:41 - New, Read
+From:              <MOO-Cows-Errors@parc.xerox.com>
+Authorizing-Users:  (John Rayford Still) <tregarth@iquest.com>
+To:                <MOO-Cows@parc.xerox.com>
+Importance:        normal
+Subject:           Mac MOO FAQ
+
+
+RFC-822-HEADERS:
+X-Sender: tregarth@vespucci.iquest.com
+X-Envelope-to: schneide@divsun.unige.ch
+MIME-version: 1.0
+Content-type: text/plain; charset="iso-8859-1"
+Content-transfer-encoding: quoted-printable
+Precedence: bulk
+
+Mac MOO FAQ
+
+Q: Do they make a MOO server for a Macintosh?
+A: Yes they do. It's at my workplace server.
+
+Q: What are the requirements for the server to run on my Mac?
+A:
+
+   * The server requires about 6-7 Megs of RAM. But it likes more. You need
+     about 2-3 times as much RAM as your database size.
+   * You must have a database. You can pick up one at
+     parcftp.xerox.com/pub/MOO. It should be something like
+     LambdaMooDB[date-goes-here].
+   * I don't think it will run on anything less that a System 7.
+   * You must have the ThreadManager extension in your extensions folder
+     (and loaded) before you even think about running the server (bad things
+     will happen). Program Linking in the Sharing Setup control panel *must*
+     be turned on otherwise you will get unimplemented traps crashing your
+     computer. Virtual RAM will work with the server.
+
+Q: How do I start the server? There's no instructions.
+A: Drop your database on top of the server icon. If the server icon isn't
+accepting it, then either the database isn't text, or the creator isn't MOO.
+If you are certain that it is, in fact, a database, then use ResEdit to
+change its creator to 'MOO'.
+
+Q: Why, when I start the server, does it come up with a dialog saying
+"UnImplemented Trap," forcing me to restart?
+A: Could be many things:
+
+  1. You don't have the ThreadManager extension in your extensions folder.
+  2. You don't have enough memory to load the database.
+  3. You didn't drop a database onto the server-icon. Instead, you just
+     double-clicked on it.
+  4. Program Linking in the Sharing Setup control panel isn't turned on.
+  5. You have some funky extensions.
+  6. The server doesn't like your computer.
+
+In the case of the latter, it's possible it's your system software. Try
+removing all extensions but those used by the system, and of course, the
+ThreadManager.
+
+Q: Why does my computer always freeze up when I start the server or about an
+hour into a session?
+A: It's not freezing up really, it's just dumping the database to disk. Most
+of the time it resides in memory, but it writes to disk periodically.
+Usually this lasts for about 2 minutes. If your mouse is still moving, then
+it's still working. Just let it alone for a little bit and it'll be ok. This
+should be fixed in a future version.
+
+Q: Why can't I connect to my server?
+A:
+
+  1. If you are over a Local-Talk line, you need to use the MOO Client,
+     which is also available at ftp.netcom.com/pub/rcm.
+  2. If you are on eithernet, make sure that you have a constant IP address
+     instead of a random one. (in the MacTCP control panel). If it's random,
+     strange things will happen.
+  3. Make sure that in the Sharing Setup control panel, you are allowing
+     other users to link to applications on your machine. (also I think you
+     need to turn on file sharing).
+  4. Check your physical connections.
+
+If you have any other questions, feel free to email me at
+grgcombs@mail.utexas.edu.
+
+          ---------------------------------------------------------
+                            [Image][Image][Image]
+----------------------------------------------------------------------------
+grgcombs@www.utexas.edu.
+Copyright =A9 1994 Gregory S. Combs
+
+
+

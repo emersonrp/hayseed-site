@@ -1,0 +1,145 @@
+<HTML> <HEAD>
+<TITLE>What's an agent?  Why Julia wins</TITLE>
+</HEAD>
+<BODY>
+<P>
+<B> Next:</B> <A NAME=tex2html144 HREF=section3_5.html>Conclusion</A>
+<B>Up:</B> <A NAME=tex2html142 HREF=section3_4.html>What's an agent?</A>
+<B> Previous:</B> <A NAME=tex2html138 HREF=subsection3_4_1.html>What's an agent?</A>
+<HR> <P>
+<H2><A NAME=SECTION0004200000000000000> What's an agent?  Why Julia wins</A></H2>
+<P>
+There is no question in my mind that Julia fits the category of agent.
+To wit:
+<P>
+<UL><LI> <b>Autonomy.</b>  She carries out many independent actions in the mud.  In
+fact, most of her time is spent pursuing a private agenda (mapping the
+maze), which is nonetheless occasionally useful to her users (when they
+ask for navigational assistance).  Note that this degree of autonomy is
+<i>necessary</i> for her to perform her job:  it would do no good at all
+for Julia to explicitly attempt to map the maze only when asked for
+directions.  Such an action would take too long for the user to wait,
+and simply cannot be sped up, either, since Julia must pause at least
+momentarily at regular intervals to avoid spamming the server.
+<P>
+<LI> <b>Personalizability.</b>  Julia is personalizable to the extent that she
+will remember certain preferences about her users.  For example, she can
+be told someone's email address, and will remember that and disgorge it
+again when asked to describe someone.  Most of her aspects of
+personalizabilty are in fact of <i>negative</i> utility to other players,
+though-except for keeping descriptions of individual players (which
+would qualify her more as a database), her primary bit of
+personalizability is to <i>avoid</i> players who have killed her recently,
+or have been obnoxious in other ways (c.f. the example above in which
+Johann killed her).
+<P>
+<LI> 
+<b>Risk, trust, and graceful degradation.</b>  Julia's task is both social
+and informational.  There are several mechanisms by which Julia might
+`fail':
+<UL><LI> Not even noticing that she has been addressed
+<P>
+<LI> Misparsing a statement and responding in a totally inappropriate way
+<P>
+<LI> Correctly parsing a statement, but producing incorrect information,
+either accidentally or on purpose
+</UL>
+Julia quite frequently makes the first two types of mistakes, but such
+mistakes carry with them extremely little risk.  The first type of
+mistake may make her seem cold or uninterested in a player, but
+presumably the player can deal with the affront to his or her ego.  The
+second type of mistake is generally obvious (and often a dead giveaway
+that Julia is a 'bot, for those who don't know yet), since we assume
+that only human players interact with 'bots.  (This assumption is
+generally true, since 'bots rarely speak unless spoken to, which tends
+to leave all of them silent unless humans are around to start a
+conversation.  Obviously, one can see different setups in which 'bots
+would interact, potentially getting stuck in cycles of misparsed statements and
+responses unless programmed to detect them, and so forth.)
+<P>
+It is only the third type of error which carries substantial risk, and,
+even here, the risk is not that great.<A NAME=tex2html27 HREF=Julia.foot.html#154><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>  In tasks where her
+information's reliability matters (e.g., player descriptions,
+navigation, etc), she has never to my knowledge been observed to be
+incorrect, with the possible exception of being slightly out of date if
+someone changes a description or some bit of topology after she has last
+seen it.  At worst, she may claim that her map does not work, and fail
+to give navigational information at all.
+<P>
+Julia <i>does</i> deliberately mislead and provide false information in one
+crucial area-that of whether she is a human or a 'bot.  This
+particular piece of risk is something of a step function:  once one
+realizes the truth, the risk is gone.  While some (like the unfortunate
+Barry in the long transcript above) might argue that this is a serious
+risk, the vast majority of those who meet her and were not clued in
+ahead of time as to her nature do not find the discovery particularly
+distressing.  On the other hand, her very accessibility, because of her
+close approximation of human discourse, makes her much more valuable
+than she might otherwise be-one is tempted to ask her useful questions
+that she <i>might</i> not be able to answer, just because she deals so well
+with so many other questions.  This encourages experimentation, which
+encourages discovery.  A less human and less flexible interface would
+tend to discourage this, causing people to either have to read
+documentation about her (most wouldn't) or not ask her much.  Either
+way, these outcomes would make her less useful.
+<P>
+<LI> <b>Discourse.</b>  Julia's discourse model, while primitive, appears
+sufficient for the domain at hand.  Since the topics at hand don't
+generally require more conversational memory than one or two exchanges,
+the extent of her discourse modelling is limited more by its
+breadth-by the stunningly simple parsing model employed.  (I'll have
+more to say about the demands placed on Julia's handling of discourse
+when I talk about domain immediately below.)
+<P>
+<LI> <b>Domain.</b>  Julia is situated in a mud, and therefore her environment
+is conceptually rather simple.  Furthermore, she has access to just as
+much sensor data as the human players, putting them on an even footing.
+In fact, much of Julia's success can be traced to the wonderful domain
+in which she finds herself situated.  In this bandwidth-limited space,
+people expect other people to look exactly as Julia does-as a stream
+of text.  And even when they're interacting with an entity known to be a
+program, the text-only nature of the dialog prevents them from
+expecting, say, a pop-up menu.  (If such things were available, people
+could tell programs from people by knowing that programs can pop up
+menus, whereas people use sentences.)  Yet the domain is not <i>so</i>
+simple as to be uninteresting.  It contains not only a fascinating
+sociological mix of human players, but objects with quite complicated,
+constructed behaviors, which may be manipulated on an even footing by
+both machines and people.
+<P>
+<LI> <b>Anthropomorphism.</b>  There's no question that Julia as an agent
+depends upon anthropomorphism.  In this domain, though, that is both
+natural and probably necessary.  Nonplayer objects are not generally
+expected to be able to deal with free text, and not being able to use
+free text would require each user of Julia to read documentation about
+reasonable commands they could type and reasonable actions they could
+expect.  Julia would <i>have</i> to appear at least as animated as, say, a
+more obvious `robot' or a pet, given that she wanders around in the
+maze; she cannot afford to resemble a static piece of furniture and
+still get her job done.  Given an entity that moves of its own volition,
+seems to have an independent agenda most of the time, and both processes
+and emits natural language, if it was <i>not</i> anthropomorphized, users
+would tend to do so anyway (pets get this treatment, as well as much
+simpler mechanisms).  Thus, anthropomorphizing her makes it easier to
+determine how to relate to her and how to get her to do one's bidding.
+<P>
+<LI> <b>Expectations.</b>  The domain of a mud is ideal in correctly setting
+expectations about the reliability and power of an agent such as Julia.
+Since the setting is fundamentally playful, and usually also somewhat
+unpredictable, it is natural to interact with playful and unpredictable
+characters (be they machines or humans).  Nothing in a mud is truly
+life-critical, hence the user generally does not have very high
+expectations of reliability, which lets Julia get away with a lot of
+nonoptimal behavior that could never be tolerated in, e.g., an airplane
+cockpit guidance system.
+</UL>
+<P>
+<B> Next:</B> <A NAME=tex2html144 HREF=section3_5.html>Conclusion</A>
+<B>Up:</B> <A NAME=tex2html142 HREF=section3_4.html>What's an agent?</A>
+<B> Previous:</B> <A NAME=tex2html138 HREF=subsection3_4_1.html>What's an agent?</A>
+<HR>
+<P><ADDRESS>
+Lenny Foner
+</ADDRESS><p>
+
+</BODY> </HTML>

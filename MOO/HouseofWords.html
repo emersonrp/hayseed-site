@@ -1,0 +1,1378 @@
+<HTML>
+<HEAD>
+<!--  This document was created from RTF source by 
+      rtftohtml version 3.0.1  -->
+<!--  ...and then massively tuned-up by hand with BBEdit 4.02  -->
+<!--  John Maxwell, January, 1997  -->
+<!--  jmax@portal.ca  -->
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function smallwin(URLarg,targname) {
+    var smallWindow = window.open(URLarg,targname,"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=325,height=200");
+}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function bigwin(URLarg,targname) {
+    var bigWindow = window.open(URLarg,targname,"toolbar=no,location=yes,directories=no,status=yes,menubar=yes,scrollbars=yes,resizable=no,width=450,height=400");
+}
+//-->
+</SCRIPT>
+
+
+<TITLE>House of Words - Title</TITLE>
+
+</HEAD>
+
+
+
+
+<BODY BGCOLOR=#FFFFFF TEXT=#000000>
+
+
+<H1 ALIGN=RIGHT>HOUSE OF WORDS</H1>
+<H3 ALIGN=RIGHT><I>Designing Text and Community<BR>
+in MOO Environments</I></H3>
+<HR ALIGN=RIGHT WIDTH=65% NOSHADE>
+
+<P ALIGN=RIGHT>
+Project Report Submitted in Partial<BR>
+Fulfillment of the Requirements <BR>
+For the Degree of<BR>
+Master of Publishing
+</P>
+
+<P ALIGN=RIGHT>
+&copy; John Maxwell<BR>
+Simon Fraser University<BR>
+December, 1996
+</P>
+
+<P ALIGN=RIGHT>
+<FONT SIZE=-1>
+Permission granted to make verbatim copies of this work,<BR>
+provided this copyright notice remains intact on all copies.
+</FONT>
+</P>
+
+
+<A NAME="contents"><HR></A>
+<HR>
+
+<DL>
+<DT><A HREF="#ackn">Acknowledgements</A>
+<DT><A HREF="#intr">Introduction</A>
+<DT><A HREF="#defi">Defining MOO</A>
+<DD>	MOOs in Education and Research
+<DD>	MOO as Literate VR
+<DD>	MOO as a Document Paradigm
+<DD>	Positioning MOO in the Communications Universe
+<DT><A HREF="#abou">About the Project</A>
+<DD>	NDDL and Educational Technology
+<DD>	The Plan
+<DD>	The Virtual Courthouse
+<DD>	My Role in the Project
+<DD>	The Details of Implementation
+<DT><A HREF="#tech">The Technical Details -- How MOO Works</A>
+<DD>	Building in the MOO
+<DD>	MOO Administration
+<DT><A HREF="#desi">Designing Virtual Environments</A>
+<DD>	MOO as Textual Multimedia
+<DD>	Forms of Content in MOO Environments
+<DD>	Player Interaction in the MOO
+<DD>	MOO Aesthetics
+<DD>	Interface Design Tactics
+<DT><A HREF="#publ">Publishing Environment vs. Published Environment</A>
+<DD>	Text, Document, and Community
+<DD>	Some Final Reflections on the Process
+<DT><A HREF="javascript:bigwin('Notes/all.html','notes')">Notes</A>
+<DT><A HREF="javascript:bigwin('biblio.html','bibliography')">Bibliography</A>
+</DL>
+
+<HR>
+
+<A NAME="ackn" HREF="#contents"><H2>ACKNOWLEDGEMENTS</H2></A>
+
+<P>
+Many people contributed significantly to this project. I would especially like to thank Sandra Hawkins, NDDL's Law 12 instructor, who is responsible for the mock trials in the first place and who served as the content anchor for the project. Thanks to the excellent people at the Open Learning Agency: David Porter, Enid McCauley, Rob Scales, Prescott Klassen, Bobbie Rollins, and Kevin MacDonald; and also to my eternally patient 'alpha test' group: Ron Rapin, Ruth Yates, Susan Crichton, and Greg Hockley. Thanks to Colin McLellan for keeping the hardware running in the face of Murphy's law! And to Tiffany Lee at the Law Courts Education Society of BC for making all sorts of courtroom info available to me.
+</P>
+
+<P>
+On the Net, I would like to acknowledge the truly excellent resources which are the MOO-Cows and MOO-Calves mailing lists; thanks especially to Slayer, for the LambdaCore upgrade docs and general good advice, and to Quinn for the pose feature object. Thanks to Steve Caron and Nick Ingolia for MacGoesMOO. And thanks of course to Pavel Curtis for LambdaMOO!
+</P>
+
+<P>
+Thanks to Prescott, Ron W., Wain, Christina, Dave, Elizabeth, Martin, and Tim for general support and encouragement. A big thanks to my wife, Kelly, for everything, not least of which the last-minute editing I foisted on you.
+</P>
+
+<HR>
+
+
+<A HREF="#contents" NAME="intr"><H2>INTRODUCTION</H2></A>
+
+<BLOCKQUOTE>
+<P>
+This document is the result of four months' exploration of MOO, a technology for immersive, textual environments on the Internet. It presents a case study of the implementation of MOO technology in a specific setting -- the <I>New Directions in Distance Learning</I> program at British Columbia's Open Learning Agency. This project formed the core of my Master of Publishing practicum, May through September, 1996, and continues into the 1996-97 school year.
+</P>
+
+<P>
+In this document I present the details of working with this technology to create an environment for a high-school Law course. I also attempt to place MOO technology in a general publishing context by looking into the relationship between texts, documents, and communities. Because MOO is so unlike what we might think of as a traditional publishing framework, it can shed a novel light on the process of publishing and consuming texts.
+</P>
+
+<P>
+I will begin by introducing the technology and some of its applications, and then proceed to a description of this particular project and some of the decisions made during design and construction. Finally, I will reflect on the nature of the technology and the insights that working with it provides into the publishing process.
+</P>
+</BLOCKQUOTE>
+
+
+
+<A HREF="#contents" NAME="defi"><H2>DEFINING MOO</H2></A>
+
+<BLOCKQUOTE>
+<P>
+MOO, simply put, is a form of text-based <I>virtual reality</I> (VR) that users can access and interact with over the Internet.
+</P>
+
+<P>
+The term "MOO" is a rarely expanded acronym for <I>MUD, Object-Oriented</I> -- which serves to place this technology within a larger class of Internet-based textual VR spaces called MUDs: <I>Multi-User Dungeons</I>. The difference between MOOs and MUDs is a technical one; much that can be said of the sociological and phenomenal characteristics of MOOs is equally true of MUDs. In this section, I follow common practice and use the terms almost interchangeably. The distinction between MUD and MOO becomes important when discussing the details of implementation, and so I will switch to the more specific term in subsequent sections.
+</P>
+
+<P>
+Pavel Curtis, the inventor of MOO software, offers the following:
+</P>
+
+<BLOCKQUOTE>
+<P>
+A MUD (Multi-User Dungeon or, sometimes, Multi-User Dimension) is a network-accessible, multi-participant, user-extensible virtual reality whose user interface is entirely textual. Participants (usually called players) have the appearance of being situated in an artificially-constructed place that also contains those other players who are connected at the same time. <A HREF="javascript:smallwin('Notes/note1.html','Note1')"><SUP><B>1</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+MOO is <I>virtual reality</I> technology. One may remember that VR enjoyed a brief time at the top of the media hype sheets in 1992-93 before it faded back into relative obscurity. It is important to distinguish between the expensive 'gloves and goggles'-style VR, characterized by detailed, interactive, 3D graphics, and the sort of VR that MUDs and MOOs represent. The latter offers none of the glitzy graphics and 'must-have' gadget appeal, but often goes further in terms of providing workable virtual environments -- much in the way that printed novels remain a valid form despite Hollywood's multi-million dollar movie extravaganzas <A HREF="javascript:smallwin('Notes/note2.html','Note2')"><SUP><B>2</B></SUP></A>.
+</P>
+
+<P>
+The history of MUDs and MOOs is wrapped up with the role-playing game craze of the late 1970s and early 1980s, best exemplified by TSR's <I>Dungeons &amp; Dragons </I>(D&amp;D)<I>.</I> In a way,  the D&amp;D generation were VR pioneers just ahead of the technology. As anyone who owned a personal computer in the mid 1980s will remember, there were dozens of attempts to re-create the dungeon-game experience with computers. <I>Zork</I> and <I>Adventure</I> are memorable examples, in which the computer would provide simple textual descriptions of rooms and hallways, and, as the hero, you would type such commands as "pick up the sword" and "stab the goblin."
+</P>
+
+<P>
+The generation that played <I>Dungeons &amp; Dragons</I> every Friday evening, creating vast virtual worlds on paper and in their collective imaginations, went on to university to find the first real instances of networked and shared computing resources: VAXen and campus mainframes, the tools of an emerging computer illuminati. As early as 1979, <A HREF="javascript:smallwin('Notes/note3.html','Note3')"><SUP><B>3</B></SUP></A>  a clever programmer had created a computer dungeon game that allowed multiple players to log in, presumably to gang up on the monsters, but probably as often to gang up on one another.
+</P>
+
+<P>
+As "Mudding" gradually gained momentum as a student pastime, it remained largely focused on dungeon games. As computing resources evolved, so did the dungeons, dug deeper and deeper into subterranean spaces and involving more complex experiences: virtual economies, ecologies, and societies were developing in the virtual catacombs.
+</P>
+
+<P>
+In 1989, an important development came from a MUD project at Carnegie-Mellon University. Attempting to speed up MUD software (bogged down in many cases by too many catacombs and dragons), a programmer named Jim Aspnes created a program called <I>TinyMUD</I> -- "tiny" because it was entirely contained in system RAM (as opposed to on a disk). It was faster and more responsive and aimed at a different sort of playing style. Instead of venturing into endless hallways and lairs, TinyMudders were more interested in socializing and creating "TinyScenery" as a backdrop to their chatting. The fact that the environment was kept in RAM effectively prevented it from growing too elaborate.
+</P>
+
+<P>
+<I>TinyMUD</I> was symbolic of a change in a portion of the MUD community away from the <I>Dungeons &amp; Dragons</I> aesthetic and toward the creation and colonization of social VR environments. Not long afterward, a research project at Xerox' Palo Alto Research Center (PARC) was begun: Pavel Curtis' <I>LambdaMOO</I>, an <I>Object-Oriented</I> MUD. <A HREF="javascript:smallwin('Notes/note4.html','Note4')"><SUP><B>4</B></SUP></A> 
+</P>
+
+<P>
+Sharing the small-and-fast ideal with Aspnes' <I>TinyMUD</I>, <I>LambdaMOO</I> featured an elegant object-based programming language. Players could easily create new additions to the environment and imbue them with custom functionality by writing small scripts or programs. The object-oriented model also allowed the <I>LambdaMOO</I> environment to become very elaborate while remaining relatively economical in its use of system resources. <A HREF="javascript:smallwin('Notes/note5.html','Note5')"><SUP><B>5</B></SUP></A> 
+</P>
+
+<P>
+At some point in the evolution of MUDs and Mudding, it became clear to many that what was going on was not just game-playing, but the creation and population of immersive, virtual environments -- <I>cyberspace</I>, to use science-fiction writer William Gibson's term. By the time the term "virtual reality" reached the mainstream media -- to describe the 3D goggles and headsets on teenage boys' Christmas lists -- true VR worlds had been in place and inhabited for almost a decade. The kinds of things going on in places like Curtis' <I>LambdaMOO</I> looked more like the social and political struggles of a newly founded colony than the toys that grace the "Fetish" pages of <I>Wired</I> magazine; what was happening within these worlds was more important than the technology that made them possible.
+</P>
+
+<P>
+Today, the original <I>LambdaMOO</I> continues to grow. <A HREF="javascript:smallwin('Notes/note6.html','Note6')"><SUP><B>6</B></SUP></A>  It is the virtual home of tens of thousands of people; at any given time, somewhere between 150 and 250 people will be connected to <I>LambdaMOO</I> -- a limit set by technical constraints. The environment is practically unmappable by now, but the society that inhabits it is highly evolved. <A HREF="javascript:smallwin('Notes/note7.html','Note7')"><SUP><B>7</B></SUP></A> 
+</P>
+
+<P>
+More significantly for our purposes, <I>LambdaMOO </I>has spawned dozens of other MOO environments on the Internet. Pavel Curtis has made the <I>LambdaMOO</I> software freely available on the Internet. In response, a wide variety of MOO-based virtual environments have appeared online. In particular, a number of educational MOOs are online today, providing real-time virtual environments in which educational interactions can take place.
+</P>
+
+<P>
+<H4><I>MOOs in Education and Research</I></H4>
+</P>
+
+<P>
+Probably the most visible educational MOO project is <I>Diversity University</I>, <A HREF="javascript:smallwin('Notes/note8.html','Note8')"><SUP><B>8</B></SUP></A>  a "virtual campus," administratively connected to a number of universities in the United States. <I>Diversity University's </I>environment is patterned after a real college campus, with a variety of virtual rooms and workspaces into which educators can bring groups of students from remote locales. The general approach is to start with the familiar -- an environment patterned closely after real life -- and to let individual users create more elaborate structures as specific learning projects require them. For example, within <I>Diversity University</I>, one can find an "Advanced weather computer," a conversational "Dante's Inferno," and the "Cyber-Zapatista HQ."
+</P>
+
+<P>
+A similar environment is found at <I>Virtual Online University (VOU)</I>. <A HREF="javascript:smallwin('Notes/note9.html','Note9')"><SUP><B>9</B></SUP></A>  <I>VOU's</I> Web site describes online virtual environments this way:
+</P>
+
+<BLOCKQUOTE>
+<P>
+...the isolation of the distance education student is removed as students and teachers become a part of a virtual community. They do not receive packets in the mail from an impersonal instructor nor do they sit and watch a television screen while a teacher lectures. Rather, they are active, participating members. <A HREF="javascript:smallwin('Notes/note10.html','Note10')"><SUP><B>10</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+A MOO conversation between myself and Michael Bertsch of <I>VOU</I>, here represented by his MOO persona, <I>Mogat</I>, gives some of the flavour of the live interaction:
+</P>
+
+<PRE>  You ask, "So tell me, how does one attend VOU?"
+  
+  Mogat says, "One registers, pays money, then attends 
+  classes over the Internet."
+  
+  You ask, "And where does accreditation come from?"
+  
+  Mogat says, "Our accreditation is currently under scrutiny 
+  through North Central, in the Midwest of the US. That's 
+  where our non-profit corporation is headquartered."
+  
+  You ask, "OK, I get it. How many people are we talking
+  about, roughly?"
+  
+  Mogat says, "We'll need between 50 and 100 faculty to run 
+  the station correctly.  Plus support staff and admins, etc."
+  
+  You say, "Holy Batman! This is not a small project! What 
+  sorts of disciplines?"
+  
+  Mogat says, "So far we are weighted heavily toward the 
+  Humanities, but we have math and science folks working on 
+  the proper interfaces to teach their subjects."
+  
+  You say, "Mmm-hm. I can see how text would be the primary 
+  medium at this point."
+  
+  Mogat says, "Right.  And that actually is an advantage.  I 
+  teach writing, and this tickles me no end."
+  
+  You ask, "OK, is someone here working on object-oriented 
+  Ivy?"
+  
+  Mogat says, "Not to my knowledge. What do you mean by Ivy?"
+  
+  You say, "The stuff that grows on the walls of 
+  universities."
+  
+  Mogat says, "That may very well be your first task.  Make 
+  it self- pruning." <A HREF="javascript:smallwin('Notes/note11.html','Note11')"><SUP><B>11</B></SUP></A>
+
+</PRE>
+
+<P>
+While <I>Diversity University</I> and <I>VOU</I> offer campus-like contexts for online education, there are also dozens of smaller educational MOO projects on the Internet. Many focus on a particular course or series of courses, often operating out of English and Creative Writing departments. A casual browse through an Internet subject catalogue will produce a dozen or more pointers to MOO projects. <A HREF="javascript:smallwin('Notes/note12.html','Note12')"><SUP><B>12</B></SUP></A>  
+</P>
+
+<P>
+The Media Lab at the Massachusetts Institute of Technology (MIT) is a source of high-profile research on MUDs and MOOs in education. MIT's research on this technology began in the early 1990s with a project called <I>MicroMUSE</I>: "an educational Multi-User Simulation Environment (MUSE) and Virtual Community with preference toward educational content of a scientific and cultural nature." <A HREF="javascript:smallwin('Notes/note13.html','Note13')"><SUP><B>13</B></SUP></A> 
+</P>
+
+<P>
+The bulk of MUD and MOO research at MIT has been done by Amy Bruckman, a Ph.D. candidate at the Media Lab. In four years of work, Bruckman has produced two important MOO projects. The first, <I>MediaMOO</I>, came online in 1993 as an interactive environment for media researchers; it is also a crucible for media research in itself. Bruckman's more recent <I>MOOSE Crossing</I> is a MOO in which children can explore writing and programming as self-expression. 
+</P>
+
+<P>
+The MIT projects differ from <I>Diversity University</I> and <I>VOU</I> in that they embody a strong theoretical perspective; namely, that of the <I>constructionist</I> school, which emerged from the Media Lab's work with the LOGO programming language in the 1970s. <A HREF="javascript:smallwin('Notes/note14.html','Note14')"><SUP><B>14</B></SUP></A>  Amy Bruckman writes:
+</P>
+
+<BLOCKQUOTE>
+<P>
+<I>MOOSE Crossing</I> is a text-based virtual world (or "MUD") designed to support the development of a "constructionist learning culture." Children from a variety of geographic and cultural backgrounds will connect across the Internet to collaboratively build a virtual world. <A HREF="javascript:smallwin('Notes/note15.html','Note15')"><SUP><B>15</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+Tari Lin Fanderclai, a teacher who has worked within Bruckman's <I>MediaMOO</I> environment, echoes Bruckman's <I>constructionist</I> perspective in the MOO:
+</P>
+
+<BLOCKQUOTE>
+<P>
+...there is a great deal of incidental learning, for many students log into the MUD on their own time, building spaces for their groups to work in, learning to program objects, discussing topics from our class and other courses they're taking -- and, of course, generally playing around. Quite possibly they learn more from projects and activities they invent for themselves than from any I assign; certainly they learn things I could not teach them in our four-walled classroom. <A HREF="javascript:smallwin('Notes/note16.html','Note16')"><SUP><B>16</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+Much of the research on MUDs and MOOs is sociological and ethnographic in its approach. Amy Bruckman's 1992 paper, <I>Identity Workshop,</I> explores the idea of MUD as 
+</P>
+
+<BLOCKQUOTE>
+<P>
+a workshop for exploring issues of social hierarchy. Is a hierarchical structure necessary for coordinating human group behavior? How do people obtain status within communities? The world of MUDs does not mirror reality; however, it brings the issues to the forefront and helps one to begin to think about them. <A HREF="javascript:smallwin('Notes/note17.html','Note17')"><SUP><B>17</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+In a later work, <I>The MediaMOO Community</I>, Bruckman and MIT researcher Mitch Resnick position MUDs as social spaces within larger community spheres:
+</P>
+
+<BLOCKQUOTE>
+<P>
+In <I>The Great Good Place</I>, Ray Oldenburg eloquently argues for the importance of "third places," places which are neither work nor home... On the Internet, MUDs become third places which draw people with common interests from all around the world. <A HREF="javascript:smallwin('Notes/note18.html','Note18')"><SUP><B>18</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+The common thread in many MUD and MOO investigations seems to be a focus on the immediate and live interaction aspects of the technology. John Allison of the Ontario Institute for Studies in Education (OISE) writes,
+</P>
+
+<BLOCKQUOTE>
+<P>
+With computer games and MOOs... the emphasis has been increasingly on interactivity. Students move away from passive verbs; 
+</P>
+
+<P>
+	<I>Homer was a poet in Ancient Greece.</I>
+</P>
+
+<P>
+to more active participation; 
+</P>
+
+<P>
+	<I>I am walking across a Greek landscape</I>
+</P>
+
+<P>
+to; 
+</P>
+
+<P>
+	<I>"Hello Homer! (to the digital Homer)" </I> <A HREF="javascript:smallwin('Notes/note19.html','Note19')"><SUP><B>19</B></SUP></A>  
+</P>
+</BLOCKQUOTE>
+
+<P>
+An interesting approach to the phenomenology of online experience has emerged in the work of several writers who argue that these computer-generated environments are in fact pure mental creations. Michael Heim, author of <I>The Metaphysics of Virtual Reality</I>, perhaps expresses this idea most succinctly:
+</P>
+
+<BLOCKQUOTE>
+<P>
+Cyberspace is Platonism as a working product... The spatial objects of cyberspace proceed from the constructs of Platonic imagination not in the same sense that perfect solids or ideal numbers are Platonic constructs, but in the sense that inFORMation in cyberspace inherits the beauty of Platonic FORMS. The computer recycles ancient Platonism by injecting the ideal content of cognition with empirical specifics. <A HREF="javascript:smallwin('Notes/note20.html','Note20')"><SUP><B>20</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+The mediating layer in such an environment is written language. MOOs offer a world of ideal, functionally defined objects manifested in narrative text. One experiences such a world by <I>reading </I>it, in very much the same way the world of a novel or short story is read and created within the reader's mind. But this literary reality is live and interactive instead of fixed on the page. The text grows and is shaped by the actions of each participant.
+</P>
+
+<P>
+The goings-on and interactions in a MOO environment are expressed in several coexisting layers of text. The result is a novel and sometimes idiosyncratic way of thinking about description and communication. Eva-Lise Carlstrom, invoking some of the gritty detail of the MOO environment, illustrates this:
+</P>
+
+<BLOCKQUOTE>
+<P>
+Actions, as in real life, may also have communicative intent. As mentioned above, emoting ":sends Plato to hell" will not send Plato to hell. To accomplish that, the player would have to type "@move Plato to #19232" (the object number for Hell), at which point the character Plato will in fact be teleported to Hell. But this would be considered rude. <A HREF="javascript:smallwin('Notes/note21.html','Note21')"><SUP><B>21</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+A world in which the very real difference between "sending Plato to Hell" and merely appearing to send Plato to hell is a matter of <I>etiquette</I> is an intriguing place with a very flexible model of reality. Northeastern University's R&eacute;my Evard talks about the practical advantages inherent in the "liquid architecture of cyberspace": <A HREF="javascript:smallwin('Notes/note22.html','Note22')"><SUP><B>22</B></SUP></A> 
+</P>
+
+<BLOCKQUOTE>
+<P>
+In a MUD, people and things exist in a place. One interacts with an object as one would in real life. This creates an interesting context for solving problems and indicating real-life situations. For example, in the systems MUD, I have an attic which is located above the cabin where we normally work. When I'm very busy in reality, I move to that attic, and leave everyone else in the cabin. In this way, I am out of the flow of conversation, but still available on the MUD if someone wishes to discuss a specific issue with me. <A HREF="javascript:smallwin('Notes/note23.html','Note23')"><SUP><B>23</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+As the preceding illustrations suggest, a good deal of the research and investigation into text-based virtual reality has focused on the phenomenal aspects of MUDs and MOOs, viewing these technologies against the benchmark of live, spoken communication. Educational MOOs like <I>Diversity University</I> seem to treat their environment as an online space that happens to be textual but is not necessarily so. In these environments, technologies like Internet telephony -- voice communication online -- cannot be far behind.
+</P>
+
+<P>
+There is a wealth of material written on issues of presentation of self, <A HREF="javascript:smallwin('Notes/note24.html','Note24')"><SUP><B>24</B></SUP></A>  construction of gender, <A HREF="javascript:smallwin('Notes/note25.html','Note25')"><SUP><B>25</B></SUP></A>  and discourse analysis <A HREF="javascript:smallwin('Notes/note26.html','Note26')"><SUP><B>26</B></SUP></A>  in MUD contexts; again, these analyses look at the use of text as a distinct feature of the technology but largely remain focused on a conversational model. These investigations, and the body of work they represent, only go so far toward understanding the complex web of social dynamics made possible by these technologies. To me, most do not adequately address the issue of MUDs and MOOs as literary environments.
+</P>
+
+<P>
+To be fair, there are a number of educational endeavours using MOOs as environments for teaching creative writing, as I noted earlier. Also significant is Amy Bruckman's <I>MOOSE Crossing</I> project, which has a substantial focus on collaborative authoring environments, building a bridge between writing and programming as self-expression. <A HREF="javascript:smallwin('Notes/note27.html','Note27')"><SUP><B>27</B></SUP></A> 
+</P>
+
+<P>
+I would like to follow a slightly different path, investigating MUD and MOO technologies as literature, as documents, and as publishing environments. I seek to define and position these technologies in terms of the written tradition leading up to them. Instead of viewing MUD and MOO experiences as <I>written speech</I>, I see them as <I>live</I> or <I>dynamic writing.</I>
+</P>
+
+<P>
+<H4><I>MOO as Literate VR</I></H4>
+</P>
+
+<P>
+The title of this section may sound a little pretentious, but it is deliberately chosen to guard against the common conception of MUDs and MOOs as a kind of 'poor-man's VR' -- that it is merely a stop-gap technology until the 3D gear becomes affordable. I take issue with this idea, as do many MUDders and MOOers. Xerox' Pavel Curtis explains:
+</P>
+
+<BLOCKQUOTE>
+<P>
+It is substantially easier for players to give themselves vivid, detailed, and interesting descriptions... in a text-based system than in a graphics-based one.  In McLuhan's terminology, this is because MUDs are a 'cold' medium, while more graphically-based media are 'hot'; that is, the sensorial parsimony of plain text tends to entice users into engaging their imaginations to fill in missing details while, comparatively speaking, the richness of stimuli in fancy virtual realities has an opposite tendency, pushing users' imaginations into a more passive role. I also find it difficult to believe that a graphics-based system will be able to compete with text for average users on the metric of believable detail per unit of effort expended; this is certainly the case now and I see little reason to believe it will change in the near future. <A HREF="javascript:smallwin('Notes/note28.html','Note28')"><SUP><B>28</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+In my initial definition of MOO as "text-based virtual reality," the adjective <I>text-based</I> is most definitely not subordinate to <I>virtual reality</I>.
+</P>
+
+<P>
+I would like to offer another definition of MOO -- as <I>live literature</I>. This definition places the emphasis on the <I>textual </I>qualities of the environment; the distinguishing characteristic being that it is interactive, real-time, and immersive. To approach the technology from this perspective sheds light on a whole range of possibilities for inquiry. 
+</P>
+
+<P>
+<H4><I>MOO as a Document Paradigm</I></H4>
+</P>
+
+<P>
+In order to make the case suggested in the title of this section, I need to first clarify what I mean by <I>document</I>. The term has a general day-to-day meaning but not an entirely specific one. What do we mean when we talk about documents? Letters are documents. Technical manuals are documents -- or, at least, <I>documentation</I>. Certainly anything with a lawyer's signature at the bottom is a document. In a wider sense, books and magazines are documents, too, and as we become increasingly 'wired,' we would probably agree that e-mail messages and Web pages are documents as well.
+</P>
+
+<P>
+I would like to offer the following working definition of document: <I>the artifactual incarnation of a text</I>. I am distinguishing between the terms <I>text</I> and <I>document</I>; the relationship between them is this: the text is something of an ideal form, and the document its manifestation, or artifactual reality. A text may be incarnate in several distinct document forms at different times -- an idea that becomes more apparent as text becomes increasingly digital and increasingly fluid.
+</P>
+
+<P>
+Traditionally -- that is, before the advent of electronic media -- documents commonly appeared in relatively few forms, generally distinguished by which end of the printing press you found them at. With the advent of photocopiers, fax machines, desktop publishing technology, and now the Internet as a publishing medium, the variety of potential document types is vast. In their variety, perhaps we can see the nature of documents more clearly.
+</P>
+
+<P>
+With the fragmentation (or flowering) of digital document forms comes a similar change in the publishing process itself. What had traditionally to do with the management of paper going through printing presses is now a more complex set of activities. To continue with my model, I would define <I>publishing</I> as the production of documents, the process of making texts into documents, of making them into shared artifacts.
+</P>
+
+<P>
+<I>Publication</I> -- the production of <I>documents</I> -- sets texts into motion. It gives them material reality (and whatever equivalent we find in cyberspace); it defines their location and circulation; and it governs their relationship to audiences and communities. The relevance of a text is dependent on the nature of its incarnation as a specific kind of document. Publishing is the act of mediating the creation and delivery of documents.
+</P>
+
+<P>
+MOO technology, as I will attempt to demonstrate here, is a publishing framework because it is all about the mediated creation and delivery of documents. The textual content of a MOO is manifested and contextualized by the position and architecture of the environment, and by the interaction of a community of users in and around it. The unique characteristics of MOO technology offer us a rich environment in which to explore the nature of documents in the context of digital media.
+</P>
+
+<P>
+<H4><I>Positioning MOO in the Communications Universe</I></H4>
+</P>
+
+<P>
+I defined MOO first as "text-based virtual reality," and then as "live literature". These two definitions emphasize different characteristics of MOO technology and the environments it creates. In order to take this discussion any further, we need to look more closely at MOOs and MOOing.
+</P>
+
+<P>
+MOO is an Internet-accessible, real-time database that one can connect to and interact with using simple <I>telnet</I> (terminal-emulation) software. Once connected, the user (or <I>player</I>) reads descriptions of the virtual environment and happenings in the environment and can write (type) responses and make contributions. It is a shared environment; many people can connect at once and interact with others who are connected.
+</P>
+
+<P>
+There are three central characteristics of MOO that I believe define it and set it apart from other media.
+</P>
+
+<OL>
+<LI><P>
+It is <I>live</I>, or <I>real-time</I>. MOO is a dynamic system, ever-changing, and thus qualitatively different from static publishing systems that put ink on paper or even Web pages in a browser window. MOO blends the stable qualities of the written word with the dynamism of spoken communication.
+</P>
+
+<LI><P>
+It is a <I>persistent, immersive environment</I>; that is, one is projected into the virtual world -- and that virtual world has a degree of permanence and predictability. In this sense it is distinct from IRC <A HREF="javascript:smallwin('Notes/note29.html','Note29')"><SUP><B>29</B></SUP></A>  or similar "chat" services that have a flat, one-dimensional aspect, like talking on the telephone instead of actually 'being there'.
+</P>
+
+<LI><P>
+It is <I>text. </I>This characteristic must be considered in conjunction with the previous two; as a textual environment, it is again qualitatively different from television, radio, theatre, ritual, or other media that populate the live and immersive corners of the communications universe.
+</P>
+</OL>
+
+<P>
+MOO is a system of documents. It is a complex world built of text; the textual reality exists on many levels simultaneously. In our investigation of MOO as a "document paradigm", we confront a number of issues regarding the nature of documents, about the continuum between fixity and fluidity, and about the processes of making texts into social artifacts. As I will attempt to illustrate in the next section, MOO offers us a new perception of what the publishing process really does.
+</P>
+</BLOCKQUOTE>
+
+
+
+<A HREF="#contents" NAME="abou"><H2>ABOUT THE PROJECT</H2></A>
+
+<BLOCKQUOTE>
+<P>
+Between May and September, 1996, I was involved -- as my practicum project -- in the production of a MOO environment for the <I>New Directions in Distance Learning</I> (NDDL) program at the Open Learning Agency (OLA). <A HREF="javascript:smallwin('Notes/note30.html','Note30')"><SUP><B>30</B></SUP></A>  NDDL delivers high-school level courses to schools and communities that would not otherwise be able to offer them; for instance, small towns in northern British Columbia. NDDL is also a research-oriented project aimed at developing an effective model for "mediated distance education."
+</P>
+
+<P>
+In the late twentieth century, education is in revolution. We are in a phase of chaotic restructuring and redefinition of what we want education to be. Some argue that this revolution is long past due; MIT educational technologist Seymour Papert, for example, suggests that a nineteenth-century schoolteacher, magically transported to the late twentieth century, would not have any trouble adjusting to the environment or the kinds of things going on there. Papert asks us to compare this with a similar situation involving a nineteenth-century physician in a present-day operating room.
+</P>
+
+<P>
+There seem to be a few general trends emerging in educational reform. One is increased choice, both in terms of where students go to school and what they learn when they get there. Another is what is sometimes called the "mix and match" approach, in which students do not necessarily take all of their courses from a single school but may pick up a few courses through distance education or other alternative channels. 
+</P>
+
+<P>
+One of the most interesting directions of change has to do with the traditional student-teacher model. Traditionally, a teacher, armed with an official curriculum, would face a classroom in the autumn of each year and begin a process of delivery wherein the teacher served as the main interface between students and the material they were to learn. The teacher would be responsible for course development, expertise in the subject matter, interpretation of the curriculum, live performance, counselling, assessment, crowd control, and administration.
+</P>
+
+<P>
+We are beginning to see this model give way to a more specialized, modular approach. The Open Learning Agency's NDDL program is an excellent example. In NDDL, the relationship between student and course material is actively mediated by a number of different people. At the core level, the roles of expertise and delivery are divided between two people: the <I>mentor</I>, who is a central content expert for the course, and the <I>facilitator</I>, who is the student's local contact, providing interpretation and support (both educational and technical). This is called the <I>triad model;</I> the student, mentor, and facilitator get to know one another and work together to handle the course material, which has been developed by yet another team of specialists: course authors, instructional designers, packager/publishers, and administrators. Much of the success of NDDL is attributed to the effective team-playing of local and remote participants; indeed, NDDL serves as not only a successful example of a distance learning system, but perhaps of mediated course delivery in general.
+</P>
+
+<P>
+The strength of this approach, it seems, is due to the multiple layers of interpretation that lie between the student and the content of the course. In the context of the framework I set up earlier -- in which I defined publishing as the production of documents and their introduction into specific communities -- we can look at this kind of mediated delivery as an example of a highly interactive publishing model. Content is authored as texts (and other media) and then is published, or set into motion, by an integrated team of facilitator/interpreters. As the end user, the student has access not merely to a teacher and a textbook but to multiple layers of the delivery and interpretation process.
+</P>
+
+<P>
+<H4><I>NDDL and Educational Technology</I></H4>
+</P>
+
+<P>
+NDDL uses a variety of technologies to enrich the triad model and to provide within it as many opportunities for communication and interpretation as possible. The core of NDDL's delivery strategy is an Internet-connected FirstClass <A HREF="javascript:smallwin('Notes/note31.html','Note31')"><SUP><B>31</B></SUP></A>  bulletin board and conferencing system. FirstClass is an integrated system offering e-mail, conferences, file archives, and live chat. Much of the administration and delivery of NDDL courses happens within the NDDL FirstClass system; it is the glue that holds together administrators, instructional designers, teachers, facilitators, and the students themselves.
+</P>
+
+<P>
+NDDL also employs a variety of other communications tools, including audio and video conferencing. Part of NDDL's mandate is to evaluate new tools for mediated delivery. The <I>NDDL 1994-95: Phase 2 Review</I> tells us:
+</P>
+
+<BLOCKQUOTE>
+<P>
+The NDDL project was designed to:
+</P>
+
+<UL>
+<P>
+<LI> increase access to educational programs in small or remote communities
+</P>
+
+<P>
+<LI> provide alternative educational delivery opportunities
+</P>
+
+<P>
+<LI> build upon existing courseware and delivery systems
+</P>
+
+<P>
+<LI> utilize information technology effectively
+</P>
+
+<P>
+<LI> link with complementary initiatives and projects... <A HREF="javascript:smallwin('Notes/note32.html','Note32')"><SUP><B>32</B></SUP></A> 
+</P>
+</UL>
+</BLOCKQUOTE>
+
+<P>
+In 1995-96, NDDL began investigating a variety of Internet-based course delivery technologies, including the development of WorldWide Web-based courseware. In 1996, the Internet has nearly approached the level of a common carrier, and the opportunities for creating integrated publishing and delivery technologies using the Internet as a base are now a reality. For NDDL, it is a very attractive medium, because it offers a very workable mix of defined standards and flexibility of application.
+</P>
+
+<P>
+The <I>WorldWide Web</I> (WWW, Web) is without a doubt the key technology of the Internet revolution. Businesses and institutions are currently in a mad rush to establish their presence on the Web, and it is hard to find a school anywhere that hasn't acknowledged the Web's strengths both as a library and as a tool for student expression. The only thing bigger than the Web in 1996 is the hype about the Web.
+</P>
+
+<P>
+There is, however, more to the Internet than the Web. The Internet was a remarkable tool long before the Web emerged in 1990. In fact, in the rush to populate the Internet with Web pages, many intriguing Internet possibilities have been pushed aside. One such possibility is that of live interaction -- which has been almost entirely absent from the half-decade of Web development. 
+</P>
+
+<P>
+I first saw the Web in late 1992, before browsers like NCSA Mosaic and Netscape Navigator had been created. The Web was, to me, a set of numbered hypertext links on a terminal screen. At around the same time, I first logged in to <I>LambdaMOO</I>, which I approached from that same terminal screen. While the early, terminal-based Web was certainly intriguing, it paled in comparison to what I was seeing in <I>LambdaMOO's</I> "living room."
+</P>
+
+<P>
+Since then, of course, things have changed. Marc Andreesen (at the University of Illinois' NCSA) made the Web into a graphics-friendly medium, and it exploded at an unbelievable rate. Meanwhile, MUD and MOO development proceeded at a steady pace but remained a relatively obscure technology compared to the Web.
+</P>
+
+<P>
+<H4><I>The Plan</I></H4>
+</P>
+
+<P>
+Early in 1996 I approached David Porter at the Open Learning Agency about a practicum project. I had wanted to do something with MOO technology, and so I suggested that the OLA develop a MOO as an adjunct to their other Internet-based delivery systems. My initial idea was to follow in the footsteps of a number of US universities and use the environment for English and Creative Writing classes.
+</P>
+
+<P>
+David Porter, along with his colleagues Enid McCauley and Rob Scales, immediately had a different idea. They saw a MOO environment as fitting into the NDDL Law 12 offering. The Law 12 course is taught by Sandra Hawkins, an energetic and creative teacher well-known in BC legal-education circles as the co-author of a series of "mock trials" used throughout the province in teaching the courtroom process. <A HREF="javascript:smallwin('Notes/note33.html','Note33')"><SUP><B>33</B></SUP></A>  Before long, we had developed the idea of a MOO environment as a "virtual courthouse" in which to conduct mock trial exercises for NDDL's distance learners.
+</P>
+
+<P>
+In a traditional Law course, a mock trial is generally run by assigning various courtroom roles (crown counsel, defence counsel, witnesses, jury) to students, and having them develop their roles from a set of prepared notes on the particular case to be tried. The class then ideally takes over a real courtroom in order to conduct the trial. If the students can don the robes and regalia of the court, so much the better.
+</P>
+
+<P>
+Obviously, if students are distributed all over the province and connected via computers and modems, it is not feasible to assemble for such an exercise. The idea behind the MOO project is to enable this sort of event and process to take place online. It would allow Sandra Hawkins' NDDL students to participate in the mock trials she has prepared, in a manner similar to students who all live in the same town. Previously, NDDL students had little experience with mock trials. Ms Hawkins had experimented with conducting the proceedings via e-mail and conferences, and to some extent, in audioconferences, but not with the degree of engagement we hoped to achieve with this technology.
+</P>
+
+<P>
+In a sense, MOO is a natural choice: a technology that has grown out of role-playing games being used for a role-playing exercise. However, there are a host of challenges that present themselves along the way to making this concept a reality. Let us look at the project a little more closely.
+</P>
+
+<P>
+<H4><I>The Virtual Courthouse</I></H4>
+</P>
+
+<P>
+There are roughly twenty students in the NDDL Law 12 course. The course begins in September and runs through June. Sandra Hawkins suggests that the students will be ready to participate in mock trials by November, and so their formal involvement with the MOO would begin at that time. However, they should probably be introduced to the MOO beforehand, perhaps in comparison (or as an adjunct) to the FirstClass conferencing system. It would be a definite advantage for the students to be comfortable in the MOO environment before participating in the formal mock trial exercise.
+</P>
+
+<P>
+In any case, the students' participation will ideally go something like this:
+
+<OL>
+
+<LI><P> 
+The mock trial exercise will be announced on the NDDL FirstClass system (which is the primary mode of communication for the class). A set of generic documentation about the trial will be made available to the students at this time, along with a set of specific documentation on working in the MOO environment.
+</P>
+
+<LI><P>
+At a pre-set time, an audioconference will be held with the students, their local facilitators, Sandra Hawkins, and myself. We will go through the plan for the exercise with everyone and attempt to identify and solve any problems with connections or interface. Ideally, students will be logged in to the MOO during this audioconference, in order to try out the MOO environment while they are in telephone contact.
+</P>
+
+<LI><P>
+The students will be given a period of time (a week or more) to explore the MOO environment on their own and familiarize themselves with the modes of interaction in it. During this time, more detailed trial preparations will take place, such as deciding upon roles, selecting the jury, and pre-examining of witnesses. These activities may or may not take place within the MOO.
+</P>
+
+<LI><P>
+Exhibits and evidence for the trial will be made available to appropriate parties in the FirstClass environment and, where possible, in the MOO as well (for example, text documents relating to the trial).
+</P>
+
+<LI><P>
+Students will receive a formal <I>subpoena </I>by e-mail, asking them to appear in court, prepared for the trial, at a specific time and date.
+</P>
+
+<LI><P>
+At the appointed time, the students will assemble in the MOO, and the mock trial will take place. Sandra Hawkins will play the role of the Judge. I will facilitate the proceedings in the guise of court clerk.
+</P>
+
+<LI><P>
+At a pre-set time afterward, the group will assemble in the MOO again for an informal debriefing session.
+</P>
+</OL>
+
+<P>
+The aims and objectives of the project, from the NDDL perspective, are as follows:
+</P>
+
+<UL>
+<LI><P>
+ to facilitate live class interaction (in general) and to conduct mock trials within the Law 12 curriculum (specifically) 
+</P>
+
+<LI><P>
+ to develop a framework that actively engages students and aids in the overall integration of curriculum and technologies
+</P>
+
+<LI><P>
+ to evaluate MOO as a communications tool alongside proven technologies like FirstClass and audioconferencing
+</P>
+
+<LI><P>
+ to explore the possibilities raised by new media and novel approaches to mediated distance learning   
+</P>
+</UL>
+
+<P>
+My interest, as I indicated earlier, is to explore the nature and possibilities of MOO technology as a document framework; to get away from viewing MOO as 'cheap VR' and instead focus on its textual richness. The subject matter (of Law 12) is highly appropriate to this angle, as our legal system is very much a system of documentation punctuated by live, oral courtroom exchanges. The depth and variety of the MOO document framework is in some ways mirrored by the depth and variety of the legal document framework.
+</P>
+
+<P>
+<H4><I>My Role in the Project</I></H4>
+</P>
+
+<P>
+My role in the project is as its architect and facilitator. I am charged with the design, construction, and management of the MOO environment. The project's 'content expert' is Sandra Hawkins, the course instructor and author of the mock trial material used in this project. <A HREF="javascript:smallwin('Notes/note34.html','Note34')"><SUP><B>34</B></SUP></A>  Ms Hawkins provides valuable information about the design of the environment and its details, as well as acting as a liaison with the students as the course instructor. Ms Hawkins is, in a sense, my most important client -- unless she is able to work with the environment, there is little chance that her students will.
+</P>
+
+<P>
+My job is to manage the production and distribution of <I>documents</I> in this context. Managing refers both to the design and construction of the virtual environment and to the proliferation of texts within that environment. In that I am playing the central editorial and interpretive role in the process, I am the <I>publisher</I> of this project; I am responsible for the interpretation and presentation of the supplied content -- the prepared texts and notes for the mock trial -- as well as the meta-information regarding the courtroom and the ambient context for the exercise.
+</P>
+
+<P>
+The interpretation and editing process requires that I situate the texts within two overlapping contexts: first, that of the Canadian legal system, so that the materials are consistent with a real courtroom experience, and second, that of the MOO itself. The prepared trial texts need to be integrated with the environment in such a way that they are accessible and understandable and that the interface is as transparent as possible.
+</P>
+
+<P>
+Beyond that, however, is yet another layer. The MOO environment must encourage participant engagement and contribution. The richness of the MOO is not only in the texts that we place in it but significantly in the dynamic interaction of connected users. This <I>live</I> layer needs to work with the prepared materials in such a way that my "virtual courthouse" has an existence greater than simply a backdrop for the mock trial exercise.
+</P>
+
+<P>
+There are, at root, three groups of people involved in this endeavour: myself as technical facilitator and designer; the students as end-users; and the NDDL staff and faculty as content experts, authors, and organizers of the larger context of the project. My job is not so much producing content as serving the content producers.
+</P>
+
+<P>
+My challenge, then, is to open and facilitate a particular kind of channel:
+</P>
+
+<OL>
+<LI><P>
+ To build a situated environment -- the virtual courtroom -- that does justice to the kind of situated learning that is being attempted: that is, a simulated trial in a simulated court.
+</P>
+
+<LI><P>
+ To create a mediated environment that is easy for users (both students and instructors) to enter and use effectively with a minimum of 'fussing' with the details of connections, interface, etc.
+</P>
+
+<LI><P>
+ To develop a stable, usable platform that can be evaluated on a even footing alongside other distance learning tools.
+</P>
+
+<LI><P>
+ To make it possible for other developers to build directly onto the environment. That is, to encourage others (students, staff) to participate in the process of building an environment that suits the needs of legal education.
+</P>
+
+<LI><P>
+ To create a usable overall framework for further development of MOO-based situated learning.
+</P>
+</OL>
+
+<P>
+The creation of such channels -- through which texts become documents at work within a community of learners and teachers -- is what educational publishing is really about. Literary critic Stanley Fish talks about the "interpretive communities" that serve to construct the meanings of texts for their members. <A HREF="javascript:smallwin('Notes/note35.html','Note35')"><SUP><B>35</B></SUP></A>  These communities form the frames and contexts for our understanding. Educational publishing in the sense that I am trying to establish here is about dialogue with and within interpretive communities -- dialogue that extends to the conscious creation and publishing of documents. 
+</P>
+
+<P>
+The trend toward increasing specialization of educational delivery roles carries with it the need for an elaborate system of document publishing and interpretation, one with opportunities for feedback and interaction along the way. As the distance between student and course material is bridged by more specialized and discretely identified <I>layers</I> of facilitation, the importance of communication and publishing between and across these layers increases. What sorts of documents will serve to populate and define these layers? Hopefully, <I>interactive</I> ones will.
+</P>
+
+<P>
+<H4><I>The Details of Implementation</I></H4>
+</P>
+
+<P>
+I began in May with the installation of a MOO server on a computer at the Open Learning Agency. The task before me was to design and create an online environment for mock trial exercises. I felt, however, that this environment needed to have a larger scope than just bench, dock, and witness stand; it needed to be an inclusive environment that would encourage exploration and elaboration by the participants.
+</P>
+
+<P>
+I started building <I>NooDDLe</I> <A HREF="javascript:smallwin('Notes/note36.html','Note36')"><SUP><B>36</B></SUP></A>  as an outdoor environment, described as recently cut out of the British Columbia wilderness. Within this virtual clearing I created a number of virtual buildings, a workshop, a gallery and foyer, and then the courthouse itself. The courthouse contained a number of rooms, including courtroom, library, and a number of offices and semi-private spaces. I wanted to create a coherent world with both an inside and an outside, in order to give the place a setting. The richer the environment, the more there is for the participants to think about. So, we not only had a courtroom, but a courtroom within a cedar building set in a garden in the coastal rainforest.
+</P>
+
+<P>
+I spent some time adding descriptions to the environment, both indoors and out, to make it as complete as possible. I extended the environment into my virtual forest and created a few spaces just for fun, thinking that students who take the time to explore should be rewarded by finding interesting things just beneath the surface -- something like real life.
+</P>
+
+<P>
+One of the first things I built indoors was the <I>Library</I>; a space to keep specific documents within the MOO. I had to move the <I>Library</I> entrance a few times, before finally merging the gallery and foyer with the courthouse itself, so that the library, courtroom, offices, and garden all led to a central common area called the <I>Courthouse Foyer</I>. This central area includes a <I>Guest Book</I> that visitors can sign for posterity.
+</P>
+
+<P>
+The <I>Courtroom</I> itself was challenging to design. How does one describe a courtroom in any sort of meaningful way? To describe it visually is not very fruitful. I had to come up with a way to describe the courtroom functionally. What I eventually created was a 'smart room' that is aware of which trial roles are associated with specific players and that produces custom descriptions and outputs to those players. So, whether you are a member of the court proper or merely a spectator defines which doorway you enter through, which in turn produces a slightly different description of the room. Further, the room 'responds' to certain players; whenever Sandra Hawkins enters the <I>Courtroom</I>, it recognizes her as the Judge, and an automated <I>sheriff</I> says, "Order in Court!"
+</P>
+
+<P>
+The <I>sheriff</I> is only one such automated "bot" <A HREF="javascript:smallwin('Notes/note37.html','Note37')"><SUP><B>37</B></SUP></A>  in the MOO. The <I>court recorder</I> is an also automated routine; it logs or records everything that occurs within the <I>Courtroom</I> and will play back portions of this log on request.
+</P>
+
+<P>
+Ms Hawkins was interested in being able to use the environment as a demonstration tool on occasion, and so she asked me to create an automated 'tour guide' that would lead guests through the various areas and talk about what was there. I created an overly polite <I>Host</I> bot that normally inhabits the <I>Garden</I> (which is where players find themselves when they first log in). The <I>Host </I>will respond to a request for a tour by leading a player into the courthouse and through some of the rooms. We felt that the <I>Host</I> would be a useful service for players trying out the technology for the first time.
+</P>
+
+<P>
+With the basic environment constructed, I next had to turn my attention to the presentation of the mock trial materials themselves.
+</P>
+
+<P>
+The environment as I have described it so far is purely a shell. There is some built-in functionality, but just as a bare courtroom does not make a legal system, the empty MOO environment would not offer much richness to the mock trial exercise. Trials and law are all about documents, and there needs to be at least a basic set of documentation for the trial to make sense. Exhibit materials need to be presented in the court, and relevant legal documents (sections of the <I>Criminal Code of Canada</I>, for instance) must be available. Further, a trial in progress is an ongoing work of documentation; in addition to the court record, there needs to be a system for notes and note-taking by the trial participants.
+</P>
+
+<P>
+Creating notes and documentation within the MOO is a relatively simple matter; there is a built-in function for creating 'writable' objects. However, a courthouse environment requires an extensive set of internal documents, and so -- as I will describe in some detail later -- I paid attention to the issue of creating in-MOO documents.
+</P>
+
+<P>
+We must remember, though, that the participants of our mock trial -- Law 12 students sitting in front of computers -- do not <I>live</I> in the MOO; they have access to all sorts of documents and notes and tools outside the environment. They undoubtedly have pens and paper, word processors, and electronic note takers. And they will also have the FirstClass e-mail and conferencing system. Since a MOO client takes up relatively little memory and space on a computer monitor, it is reasonable to expect that other programs will be open and on-screen alongside the MOO. So, practically speaking, the documentation component of the trial will exist both and inside and outside the MOO environment.
+</P>
+
+<P>
+What seems clear is that those documents that relate to the immediate details of the MOO experience need to be immediately available within the environment. Exhibits, court records, and anything that needs to be referred to directly and/or shared within the trial should be present as documents in MOOspace. These documents may also exist outside the environment. For instance, it makes sense to place a set of the exhibit materials on the FirstClass system, which would make it possible for participants to view them in a separate window if they choose. Any pictorial exhibits would be served by a textual description within the virtual courtroom and a graphic file within the FirstClass system, allowing easy access to either version.
+</P>
+
+<P>
+There are a number of challenges inherent in conducting so text-heavy an event as a trial within a textual environment like a MOO. Here are some of the issues that have guided the development of the environment so far:
+</P>
+
+<UL>
+<LI><P>
+ The speed of the trial proceedings will owe much to the typing speed of the participants. In order to keep the process moving, the stock sections of the trial (i.e., those portions of the proceedings that are generic or written in advance) can be automated or delivered by macros. The court clerk's contributions, for instance, can largely be automated, as can the Judge's introductory remarks and charge to the Jury.
+</P>
+
+<LI><P>
+ The success of the exercise will probably owe much to the atmosphere of the court, inasmuch as the virtual courtroom is able to convey the stateliness and formality of a real court. If the ambient setting for the mock trial is detailed and accurate, the result should be a richer experience for participants. Since MOO is a textual environment, we have all the possibilities of written literature to help in the creation of this atmosphere. However, the danger of overwhelming the participant with text is very real.
+</P>
+
+<LI><P>
+ It is worth noting that what we will be attempting in running a mock trial in a MOO environment is a <I>two-tiered</I> role-playing scenario. On one level, we are asking students to enter into an artificial world wherein they are the participants in a trial in a court of Law. On the other level, we are asking students to enter into the artificial world of the MOO as virtual entities in a virtual world. In fact, we are doing both at the same time, with very little time for overlap. We will, in a sense, be asking the students to find their feet in an artificial world two layers deep. While this particular aspect is not the focus of my research, I am aware of the complexity of the situation, and it will be interesting to see how students navigate this "frame within a frame". <A HREF="javascript:smallwin('Notes/note38.html','Note38')"><SUP><B>38</B></SUP></A> 
+</P>
+</UL>
+
+<P>
+The stated objectives of this project -- to facilitate live class interaction and to actively engage the students in the tasks at hand -- will be the measures for the success of the project. It seems likely that success will rely on striking a balance between including sufficient detail to make the mock trial as 'real' as possible and ensuring that interaction in the environment is smooth, understandable, and responsive.
+</P>
+
+<P>
+Writers on the subject of interface design commonly point to the ultimate goal of making the interface disappear completely into the functionality of the piece. In this exercise, the interface design issue is especially critical, as the user must successfully navigate several layers of textual material in order to understand what is happening. The challenge is most apparent at three stages:
+</P>
+
+<OL>
+<LI><P>
+ The virtual courthouse must behave in predictable and coherent ways that provide a helpful context for the trial exercise. This challenge applies not only to the architecture of the environment but also to the documents, props, and enhancements that exist to facilitate the trial.
+</P>
+
+<LI><P>
+ The language used must be both simple enough and rich enough to produce an engaging experience. The environment must be presented in ways that allow the user to create the experience in her own mind, as a good novel or a short story would. At the same time, if this textual presentation is too long or too complicated, it will stifle the 'live' aspects of experience. The same constraint applies to what the participants  are required to type themselves.
+</P>
+
+<LI><P>
+ The technical requirements must not present any barriers to involvement. We will be distributing a very simple MOO client application (essentially a glorified <I>telnet </I>program) to the students, so that logging in to the MOO should be as easy as double-clicking on an icon. However, once logged in, the matter of "finding one's feet" in the MOO will also take a certain amount of time and effort.
+</P>
+</OL>
+
+</BLOCKQUOTE>
+
+
+
+<A HREF="#contents" NAME="tech"><H2>THE TECHNICAL DETAILS: How MOO Works</H2></A>
+
+<BLOCKQUOTE>
+<P>
+MOO software consists of a server and a database, both of which are freely available from Xerox PARC. <A HREF="javascript:smallwin('Notes/note39.html','Note39')"><SUP><B>39</B></SUP></A>  The server is a Unix program, available from Xerox as source code and in a number of pre-compiled versions for popular Unix systems. The server's role is to manage connections and processes and to load and parse the database, which is in the form of a large text file. The server has been ported to a number of non-Unix operating systems; <A HREF="javascript:smallwin('Notes/note40.html','Note40')"><SUP><B>40</B></SUP></A>  the database file itself is in a generic format, and so it works with any platform.
+</P>
+
+<P>
+MOO runs entirely in the system RAM of the host computer. While this makes the environment quick and responsive, it also places a considerable load on the host system. While MOO does not place many demands on the system's processor, its RAM requirements are roughly twice the size of the database loaded. The basic "LambdaCore" database is nearly two megabytes as shipped, and as MOOs evolve, they grow. Xerox' original <I>LambdaMOO</I> is over <I>one hundred </I>megabytes; the server requires nearly twice that amount of RAM to remain responsive.
+</P>
+
+<P>
+At pre-set intervals (commonly once or twice per day) the server dumps (<I>checkpoints</I>) the entire database to the hard disk for safekeeping. If the host computer were to crash at some point, the environment could easily be recovered up to the last checkpoint. Normally, however, the MOO resides in RAM continually, saving itself periodically. The checkpointing procedure is quick and, for the most part, transparent to users.
+</P>
+
+<P>
+The LambdaCore database is the basic virtual environment. As delivered from Xerox, it is a complete environment, composed of exactly one "room". When the MOO is started for the first time, it loads the core database and allows the administrator (the <I>Wizard</I>) to log in. At this point, nothing exists beyond the first room, but there is within the core a set of primitives or generic objects with which one can build an entire world of rooms, things, notes, doorways, and other players. There is also a programming language, commonly called <I>MOO code</I>, with which the virtual reality can be configured and brought to life. As well, within the core is a detailed <I>help</I> <I>system</I>, which can be accessed by any user simply by typing "help" within the environment.
+</P>
+
+<P>
+Connections to the MOO are made via telnet protocol to a specific port on the server, much as one would connect to an online library catalogue. The interaction is then simply a matter of text being written to the user's screen and the user typing responses back. While the connection is based on telnet, most users will employ a more specialized client application <A HREF="javascript:smallwin('Notes/note41.html','Note41')"><SUP><B>41</B></SUP></A>  that splits the input from the output onscreen, and that may offer some automation or macros.
+</P>
+
+<P>
+<I>NooDDLe</I> runs on a Sun Sparcstation 5 (star.ola.bc.ca  port 8888) in the Information Services (IS) department at OLA. The machine is administered by IS staff, but I take care of the administration of the MOO itself. The system has been running continually since May, with one or two planned shutdowns during that time. <A HREF="javascript:smallwin('Notes/note42.html','Note42')"><SUP><B>42</B></SUP></A>  As of this writing, the database is roughly 3.5 megabytes. It checkpoints twice a day.
+</P>
+
+<P>
+<H4><I>Building in the MOO</I></H4>
+</P>
+
+<P>
+Creating and populating a MOO is a matter of creating and manipulating <I>objects</I>. In accordance with object-oriented programming principles, everything in the environment is structured as some kind of <I>object. </I>Objects can be said to be 'parents' or 'children' of other objects, and there is a hierarchical system of inheritance among these: objects share properties and functions with their parent object. In the LambdaCore database, there are about one hundred objects, most of which are generic and which can be used as templates for creating new objects.
+</P>
+
+<P>
+In order to allow people to connect and log in to our MOO environment, we need to create a number of <I>player objects</I>. When connected and logged in to a MOO, each individual is represented within the environment by a specific player object -- an avatar or MOO persona. Every <I>player </I>is a descendant of the generic <I>$player</I> <A HREF="javascript:smallwin('Notes/note43.html','Note43')"><SUP><B>43</B></SUP></A>  object (part of the core database), and therefore shares all the functionality of the parent object. 
+</P>
+
+<P>
+A more complex example is the construction of a 'virtual courtroom', a child of the generic<I> $room</I> object, but with a set of added functions and properties related to the running of trials: prisoner's dock, witness stand, and controls on who can speak at what times. These details are described in MOO code according to their function, so that interaction within the virtual courtroom can take place by reading and typing appropriate statements. Finally, the completed virtual courtroom can then be seen as a <I>generic courtroom</I>, from which subsequent courtrooms can be created, without having to rebuild each time.
+</P>
+
+<P>
+The creation of new <I>room </I>objects is the most straightforward way of building a MOO environment -- for the most part, one can simply "dig" new rooms and give descriptions to them. It is not necessary to add specialized functions as I did with the <I>Courtroom</I> unless there is a specific purpose.
+</P>
+
+<P>
+In addition to <I>rooms</I> and <I>players</I>, we can create <I>things</I>, which are simple objects without any built-in functionality, <I>notes</I> to write on, <I>containers</I> to place other objects in, and so on. From there, we can begin to specialize objects by adding new MOO code to descendants of these basic building blocks. Just as I created the <I>Courtroom</I> from the generic <I>$room</I>, it is important to understand that the generic <I>$room</I>, <I>$exit</I>, and <I>$player</I> were all created from the generic <I>$thing</I>, which in turn is a specialized instance of the <I>root class</I>, or bottom level of the database. At each step in the hierarchy, more functionality is added. Xerox' <I>LambdaMOO</I> contains tens (if not hundreds) of thousands of objects.
+</P>
+
+<P>
+<H4><I>MOO Administration</I></H4>
+</P>
+
+<P>
+The administration of such an environment grows similarly complex. In <I>LambdaMOO's</I> case it has begun to look quite a bit like civic politics. The most interesting aspect of MOO administration is that it is handled entirely internally -- that is, completely within the bounds of the virtual environment. There is, in fact, no access to any aspect of the virtual environment from outside the MOO. It is an entirely self-contained world. Even the documentation for using and building the MOO is contained within the environment.
+</P>
+
+<P>
+This is not necessarily a limitation. In fact, it reinforces a long-standing principle of MUD and MOO administration: that one should always try to manage things from within the system. In a classic article on multi-user environments, <I>The Lessons of Habitat</I>, Chip Morningstar and F. Randall Farmer warn that in building a virtual community, structures need to evolve naturally from within, and that,
+</P>
+
+<BLOCKQUOTE>
+<P>
+Wherever possible, things that can be done within the framework of the experiential level should be. The result will be smoother operation and greater harmony among the user community. This admonition applies to both the technical and the sociological aspect of the system. <A HREF="javascript:smallwin('Notes/note44.html','Note44')"><SUP><B>44</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+MOO administration is -- at least at the technical level -- a matter of governing object ownership. Each MOO user is represented in the environment by his <I>player</I> object, and there is a simple class system built into LambdaCore that manages a set of permissions and rights. At the top of this system is the <I>Wizard</I>, roughly analogous to the system administrator. The Wizard's powers are unlimited within the environment. 
+</P>
+
+<P>
+The rest of the population are members of either the simple <I>player class</I>, the <I>builder class</I>, or the <I>programmer class</I>; these distinctions refer to a player's ability to create, modify, and destroy objects within the environment. They set the ground rules for a collaboratively authored world.
+</P>
+
+<P>
+In the case of <I>NooDDLe</I>, I occupy the <I>Wizard</I> role, but only when it is necessary. The rest of the time, I exist as a <I>programmer-class</I> player. There are a handful of other <I>programmer-class</I> players in <I>NooDDLe</I> -- OLA staff who are interested in working with the environment -- but most players are at the <I>builder</I> level. As builders, they are able to create new objects (notes and documents, for instance) and even to "dig" new rooms if they desire, but they do not have the power to program or modify the functionality of objects.
+</P>
+
+<P>
+MOO is at once a very simple and a very complex system. To the extent that it is both at once we might say that it is an elegant technology; where it fails to be both and instead is either too simple or too complex, it is not an elegant technology. The challenge of making MOO really work is to create a virtual world and a virtual community where the elegance can shine through, and the ugly aspects fall away.
+</P>
+</BLOCKQUOTE>
+
+
+
+<A HREF="#contents" NAME="desi"><H2>DESIGNING VIRTUAL ENVIRONMENTS</H2></A>
+
+<BLOCKQUOTE>
+<P>
+MOO is, at heart, an Internet-accessible information service or database that one can use to retrieve information from, interact with, or add to at will. Technically, it is not much different from many other types of Internet information services: one establishes a connection using a <I>client </I>program, logs in (identifies oneself), and navigates through the information by issuing specific commands in an interactive session. When finished, the user logs out and breaks the connection.
+</P>
+
+<P>
+A telnet session to a library catalogue or other terminal-access database is very similar in this respect. What is different about MOO is that one is aware of other users and can interact with them as part of the data. In the library catalogue example, the fact of the user's presence is in some way 'known' by the system, but that information is kept separate from the real content of the database. In a MOO, we might say that the user's presence becomes an integral part of the data. Hence, MOO is immersive in ways regular databases are not.
+</P>
+
+<P>
+Similarly, we might compare MOO with the WorldWide Web, another client-server system in which one can connect to various information spaces and interact with them. But the difference here is even greater, as the Web is a <I>stateless</I> system; that is, a connection or query to a Web site is a discrete transaction: query and response. The information base is unaffected (aside from a line written to the server's log file) by the user's request; the existence of the user has no representation within the data. Furthermore, there is no temporal element to Web interaction; information pulled from a Web server is a snapshot of that data at the time of the request.
+</P>
+
+<P>
+MOOs can also be compared to a different set of network services: e-mail and conferencing systems. Many of the things people do in MOO environments can be done via e-mail correspondences or newsgroup discussions. In these cases, the user's presence is important in the system, and the process is definitely interactive, but it is not 'live' -- not real-time. 
+</P>
+
+<P>
+Much has been written on the wonders of asynchronous communication; on the convenience of dealing with one's e-mail at any time of the night or day; on the curious compression of time and space that occurs in electronic correspondence. This is fundamentally different from what is happening in a MOO, where the experience is either solitary (when there is only one user logged in) or a live, social happening.
+</P>
+
+<P>
+A fourth MOO comparison would be with real-time "chat" services, such as <I>Internet Relay Chat</I> (IRC), bulletin board "chat rooms," or FirstClass live chat sessions. These services rely on the system 'knowing' who is logged in currently and creating temporary interactive links between users. But chat sessions are certainly not immersive. All that is possible is conversation. Like talking on the telephone, the interaction is limited to dialogue and cannot refer to other items in the system. 
+</P>
+
+<P>
+MOO, as distinct from a chat session, is a database of information objects, a database that includes users within it but is not limited to them. It is a persistent virtual environment, more or less the same place each time one logs in. A MOO environment can contain many of the things mentioned above: indexes and catalogues, Web pages (there are several MOOs on the Internet operating as sometime Web servers), e-mail and discussion groups, <A HREF="javascript:smallwin('Notes/note45.html','Note45')"><SUP><B>45</B></SUP></A>  and, of course, live interactivity and dialogue. 
+</P>
+
+<P>
+<H4><I>MOO as Textual Multimedia</I></H4>
+</P>
+
+<P>
+With so many layers of experience and interaction within a MOO environment -- the architecture, the contents of the environment, the live discourse, and the variety of discrete document forms -- one can almost call MOO a multimedia technology. True, there are no graphics, video, or stereo sound, but to call the technology "merely text" misses the point about immersive environments and the richness of the experience. MOO is a system of texts within texts. The layer of background context is defined textually; player interaction is an exchange of textual messages; objects in the environment are represented textually. Each layer occupies a different part of the user's imagination and attention at different times. Jeffrey Young describes it this way:
+</P>
+
+<BLOCKQUOTE>
+<P>
+...the text gains a unique blend of <I>transparency and opacity</I>, as players constantly shift stance from immersion in the imaginative space to evaluation and control over the textual objects. <A HREF="javascript:smallwin('Notes/note46.html','Note46')"><SUP><B>46</B></SUP></A> 
+</P>
+</BLOCKQUOTE>
+
+<P>
+To continue with the idea of documents being texts incarnate in an interpretive community, how many layers of "documentation" are present (and active) within a MOO world? The whole thing is textual, and while some of its components look something like traditional documents, other elements and aspects challenge traditional understandings of what documents are. Can we really be said to exist and interact <I>within</I> a document? There are schools of literary criticism that would not take issue with this concept at all; <A HREF="javascript:smallwin('Notes/note47.html','Note47')"><SUP><B>47</B></SUP></A>  in the MOO context, though, it is <I>literally</I> true (pun intended), and on a very immediate level.
+</P>
+
+<P>
+<H4><I>Forms of Content in MOO Environments</I></H4>
+</P>
+
+<P>
+Content in a MOO -- though always textual -- is handled in a number of different ways. Each different form implies a different set of interactions and functions. The following is a brief summary of these forms.
+</P>
+
+<P>
+The most basic form of MOO content is <I>topological</I>, to use the terminology of LambdaCore's internal help system. <I>Topology</I> in this sense refers to the virtual environment described in spatial and architectural terms. The basic unit of MOO architecture is the <I>room</I>, which can be functionally defined as a top-level container (and child of the generic <I>$room</I>), and within which can be found players, other objects, sub-containers, and so on. Each <I>room</I> has a description, and this description is displayed automatically as a user enters the room. Movement in the MOO -- from room to room -- will produce a series of descriptions that together describe the overall topology of the MOO.
+</P>
+
+<P>
+Other objects in the MOO -- players, things, containers, notes -- also have descriptions that one can see by typing the <I>look</I> command. At the most basic level, creating a virtual environment in the MOO is a matter of describing places and the things in them, and arranging these so that the user, in moving through the environment and encountering different objects, has a coherent experience, perhaps like that of reading a novel; architecture as literature.
+</P>
+
+<P>
+A particularly important class of objects in the MOO is the <I>note</I> class; that is, descendants of the generic <I>$note</I> object. Notes are functionally defined as objects that one can write on and read. The <I>note</I> object class has been elaborated to include different sorts of notes for different purposes, including <I>letters</I> (that can be "burnt" when read), and an internal e-mail system.
+</P>
+
+<P>
+It is particularly <I>note</I>worthy that in a world created entirely of words, there is a class of objects that exist to put words on. There is a peculiar frame shift in this -- creating a distinction between words that are to be treated as 'reality' and words that are to be treated as words. 
+</P>
+
+<P>
+A last form of content and communication in the MOO environment is live dialogue and/or interaction with live objects (meaning connected players as well as programmed, animate objects). Conversational functions in a MOO are designed in such a way that what scrolls up the user's screen looks roughly like a dialogue in a novel. 
+</P>
+
+
+<PRE>  Jack comes in from the Library.
+
+  The Host says, "Greetings, Jack!"
+
+  Jack asks, "Hey! What's happenin'?"
+
+  Jill hands Jack a cookie.
+
+  You say, "Jill baked some cookies."
+
+  Jack devours the cookie.
+
+</PRE>
+
+
+<P>
+This is decidedly different from other network chat services both in the syntax used and in the integration with the rest of the environment. While the tone of MOO conversations may not be wholly different from those in a chat room, they are significantly grounded in the surrounding environment, both by reference to the environment and structurally in terms of the way the text flows on the user's screen.
+</P>
+
+<P>
+Ideally, a log of a MOO session reads something like a bizarre novel. The plot may or may not be completely nonsensical, but the structure of the written language holds together as a coherent, second-person, present-tense account of what is happening, with whom, and where. Plain, unedited log files of MOO sessions are a common archival form within the MOO community on the Internet. A MOO log can be read as a simple narrative, because the system is designed to generate simple narrative output to each user.
+</P>
+
+<P>
+The idea of a MOO experience being like that of reading a novel is a useful one. However, unlike a novel, which is composed as a linear narrative, a MOO environment is designed and composed as short, discrete textual passages chained together by a player's actions. Hence, the aesthetics of MOO description take a cue from emerging literary hypertext forms in demanding a certain level of second-guessing on the part of the author. For instance, in <I>NooDDLe</I>, two room descriptions in the outdoor <I>Garden</I> appear like this:
+</P>
+
+
+<PRE>The Garden
+===========
+
+A wide opening in the forest which reveals a lush and verdant patch 
+of sunlight.  The Garden is tall and verging on overgrown now, in 
+high summer.  A series of groomed paths lead you through the foliage.  
+A thicket of roses insulates you from the forest to the east, and 
+toward the western perimeter are a number of laden fruit trees: 
+cherries, pears, and a fig.  In amongst the trees are a number of 
+cedar buildings.
+
+You see The Host (wearing a summery straw hat) here.
+
+Go: [n] to North Garden, [s] to South Trail, [steps] to The Courthouse, 
+and [w] to West Garden
+
+
+&gt; w
+
+
+West Garden
+===========
+
+Here stands the majestic fig tree, small green figs hanging from its 
+branches.  Beneath the fig is an overgrown patio, made of dark red 
+paving stones, that leads back to an almost-hidden doorway, framed 
+in dark ivy.  Now and then you can hear voices drift down from above.
+
+Go: [e] to The Garden and [door] to JMax' Workshop
+
+</PRE>
+
+
+<P>
+In composing these descriptions, I can refer specifically to the fig tree in the second description, because I am confident that anyone reading the <I>West Garden</I> description will have first seen the description for the <I>Garden.</I> I can be confident of this because of the arrangement of rooms.
+</P>
+
+<P>
+A similar sensitivity needs to be exercised in the design of automated objects like the <I>Host</I>. The <I>Host</I> is programmed to greet visitors to the <I>Garden</I> and to take players on a tour of the courthouse when requested. While it was a fairly easy task to make the <I>Host</I> wander from room to room, offering brief comments at each place, it was not so easy to tune this behaviour so that it appeared to be coherent, deliberate, and above all, tolerant of players who do not tag along dutifully.
+</P>
+
+<P>
+I called this sensitivity "second guessing", but in truth it is the basis of interface design. In the context of programming a computer, interface design can be a messy problem because of the large number of presentation variables. Interface design exists in the traditional publishing world as well, but there it has become a craft based on a set of time-honoured devices and strategies. In the emerging digital world, publishers are becoming cognizant of computer interface design, and programmers are becoming aware of traditional publication design.
+</P>
+
+<P>
+<H4><I>Player Interaction in the MOO</I></H4>
+</P>
+
+<P>
+Every object in the MOO has an <I>owner</I>; that is, every object has an inherent set of relationships to specific players in the MOO environment. The owner of a particular object -- generally its creator -- enjoys complete power over the object: to create or destroy it, to manipulate it, to change what it looks like or what it does. Other players have a more limited relationship to it; they may see the object, interact with it, or move it, but they cannot destroy or change it.
+</P>
+
+<P>
+The system of rules governing these relationship is modeled on the system of permissions from the Unix operating system; <A HREF="javascript:smallwin('Notes/note48.html','Note48')"><SUP><B>48</B></SUP></A>  files and processes can be read, written to, or executed (used) by the owner, a group of specified others, or anyone at all, according to a specific set of codes describing these permissions. In the MOO, object permissions act as a set of inalienable rights that are 'hard-wired' into the virtual world.
+</P>
+
+<P>
+Different players have different kinds of powers, as well. I have mentioned the MOO's <I>Wizard</I>, who is roughly analogous to the system administrator. The Wizard has complete access to everything; there are no barriers to the Wizard's powers to create, destroy, and modify objects in the MOO, including creating and destroying players themselves.
+</P>
+
+<P>
+Most MOO users will not log in as <I>wizard-class</I> players. Most players are either of the generic <I>player,</I> <I>builder</I>, or <I>programmer </I>class, defining their level of access to the MOO's programming language. They have the power to create, modify, and destroy their own objects, but not those of other players. It is also possible to 'open up' the permissions on specific objects, so that others could modify or destroy one's things (for example, letters that can be "burnt" after the recipient reads them).
+</P>
+
+<P>
+This hierarchy of property and privilege provides a basic context for the goings-on in a MOO. To explore this, consider my <I>virtual Courtroom</I>.
+</P>
+
+<P>
+As a <I>programmer-class </I>player, I have created a <I>Courtroom.</I> <A HREF="javascript:smallwin('Notes/note49.html','Note49')"><SUP><B>49</B></SUP></A>  The <I>Courtroom</I> object and related objects are therefore 'mine' and are not subject to the control of anyone other than myself (and, of course, the all-powerful Wizard).
+</P>
+
+<P>
+Once created, the <I>Courtroom</I> is linked in to the rest of the MOO and opened to the MOO public. Participants can be invited into the <I>Courtroom</I>, shown to various materials, instructed on the basic use of the facility, and charged with the business of conducting a mock trial.
+</P>
+
+<P>
+Once a trial is under way, players will be actively adding to the virtual environment in a variety of ways. First, they will be present in the <I>Courtroom</I>, and so the room will take into consideration their presence and roles in the way it arranges the proceedings and descriptions. Second, they will probably be manipulating and adding objects to the <I>Courtroom</I> environment: documents (notes), evidence, and so on. Finally, they will be contributing to the <I>court record</I>, which is essentially a log of the happenings in the room.
+</P>
+
+<P>
+The goings-on in the <I>Courtroom</I> are a collaborative process. The trial is collaboratively authored by the participants, myself (as author of the <I>Courtroom</I> object itself), and Sandra Hawkins (as the designer of the mock trial proceedings). This collaborative authoring is not true merely on an abstract literary level; it is explicitly true in the sense that the trial is a text that scrolls up each participant's screen (and which is also logged internally by the <I>court recorder</I> object).
+</P>
+
+<P>
+In the sense that this is a collaborative and dynamic process governed by a set of basic rules, the challenge is to create a kind of structured chaos. The MOO experience is not like that of a text adventure game, in which there is a pre-planned 'world' that one must explore and puzzles to solve. Rather, the MOO experience is a dynamic happening in a structured shell. It is nicely analogous to the interaction in a real-world courtroom; the rules that govern what goes on in a real court are very strict. As a result, the text that emerges out of courtroom interaction is coherent, structured, and usable as the basis for our cumulative legal system. What goes on within the strict framework of court (or MOO), however, is unpredictable.
+</P>
+
+<P>
+<H4><I>MOO Aesthetics</I></H4>
+</P>
+
+<P>
+Players connect to a MOO by way of a telnet session to a specific port on the host computer. Once connected, the MOO's <I>welcome message</I> appears onscreen and the user is prompted to log in with name and password. Unlike a Unix system, MOO will only accept one login at a time for each player; that is, it is not possible to log in as the same player twice simultaneously. There can only be one of you in the MOO.
+</P>
+
+<P>
+Once logged in, commands are typed as simple English sentences (or fragments thereof). The MOO attempts to parse commands according to the basic structure of <I>verb</I> - <I>direct object - preposition</I> - <I>indirect object</I>. It then attempts to match each of these syntactical elements to objects in the MOO database. If they are successfully matched, the commands are handled by appropriate <I>verbs</I> <A HREF="javascript:smallwin('Notes/note50.html','Note50')"><SUP><B>50</B></SUP></A>  -- MOO programs written to handle those specific commands. For instance, the following command:
+</P>
+
+<BLOCKQUOTE>
+<P>
+<TT>throw frisbee to Fred</TT>
+</P>
+</BLOCKQUOTE>
+
+<P>
+...will be successful if there is a player named <I>Fred</I> in the room, there is an object called <I>frisbee</I>, and there is a <I>throw</I> verb defined on the <I>frisbee</I> object. If any of these matches fail, the MOO will respond with a simple error message saying that it doesn't understand what you mean.
+</P>
+
+<P>
+The elegance of a MOO environment has much to do with the mapping of these command handlers to what one would expect from real-world discourse. Ideally, the commands a user types are grammatical sentences relating to the action to be performed. For instance, if there is a <I>park bench</I> in the MOO, then we should presumably be able to "sit on the bench" or "sit down on the bench". If we have to "blorg gimble garfle bench" in order to seat ourselves on it, the virtual illusion suffers.
+</P>
+
+<P>
+As commands are entered in this fashion, the MOO responds by reporting actions and changes to the virtual environment: "You sit down on the bench... Marty arrives... Marty says 'Hi'... Marty sits down on the bench," as they happen. The resulting stream of text scrolls up the user's screen as the events happen.
+</P>
+
+<P>
+Conversation and movement in the MOO are the simplest forms of user interaction. The command, <I>say Hi </I> -- usually abbreviated to <I>"Hi</I> (a quotation mark stands for the command <I>say</I>) -- will cause <I>John says, "Hi"</I> to appear on the screens of any players in the same room (if Bob typed the command, it would appear that Bob said, "Hi"). Typing <I>north </I>or even just the letter<I> n</I> will move you (your <I>player, </I>that is) to the 'north', assuming there is an available exit and room in that (virtual) direction.
+</P>
+
+<P>
+Other, more complex interaction is also possible. An object can be created to respond to any typed command and respond in whatever way the object's creator wants. For instance, <I>note</I> objects respond to a command:
+</P>
+
+<BLOCKQUOTE>
+<P>
+<TT>write "This is a line of text" on note</TT>
+</P>
+</BLOCKQUOTE>
+
+<P>
+...by adding the text between the quotation marks to the object's set of properties. <I>Note</I> objects also respond to a <I>read</I> command, which prints out the text that had been <I>written</I>. The variety of these command/response interactions is truly only limited by imagination.
+</P>
+
+<P>
+Second, there is a layer of direct interaction with the MOO database itself. A set of commands exists within the MOO that allow the user to manipulate the database directly. For instance, the command <I>@describe</I> allows one to set the description of any owned object. The command <I>@who </I>results in a list of all currently connected players. Commands like these are generally distinguished by the <I>@ </I>prefix.
+</P>
+
+<P>
+Finally, there is the actual programming of the environment. Programming is a matter of composing scripts written in MOO code and attaching them to specific objects, so that they respond to triggers such as typed commands.
+</P>
+
+<P>
+All of these interactive modes are integrated in the one interface. From anywhere in the environment, and at almost any time, one can type commands to engage in conversation, query or make changes to the database, or actually program objects in the environment.
+</P>
+
+<P>
+As simple as this command-parsing interface is, it is also MOO's greatest limitation. There is no simple way to suspend or break out of the live interaction model. This is most irritating, at least on the day-to-day level of building in a MOO environment, because programming must be performed via the same live interface. A simple type of text editor is included as part of the LambdaCore database, which allows a player to enter a <I>room</I> supposedly conducive to writing and editing MOO code, but this is very kludgy and unsatisfactory for all but the most trivial editing chores. The alternative is to compose MOO code outside the MOO and then cut and paste the edited code into the MOO. <A HREF="javascript:smallwin('Notes/note51.html','Note51')"><SUP><B>51</B></SUP></A>  In doing so, however, one is 'breaking frame' by removing one's attention from the immediate experiential level.
+</P>
+
+<P>
+This gripe, however, doesn't slow dedicated MOOers down much, nor has it hindered the evolution or propagation of MOOs on the Internet. Thousands of users in dozens of Internet MOOs manage to get along fine with the internal editing system, even to the point of making extensive use of the internal MOO mail system -- something I personally consider almost too cumbersome to use. The interface is not always simple and elegant. It sometimes presents an obstacle to new users and probably has hindered the overall public awareness of MOOs and MOOing. 
+</P>
+
+<P>
+It is not that the interface is complicated or hard to use; just that it takes a certain leap of faith and a half hour of feeling disoriented before a user becomes acclimatized to the ways of the environment. This steep -- however brief -- initial learning curve has proven to be the biggest obstacle in presenting <I>NooDDLe</I> to the OLA community.
+</P>
+
+<P>
+It is worth noting that while MOOs remain for the most part entirely textual environments, the internal object hierarchy of MOO can serve as a structure for delivering more than plain ASCII text. MOO servers can be made to communicate with Web browsers, delivering objects in the form of Web pages. <A HREF="javascript:smallwin('Notes/note52.html','Note52')"><SUP><B>52</B></SUP></A>  Another approach is a MOO client called <I>Pueblo,</I> <A HREF="javascript:smallwin('Notes/note53.html','Note53')"><SUP><B>53</B></SUP></A>  which can interpret HTML tags. By embedding HTML codes directly into object descriptions, fully formatted, colour-enhanced MOO output can be generated. In the next year or so, we can expect to see this sort of convergence of Internet technologies blossom into a wealth of new possibilities.
+</P>
+
+<P>
+<H4><I>Interface Design Tactics</I></H4>
+</P>
+
+<P>
+Within the text-only world of existing MOOs, there are certain measures that a MOO designer can take in order to make the environment friendlier for new users. The basic strategy is to think about what the community really needs to do, and then customize the interface to facilitate it. An example of this is a new subclass of objects I created in <I>NooDDLe</I>: the <I>document</I> object. Recall that there is an object class of <I>notes</I> in the LambdaCore that allows one to write text onto them and read that text back at will. The command to enter text on a <I>note </I>object looks like this:
+</P>
+
+<BLOCKQUOTE>
+<P>
+<TT>write "This is a single line of text." on MyNote</TT>
+</P>
+</BLOCKQUOTE>
+
+<P>
+While this command is fairly straightforward, it is rather limited when it comes to adding more than a single line to the note. In order to add multiple lines, the user must issue the command repeatedly.
+</P>
+
+<P>
+My solution was to create a new subclass of <I>notes</I> called <I>documents</I>, with a new verb called <I>writeon</I>, which works like so:
+</P>
+
+<BLOCKQUOTE>
+<P>
+<TT>writeon MyDocument</TT>
+</P>
+</BLOCKQUOTE>
+
+<P>
+After issuing this command, the user is then prompted to add as many lines of text as desired, and, when finished, to type a single period at the start of a new line -- telling the MOO that the text has ended.
+</P>
+
+<P>
+<I>Writeon</I> is no more 'obvious' than the original <I>write</I> command, but it is a more convenient way to enter long passages on document objects, and it has facilitated the creation of an in-MOO library of reference materials.
+</P>
+
+<P>
+This sort of specialization of objects is at the heart of MOO design. The <I>Guest Book</I> that players will find in the <I>Courthouse</I> is a further specialization of the <I>document</I> class; the difference is that the object permissions have been 'opened' to allow anyone to <I>writeon</I> the object, not just the object's owner.
+</P>
+
+<P>
+Another example is the <I>pose</I> feature, a superb piece of MOO code created by a player named Quinn on Xerox' <I>LambdaMOO.</I> <A HREF="javascript:smallwin('Notes/note54.html','Note54')"><SUP><B>54</B></SUP></A>  <I>Pose</I> allows a player to type commands in this form: 
+</P>
+
+<BLOCKQUOTE>
+<P>
+<TT><B>.</B>smile at Kelly</TT>
+</P>
+</BLOCKQUOTE>
+
+<P>
+This results in a set of perfectly conjugated sentences: depending on whose screen it appears on, either "you smile at Kelly," "John smiles at Kelly," or "John smiles at you." The <I>pose</I> feature adds sophistication and convenience to the basic set of player functions, which would otherwise print generic messages on the screens of everyone in the same <I>room</I> -- without performing these individual conjugations.
+</P>
+
+<P>
+The point of these examples is to demonstrate that MOO objects and the environment they create are entirely plastic, and can be altered to suit one's needs or wishes. In terms of environmental design, the creation of specialized objects is an important layer in the interpretation and presentation of content material.
+</P>
+</BLOCKQUOTE>
+
+
+
+<A HREF="#contents" NAME="publ"><H2>PUBLISHING ENVIRONMENT VS.<BR>
+PUBLISHED ENVIRONMENT</H2></A>
+
+<BLOCKQUOTE>
+<P>
+The multiplicity of layers in the MOO environment -- layers of presentation, facility, and meaning -- results in a publishing framework we can look at in at least two ways. On one hand, we can approach MOO technology as a publishing medium on the Internet, much as the WorldWide Web is a publishing medium. It allows an audience to access a body of interpreted and edited material and to read and interact with it.
+</P>
+
+<P>
+On the other hand, we can look at MOO as containing an entire virtual world, <I>within which</I> we can present documents to an audience or community. In this scenario, entities within the environment interact with specific textual artifacts, and the relationship between text and community is defined within the larger context of the MOO. In looking at the Law 12 mock trial exercise, I think that this latter perspective is more appropriate.
+</P>
+
+<P>
+In either scenario, MOO technology involves a wealth of document forms. The variety of textual layers within the MOO world parallels the blossoming of digital document forms outside the scope of MOO itself.
+</P>
+
+<P>
+A notable case in point is the body of information available about MOO technology. Most of the technical and research documentation on MOOs and MOOing is available on the Internet at various locations. There are Web-based hypertexts and link collections, FTP file archives containing all sorts of document forms: ASCII text files, MSWord files, Adobe Acrobat documents, TeX files, and raw PostScript files. There are half a dozen Internet mailing-lists, a similar number of Usenet newsgroups, three or four different FAQ collections, and searchable archives of most of these. Exploring this subject area is itself a course in dealing with digital document formats.
+</P>
+
+<P>
+But there is a separate body of material that is only available <I>inside </I>MOOs. For instance, in LambdaCore, there is the internal <I>help database</I> that is the last word on many of the details of MOO. Additionally, in established MOO environments, there is usually a large body of user-contributed material. For instance, one of the best sets of documentation on MOO security issues resides in a virtual library within <I>JaysHouseMOO</I>; it exists publicly nowhere else on the Internet (to the best of my knowledge). Some MOO documents can be found in both environments -- inside MOOs and outside MOOs -- but most fall into one category or another. It is interesting to look at where certain types of documents reside and thus at what groups of people have access to them.
+</P>
+
+<P>
+Partly, this characteristic has to do with the inclusive nature of MOO worlds; they are designed to be administered and experienced entirely from within. Certain meta-topics, such as the details of server installation, are clearly external to this process. The <I>MOO-Cows</I> mailing list is a good example of this; discussions are almost always limited to the technical details of running MOO servers. Other topics, though, are clearly pertinent to the internal management of a MOO world. In the case of Xerox' <I>LambdaMOO</I>, there are hundreds of internal mailing lists -- within the MOO environment -- that deal with the intricacies of a judicial and political system that has evolved over many years. Not a word of this appears outside of <I>LambdaMOO</I> until it is reported third hand.
+</P>
+
+<P>
+MOOs (and their inhabitants) are not, as a general rule, isolationist or xenophobic. There is, on Internet mailing lists and in many of the large MOOs themselves, a sense of an overall MOO community. Many objects and features have been <I>ported</I> from MOO to MOO, and there is an established etiquette for doing so and giving proper credit to the authors. Many MOOers appear in a number of different MOOs, often recognizably and under the same names.
+</P>
+
+<P>
+The broader MOO universe appears to operate on three vague levels: the first being the internal goings on of a particular MOO world. Second is the meta-information level of the <I>MOO-Cows</I> mailing list and others of its kind, in which generic technical and social issues can be discussed. Third is a supra-MOO sensibility or awareness that transcends these other two spheres. At this level, there is a overall community that recognizes the distinctiveness of different MOO worlds and the populations that inhabit them, but that allows for a common MOO culture between them.
+</P>
+
+<P>
+I had an interesting experience one morning last spring that illustrates this point. I logged in to <I>JaysHouseMOO</I> (a popular hangout for MOO programmers), and after I had convinced the assembled group that I wasn't a refugee from <I>LambdaMOO's</I> "living room" (a 24-hour house-party environment that many find tedious, but which spills over to other MOOs when the <I>LambdaMOO</I> machine is temporarily unavailable), I had an interesting chat about the Law 12 MOO project with the very same people I had been reading over the last few days in the <I>MOO-Cows</I> mailing list on the topic of core database upgrades. But instead of talking about core upgrades here, we idly discussed the Law MOO project; some expressed interest and some skepticism (that mock trials could work in this environment). The interesting thing was the multiple levels of access that I had to these same people and the differences in tone and content at each level.
+</P>
+
+<P>
+Stanley Fish says that the interpretive communities we belong to construct the meanings of the texts we read. But it also seems true, in these examples, that the documents we publish serve to establish and define those very same communities. John Seely Brown and Paul Duguid of Xerox PARC suggest that documents serve to define and negotiate boundaries between communities, both in providing needed cues to distinguish groups and also in "bringing people from different groups together to negotiate and coordinate common practices." <A HREF="javascript:smallwin('Notes/note55.html','Note55')"><SUP><B>55</B></SUP></A> 
+</P>
+
+<P>
+MOOs, interestingly, are both literally the documents <I>and</I> the community, and the two define one another. The textuality of a MOO environment is defined and created by its inhabitants, while at the same time, those inhabitants exist within the MOO as text. The community that exists within a MOO, like the community of MOOers in general, is defined and held together by the set of documents that compose the environment. The overlapping constituencies of various MOO worlds, MOO mailing lists, and MOO research are each in turn defined by the circulation of specific documents. And at the same time, the document forms that make up both specific MOO environments and the broader MOO world are continually created by those communities.
+</P>
+
+<P>
+John Unsworth, of <I>PMC-MOO</I> -- a MOO set up originally as an extension of the electronic journal <I>PostModern Culture</I> -- points out that "MOO is the world it models, as well as the model of that world." <A HREF="javascript:smallwin('Notes/note56.html','Note56')"><SUP><B>56</B></SUP></A>  In many ways and on many levels, the content of MOO is MOO itself. But if MOO as medium and MOO as content are bound in so tight a circle of text defining community defining text -- <I>ad nauseam</I> -- does this speak to the issue of MOO not being about anything, really? Or does it point to a more general principle of increasing reflexiveness in digital media, in which the tight relationship between documents and communities represents an overall collapsing of the relationship between self and other?
+</P>
+
+<P>
+<H4><I>Text, Document, and Community</I></H4>
+</P>
+
+<P>
+As I proposed earlier in this paper, a document is a specific incarnation of a text; it is text as an artifact. A text may be incarnate in many different document forms in its lifetime: a word processor file; a manuscript in circulation among editorial staff; a hardcover book on a display rack; a tattered, well-thumbed paperback; a digital file in an Internet archive; and so on. Each document, as a textual artifact in space (perhaps cyberspace) and time, goes some distance toward defining:
+</P>
+
+<UL>
+<LI><P>
+ the coverage and dissemination of the text
+</P>
+
+<LI><P>
+ its lifespan and currency
+</P>
+
+<LI><P>
+ its mode of transferal
+</P>
+
+<LI><P>
+ its relationship to various interpretive communities
+</P>
+</UL>
+
+<P>
+In taking a text and embodying it in various document forms, we are setting up a different set of artifactual, interpretive, and social dynamics around the same text. Or is it, in fact, the same text? A document provides a host of contextual clues to interpretation -- provenance, age, authority, cost, and value. The textual content cannot be considered without reference to this frame.
+</P>
+
+<P>
+Stanley Fish tells us that interpretive communities are the structures that allow texts to be shared and understood in useful ways. But text has to have artifactual reality in order to be shared and considered, and that reality defines its relationship to an audience. 
+</P>
+
+<P>
+John Seely Brown and Paul Duguid talk about documents defining and underwriting social realities. But since publishing -- the process of documentation -- is itself a social and interpretive activity, what we have is an active dialogue between document and community. 
+</P>
+
+<P>
+Consider the case of a (real world) courtroom. Our legal system is a set of documents that guides and shapes how justice is to be interpreted and dealt. At the same time, the process of the trial itself is the active creation of a text that will come around again as part of that guiding body of documents. There is a very immediate interpretive and creative process going on, the result of which is a community of active negotiation.
+</P>
+
+<P>
+The same happens in a MOO. Participants enter a world of documents that create a virtual reality. At the same time, the process of MOOing is the creation of those very documents that define the MOO community. 
+</P>
+
+<P>
+This is not a new idea; the same processes and dynamics exist with documents and document communities everywhere, in whatever form they may appear. In the case of MOO technology, though, the workings of the process are fast enough and immediate enough to be readily apparent.
+</P>
+
+<P>
+The <I>speed </I>of documentation and interpretation in this sense is significant to my discussion, because the trend toward "being digital" means things are speeding up all over. The kinds of social and economic dynamics that may previously have been noticed only by historians are increasingly visible on a day-to-day level, and perhaps faster still.
+</P>
+
+<P>
+<H4><I>Some Final Reflections on the Process</I></H4>
+</P>
+
+<P>
+The process of designing and developing the <I>NooDDLe</I> environment was one of constant negotiation with a host of uncontrollable circumstances, personal, technological, and social. What was imagined last May is not quite what has emerged this September. We are both ahead of and behind schedule. Parts of the project are less elaborate than planned, some are more so. I have the good fortune of being able to further develop the environment and see it through a real <I>beta-test</I> stage this winter. 
+</P>
+
+<P>
+<I>NooDDLe</I>, as it exists right now, is complete in terms of the dynamics and design strategies I have outlined here. It still awaits its real user community, however. The current plan is to bring Sandra Hawkins' students into the environment in November for the mock trial exercise. At that time, we will find out if the students can make sense of the environment I have designed. It makes sense in my mind, but will it exist in the minds of a dozen Law 12 students who have had no part in the design process? It is not at all clear (yet) whether MOO works for the casual participant in the same way it works for the builder. Is my "document community" a community of one (or perhaps of the handful of people who have followed my development)? 
+</P>
+
+<P>
+The analysis of the project that I have presented here does not directly address any specific educational or pedagogical issues. I have approached this paper from the standpoint of interpreting and presenting a body of content and from my own perspective on immersive environments. In November 1996, the real test of the environment will take place: Sandra Hawkins' Law 12 class will be invited into <I>NooDDLe </I>for their mock trial exercise. The MOO will at that time be evaluated by myself and by NDDL staff on the basis of its educational efficacy, and its <I>fit</I> within the NDDL model, a step which will add significantly to what this report offers. Further analysis of this technology can be expected.
+</P>
+
+<P>
+Finally, it is worth noting that advances in client technology did not emerge as quickly as we had expected. Last spring, I believed that we would very soon be seeing multimedia, styled-text MUD clients in the form of Web-based Java <I>applets. </I>Alas, the real state of Java development is somewhat behind the media and marketing hype. While there <I>are</I> Java-based MUD client applets, we are not at a point where I feel comfortable unleashing them on an unsuspecting audience of Macintosh users. 
+</P>
+
+<P>
+I am, however, very intrigued by what Chaco's <I>Pueblo</I> client offers in an integrated package. With <I>Pueblo</I>, the MOO client incorporates the Web browser, instead of the other way around. Unfortunately, the <I>Pueblo</I> client is not available as a Macintosh application -- which leaves the majority of my audience out. There is still a lot of work to be done in this area. 
+</P>
+</BLOCKQUOTE>
+
+
+
+</BODY>
+
+</HTML>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 0:08:54 Oct 7, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:02:05 Mar 26, 2012.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

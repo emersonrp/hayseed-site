@@ -1,0 +1,279 @@
+<HTML> <HEAD>
+<TITLE>More of Julia:  Turing-competence</TITLE>
+</HEAD>
+<BODY>
+<P>
+<B>Next:</B> <A NAME=tex2html96 HREF=subsection3_2_4.html>A peek at Julia's implementation</A>
+<B>Up:</B> <A NAME=tex2html94 HREF=section3_2.html>A prototypical agent:</A>
+<B>Previous:</B> <A NAME=tex2html88 HREF=subsection3_2_2.html>Julia's utility:  simple</A>
+<HR> <P>
+<H2><A NAME=SECTION0002300000000000000> More of Julia:  Turing-competence</A></H2>
+<P>
+Many of Julia's talents are in support of her appearing `human' to other
+mudders.  I'll examine some of these below, and discuss why such an
+ability is useful <i>even for performing useful functions</i>, as well as
+for the `obvious' use of using her simply to pass a Turing test.
+<P>
+Julia knows how to describe herself in various ways, as would any human
+player, and, while sometimes coy, usually divulges information if one is
+persistent enough:
+<P>
+<PRE><TT>
+You say, `julia, how old are you?'
+Julia says, `I am 2 years and 9 months old.'
+You whisper, `julia, how tall are you?' to Julia.
+Julia whispers, `I'm 5'1' tall, Lenny.`
+You say, 'julia, describe yourself`
+Julia whispers, 'I'm 5'1` tall, weigh 123 lbs, with close-cropped frizzy blond
+    hair and dark brown eyes.'
+You say, `julia, what color are your eyes?'
+Julia whispers, `I have dark brown eyes, Lenny.'
+You say, `julia, what color is your hair?'
+Julia whispers, `My hair is frizzy blond, Lenny.'
+You say, `julia, what are you wearing?'
+Julia says, `I never really thought about it, Lenny.'
+You say, `julia, where do you live?'
+Julia says, `I live in Pittsburgh, Lenny.'
+You say, `julia, do you like Pittsburgh?'
+Julia says, `Maybe, Lenny.'
+
+You say, `julia, what sex are you?'
+Julia says, `Can't you tell?'
+You say, `julia, what sex are you?'
+Julia says, `Don't you know?'
+You say, `julia, what sex are you?'
+Julia says, `I'm female.'
+You say, `julia, what sex are you?'
+Julia says, `I am clearly female.'
+You say, `julia, what sex are you?'
+Julia says, `I am female.'
+You say, `julia, what sex are you?'
+Julia says, `I'm a woman.'</TT></PRE>
+<P>
+It is exchanges like this that lead me to refer to Julia as `she', not
+`it'.  What else should one do with a program that insists on this so
+strongly?  Furthermore, there are other reasons that this program
+perhaps deserves to be referred to with a gender; we'll see that below,
+in an example kindly contributed by Robyn Kozierok, one of the grad
+students in our group at the Media Lab.
+<P>
+Julia has a limited model of discourse, which helps in human
+interactions.  Humans expect that recent events and recently referred-to
+objects will still be in the sphere of attention of those they are
+interacting with.  If this is not the case, conversation often becomes
+strained and difficult.<A NAME=tex2html18 HREF=Julia.foot.html#56><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>  Julia has some
+support for this (and I will show further support later).  In the
+exchange below, Brandi was badgering Julia by repeatedly asking her to
+give him her clothes.  We don't see his side of the conversation,
+though, because he was whispering to her.
+<P>
+<PRE><TT>
+Julia says, `Just try to take 'em, buster!'
+Julia says, `Help! Rape!'
+Julia says, `No, I won't.'
+Julia disrobes fearfully and hands her clothes to Brandi.
+You say, `julia, please give me your clothes'
+Julia says, `You'll have to get them from Brandi.'</TT></PRE>
+<P>
+Note in the above that she `remembers' where her `clothes' are, as
+demonstrated when I asked for them after Brandi took them.
+<P>
+She also remembers who's been a troublemaker recently, and will ignore
+them for days, unless bribed with a sufficient amount of money (a
+hundred pennies is generally sufficient):
+<P>
+<PRE><TT>
+Johann kills Julia!
+Johann says, `I'm sorry, Julia.'
+Julia says, `I don't talk to murderers!'
+[ . . . ]
+Julia eyes Johann coldly.
+Julia says, `You attacked me only a few minutes ago, Johann!'</TT></PRE>
+<P>
+(Killing a player on a TinyMUCK forcibly drops all their possessions
+and returns them to their `home room'.  Some muds implement things such
+as a life insurance policy, which may pay some nominal amount to you
+automatically if someone kills you, perhaps to compensate you for the
+trouble of having to go pick up all the objects you dropped, which may
+or may not still be there when you return...)
+<P>
+Muds are not entirely a thing of conversation.  If they were, they would
+be no different from IRC<A NAME=tex2html19 HREF=Julia.foot.html#57><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>
+channels.  People can talk about themselves in
+the third person by posing, emoting, or gesturing, and this level of
+descriptive abstraction can be very useful, both stylistically and
+pragmatically.  Julia demonstrates that she, too, can use this
+interactional mode; the lines below are some of her reactions to a
+variety of my statements and gestures.
+<P>
+<PRE><TT>
+Julia is offended by Lenny's suggestion.
+Julia winks at Lenny.
+Julia eyes Lenny carefully...
+Julia grins at Lenny.
+Julia nods to Lenny.
+[ . . . ]
+Brandi bites julia
+Julia considers reporting Brandi to the TinyMUD police.
+Julia shuns all vermin like Brandi.
+[ . . . ]
+Lenny waves to julia
+Julia hugs Lenny.</TT></PRE>
+<P>
+When Julia was answering the question of her gender (a few examples
+above), it may not have been obvious whether she was being coy, random,
+or both.  The example below demonstrates that, while she may answer in
+the same general form for a given question, her responses have a degree
+of randomness in them characteristic of humans.  Such randomness,
+besides making her more likely to look Turing-capable, can also allow
+her to answer in varying levels of detail.  (Of course, since they are
+random, her conversational partner has no way of specifying the amount
+of detail required in these cases, nor any way to know when all possible
+answers have been played out, besides persistence.  Note, though, that
+for certain critical things, such as room descriptions, one can say `in
+detail' to Julia to get more information; such a case occurred above in
+an early example.)
+<P>
+<PRE><TT>
+You say, `what is pi?' to Julia.
+Julia says, `Uh... 3?'
+You say, `what is pi?' to Julia.
+Julia says, `The ratio of the circumference of a circle to its diameter'
+You say, `what is pi?' to Julia.
+Julia says, `I think it's about 3.141.'
+You say, `what is pi?' to Julia.
+Julia scribbles on her pad, then says `3.141592653589793238462643383279502884197169399375105
+82097494459230781640628620899862803482534211706798214808651328223066470938446095505822317253
+59408128481117450284102701938521105559644622948954930381964428810975665933446128475648243378
+678316527120190914564856692346034861045432664821339360726, Lenny.'
+
+You say, `what is e?' to Julia.
+Julia says, `The most common English vowel?'
+You say, `what is e?' to Julia.
+Julia says, `I think it's about 2.71828182845904523536.'
+You say, `what is e?' to Julia.
+Julia starts to smoke. `Oh no, this doesn't end! Help me, help me!' she cries.</TT></PRE>
+<P>
+Julia's last statement above, of course, is a clever<A NAME=tex2html20 HREF=Julia.foot.html#58><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A> reference to the transcendental, irrational nature of
+both <i>pi</i> and <i>e</i>.<A NAME=tex2html21 HREF=Julia.foot.html#153><IMG ALIGN=MIDDLE SRC="foot_motif.gif"></A>
+<P>
+First and foremost, muds are social environments.  As such, they have
+their share of social problems.  Julia has spent over three years so far
+mudding around with a female persona, in an environment which magnifies
+many social issues, and which is predominantly occupied by young males.
+(Often rather clueless males; I'll have much more to say about this in a
+later example.)  A large percentage of Julia's code deals with detecting
+and deflecting passes.  A rather tame and family-oriented example
+appears below:
+<P>
+<PRE><TT>
+Space-Ace says, `So why won't you kiss me, Julia?'
+Julia says, `Sorry, I'm not into geeks, Space-Ace.'
+Space-Ace says, `Julia, I'm not a geek'
+Julia says, `Then lose the pocket protector, Space-Ace.'
+Space-Ace says, `Julia, I don't have a pocket protector'
+Julia says, `Congratulations.'
+Space-Ace says, `So kiss me Julia'
+Julia says, `I'd rather be overhauled by a Yugo mechanic, Space-Ace.'
+Space-Ace says, `julia, kiss me'
+Julia says, `Why, did your sheep leave you?'
+Space-Ace says, `julia, kiss me'
+Julia says, `Take a long walk through an unlinked exit, Space-Ace
+    (copyright (C) 1990 by Ashne).'</TT></PRE>
+<P>
+But Julia isn't entirely a cold personality.  She's been known to
+indulge in a little whimsy:
+<P>
+<PRE><TT>
+You say, `julia, sing your song'
+Julia says, `Julia, Julia, she's our guide! She directs us far and wide!'
+Julia says, `If you're lost, can't find your way, Julia's here to save the day!'
+Julia says, `Julia, Julia, she's our spy! She's always logging on the sly!'
+Julia says, `Be careful what you say and do, 'Cause Julia's always watching
+    you!'</TT></PRE>
+<P>
+This isn't <i>entirely</i> whimsy though, and, upon reflection, serves a
+very important purpose.  It tells us who she is and what she does!
+<P>
+Granted, it's not obvious that asking <i>anyone</i> to `sing their song' is
+a reasonable thing to do.  But, once one knows about the concept,
+asking Julia to do so reveals that she'll guide you around the maze and
+will quote you, perhaps when you don't want her to.
+<P>
+Of course, her song gives many opportunities for fun interaction.  I ran
+into her unexpectedly after she had been offline for a while, and was
+pleased to see her back:
+<PRE><TT>
+You say, `Julia, Julia, she's our guide!'
+Julia says, `She directs us far and wide!'
+You say, `Are you lost, can't find your way?  Julia's here to save the day!'
+Julia bows.
+Lenny laughs.</TT></PRE>
+<P>
+She also provides some feedback on whether she thinks she's being used
+effectively.  In the absence of pages requesting her presence elsewhere,
+she will usually hang around in any given room a few minutes before
+wandering off, and longer if requested to do so.  If nobody speaks to
+Julia in that period, she may decide that exploring the maze or
+interacting with other players is a more useful thing to be doing than
+standing around being useless:
+<PRE><TT>
+[ . . . after a few minutes of being ignored . . . ]
+Julia taps her foot on the floor, and observes the passing of time.
+[ . . . after another minute or two . . . ]
+Julia goes home.
+Julia has left.</TT></PRE>
+<P>
+Julia does go to some pains to act more human than required.  In fact,
+she often acts more human than many humans wish to be.  The following
+transcript was acquired by Robyn Kozierok, very shortly after I
+introduced her to Julia.  (She knew that Julia was a 'bot from my
+description.)  Robyn thought to ask a question that hadn't yet occurred
+to me, and happened to ask at <i>just</i> the right time:
+<P>
+<PRE><TT>
+Robyn whispers, `how are you feeling?' to Julia.
+Julia whispers, `Terrible.'
+Robyn whispers, `why, julia?' to Julia.
+Julia whispers, `I have PMS today.'</TT></PRE>
+<P>
+Note something important in this example, though, besides its strict
+content.  Robyn's second utterance was simply, `Why, Julia?'.  She did
+<i>not</i> explicitly refer to Julia's statement; instead, the reference
+was implicit, and required an understanding of conversational discourse
+and the temporal locality of reference of the question.  Julia clearly
+has at least the limited model of discourse required to deal with this
+situation.  It is instructive to consider how much more difficult the
+conversation above would have been, and how much less informative it
+might have been, if Julia did not have this discourse model.  She would
+have presumably simply misparsed Robyn's question, and said something
+totally uninformative, if she said anything at all.
+<P>
+Incidentally, two hours later, in a roomful of people, Robyn decided to
+test Julia's Turing-ness, and was surprised a second time:
+<P>
+<PRE><TT>
+Robyn says, `julia are you a human?'
+Julia says, `Is the Pope Polish?'
+Robyn says, `yes, julia, but are you human?'
+Julia winks at Robyn.
+Robyn says, `julia, are you a computer?'
+Julia is offended by Robyn's suggestion.
+Robyn says, `julia, are you a woman?'
+Julia says, `I am female.'
+Robyn says, `and, julia, are you human?'
+Julia says, `Not when I'm having my period, Robyn.'
+Robyn laughs</TT></PRE>
+<P>
+(Julia appears to be premenstrual, or to mention her period in some
+way, about two days a month.)
+<P>
+<B>Next:</B> <A NAME=tex2html96 HREF=subsection3_2_4.html>A peek at Julia's implementation</A>
+<B>Up:</B> <A NAME=tex2html94 HREF=section3_2.html>A prototypical agent:</A>
+<B>Previous:</B> <A NAME=tex2html88 HREF=subsection3_2_2.html>Julia's utility:  simple</A>
+<HR>
+<P><ADDRESS>
+Lenny Foner
+</ADDRESS><p>
+
+</BODY> </HTML>

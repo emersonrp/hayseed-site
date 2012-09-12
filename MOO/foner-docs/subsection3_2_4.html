@@ -1,0 +1,253 @@
+<HTML> <HEAD>
+<TITLE>A peek at Julia's implementation</TITLE>
+</HEAD>
+<BODY>
+<P>
+<B>Next:</B> <A NAME=tex2html104 HREF=section3_3.html>A sociological look</A>
+<B>Up:</B> <A NAME=tex2html102 HREF=section3_2.html>A prototypical agent:</A>
+<B>Previous:</B> <A NAME=tex2html98 HREF=subsection3_2_3.html>More of Julia:</A>
+<HR> <P>
+<H2><A NAME=SECTION0002400000000000000> A peek at Julia's implementation</A></H2>
+<P>
+While Julia is usually a fair simulation of a personality, at least on
+a superficial inspection, in non-Turing mode (more about this later),
+she does reveal certain machine-like aspects.  In this environment, it
+it probably reasonable for her to do so, lest players be surprised.
+<P>
+For example, the interchange below shows her engaging in a potentially
+computationally expensive operation, and one which is apparently
+uninterruptable:  saving her mapping data to a more permanent storage
+system.  Her current host computer made this a very quick operation (a
+couple of seconds), but it is easy to imagine circumstances (loaded
+machine, slower machine, much larger database) in which the interruption
+in Julia's usually almost instantaneous response would be disturbing.
+(Many user studies have shown that it is not <i>total</i> latency, but its
+<i>variance</i>, that is most disturbing to users.  Even
+though many muds have sufficiently high and variable lag that Julia
+being momentarily lagged herself would not be noticed, Julia takes pains
+not to have this become a problem.)
+<P>
+<PRE><TT>
+Julia says, `Excuse me a minute, I have to save my map, Lenny.'
+Julia says, `Okay, I saved my map.'</TT></PRE>
+<P>
+If one knows the right questions to ask (which might be obvious
+questions, if and only if one knew that Julia was a 'bot), Julia will
+yield a surprising amount of interesting, but very inhuman, information:
+<P>
+<PRE><TT>
+You say, `julia, how much memory do you consume?'
+Julia says, `Here is a summary of my memory usage:'
+Julia says, ` 807472 bytes for 17335 strings'
+Julia says, ` 232344 bytes for 19362 exits'
+Julia says, ` 101100 bytes for rooms'
+Julia says, ` 20220 bytes for paths'
+Julia says, ` 268600 bytes for players'
+Julia says, ` 4214784 bytes for 2058 dialog entries'
+Julia says, `That's 5644520 bytes all together.'
+
+You say, `julia, where is your source code?'
+Julia says, `The source code for Maas-Neotek robots is available
+    on host NL.CS.CMU.EDU [128.2.222.56], directory /usr/mlm/ftp,
+    file robot.tar.Z. set mode binary first, and cd to /usr/mlm/ftp
+    in one step, Lenny.'
+[ . . . ]
+You say, `julia, who wrote you?'
+Julia says, `Why do you ask?'
+You say, `julia, who wrote you?'
+Julia says, `I don't remember.'
+You say, `julia, who wrote you?'
+Julia says, `That information is restricted.'
+You say, `julia, who wrote you?'
+Julia says, `Fuzzy, of course.'
+You say, `thank you, julia'
+Julia says, `You're welcome.'
+You say, `who is fuzzy, julia?'
+Julia whispers, `He's just this guy I met in a bar, Lenny.'
+You say, `who is fuzzy, julia?'
+Julia whispers, `He's my Amway representative, Lenny.'
+You say, `who is fuzzy, julia?'
+Julia whispers, `I don't know, Lenny, I just follow him around.'
+You say, `who is fuzzy, julia?'
+Julia whispers, `He's the world's third greatest hacker, Lenny.'</TT></PRE>
+<P>
+One of the interesting things about Julia's construction is that her
+parser is shockingly simple, as such things go.  It is barely more
+complicated than ELIZA's parser in some ways, in that it does <i>not</i>
+decompose its inputs into parse trees or anything else that a linguist
+might suggest.  Instead, it does a very simple pattern-match on its
+input, looking for particular strings of characters separated by strings
+of any characters in between.
+<P>
+What makes Julia's conversation skills so powerful, as 'bots go, is that
+these sets of patterns were very cleverly grouped into useful
+equivalence classes by her programmer.  Hence, the most common possible
+utterances that Julia might hear were enumerated this way, grouped
+appropriately, and such clever but brute-force programming proves
+sufficient for almost all cases.
+<P>
+Here is an example from Colin.  (Julia's source code, being restricted,
+is unavailable for public consumption.  However, Julia shares this piece
+of code with Colin.)  Here, we see a fragment used to determine if some
+player is asking if Colin is a machine or some kind of 'bot.  If any of
+the lines below matches, we run code that produces some equivocal
+answer, as Julia does, by choosing essentially at random from amongst a
+small collection of appropriate responses (as we've seen above in other
+examples):
+<P>
+<PRE><TT>
+  else if (MATCH (lcmsg, `*are*you*robot*') ||
+           MATCH (lcmsg, `*are*you*a bot*') ||
+           MATCH (lcmsg, `*are*you*an ai*') ||
+           MATCH (lcmsg, `*are*you*autom*') ||
+           MATCH (lcmsg, `*are*you*machine*') ||
+           MATCH (lcmsg, `*are*you*computer*') ||
+           MATCH (lcmsg, `*are*you*program*') ||
+           MATCH (lcmsg, `*are*you*simulati*') ||
+           MATCH (lcmsg, `*you*are*robot*') ||
+           MATCH (lcmsg, `*you*are*a bot*') ||
+           MATCH (lcmsg, `*you*are*an ai*') ||
+           MATCH (lcmsg, `*you*are*autom*') ||
+           MATCH (lcmsg, `*you*are*machine*') ||
+           MATCH (lcmsg, `*you*are*computer*') ||
+           MATCH (lcmsg, `*you*are*program*') ||
+           MATCH (lcmsg, `*you*are*simulati*') ||
+           MATCH (lcmsg, `*you* be *robot*') ||
+           MATCH (lcmsg, `*you* be *a bot*') ||
+           MATCH (lcmsg, `*you* be *an ai*') ||
+           MATCH (lcmsg, `*you* be *autom*') ||
+           MATCH (lcmsg, `*you* be *machine*') ||
+           MATCH (lcmsg, `*you* be *computer*') ||
+           MATCH (lcmsg, `*you* be *program*') ||
+           MATCH (lcmsg, `*you* be *simulati*') ||</TT></PRE>
+<P>
+Here, we see an example of dealing with a common small-talk gambit:
+<P>
+<PRE><TT>
+  else if ((MATCH (lcmsg, `*how*are*you*') ||
+            MATCH (lcmsg, `*how*do*you*') ||
+            MATCH (lcmsg, `*how's my*favor*') ||
+            MATCH (lcmsg, `*how is my*favor*') ||
+            MATCH (lcmsg, `*how's*life*') ||
+            MATCH (lcmsg, `*how is*life*') ||
+            MATCH (lcmsg, `*are* you* ok*') ||
+            MATCH (lcmsg, `*are* you* alright*') ||
+            MATCH (lcmsg, `*wie*gehts*') ||
+            MATCH (lcmsg, `*are*you*ok*') ||
+            MATCH (lcmsg, `*are*you*well*') ||
+            MATCH (lcmsg, `*are*you*alright*') ||</TT></PRE>
+<P>
+With such a simple parser, Julia is bound to experience peculiar-seeming
+failures even in ordinary conversation.  Some of these failures can be
+masked with responses that a person might have said.  One of the most
+surprising such failures, and one which reduced me to giggles for quite a
+while (given that I already knew that Julia was a 'bot), was the
+interchange below:
+<P>
+<PRE><TT>
+Conundrum says, `Julia, can you quote Lenny?'
+Julia whispers, `Could you say that again, it scrolled off my screen.'</TT></PRE>
+<P>
+My first reaction to the above was an incredulous, `What?'
+<P>
+A braino below (substituting `who' for `how') produces this curious
+response:
+<P>
+<PRE><TT>
+You say, `julia, who many pennies do I have?'
+Julia says, `TimeGhost was asleep in High School about a minute and a half
+    ago.'
+Julia says, `Ronni was asleep in Main Street, Block 2 (South) about a minute
+    or two ago.'
+Julia says, `Alexandra was in Around the Flagpole about a couple of minutes
+    ago.'
+Julia says, `Roxiana was in The Inter Nexus about a few minutes ago.'
+Julia says, `Bunnell was in The Inter Nexus about 14 minutes ago.'
+Julia says, `Volan was in The Inter Nexus about 18 minutes ago.'
+Julia says, `Ling_Khan was in The Inter Nexus about 20 minutes ago.'
+Julia says, `Mouse was in Upper Concourse West about 25 minutes ago.'
+Julia says, `Polymorph was in The Inter Nexus about 35 minutes ago.'
+Julia done</TT></PRE>
+<P>
+It's difficult to tell, a priori, whether the first exchange below is
+random or is related to particular stereotypes, but the second one is a
+clear parser failure:
+<P>
+<PRE><TT>
+You say, `julia, do you drive?'
+Julia says, `Do you get to Boston much?'
+
+You say, `julia, what are you carrying?'
+Julia says, `I follow the Pittsburgh Penguins, Lenny.'</TT></PRE>
+<P>
+(Julia will very often talk about hockey when she does not know what else
+to say.  Anyone who talks with her much figures this out; in fact, an
+example below which talks about her sociology brings this point up
+again.)
+<P>
+And finally, it is clear that the notion of a prepositional phrase is
+beyond the abilities of her parser, with some deliberately chosen
+forced failures:
+<P>
+<PRE><TT>
+You whisper, `would you like a cookie?' to Julia.
+Julia whispers, `Certainly, I really enjoy cookies.'
+[ . . . but . . . ]
+You whisper, `julia, would you like some cake with glass shards?' to Julia.
+Julia whispers, `Yes thank you, I adore cake.'</TT></PRE>
+<P>
+So where does all this leave us?  I've divided up my discussion of Julia
+into essentially two pieces, that of utilitarian function versus
+Turing-test competence:
+<UL><LI> <b>Strictly utilitarian functions.</b>
+<UL><LI> Access
+<P>
+<LI> Maps
+<P>
+<LI> Money
+<P>
+<LI> Gossip
+<P>
+<LI> Description (players)
+<P>
+<LI> Description (surroundings)
+<P>
+<LI> Messages
+<P>
+<LI> Description (global)
+<P>
+<LI> Gender-assignment (others)
+<P>
+<LI> Delphi-poll information
+<P>
+<LI> Calculations
+</UL>
+<P>
+<LI> <b>Turing-test and related capabilities.</b>
+<UL><LI> Description (hers)
+<P>
+<LI> Discourse
+<P>
+<LI> Poses
+<P>
+<LI> Randomness
+<P>
+<LI> Pass deflection
+<P>
+<LI> PMS (moods, internal state)
+<P>
+<LI> Internals
+<P>
+<LI> Failures
+</UL>
+</UL>
+<P>
+<B> Next:</B> <A NAME=tex2html104 HREF=section3_3.html>A sociological look</A>
+<B>Up:</B> <A NAME=tex2html102 HREF=section3_2.html>A prototypical agent:</A>
+<B> Previous:</B> <A NAME=tex2html98 HREF=subsection3_2_3.html>More of Julia:</A>
+<HR>
+<P><ADDRESS>
+Lenny Foner
+</ADDRESS><p>
+
+</BODY> </HTML

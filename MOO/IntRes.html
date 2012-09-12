@@ -1,0 +1,634 @@
+<html><head><script>function PrivoxyWindowOpen(){return(null);}</script>
+<title>INTERNET CONFERENCING with NETWORKED VIRTUAL ENVIRONMENTS</title></head>
+
+ 
+ 
+ 
+                            <body>
+<h1>Internet Conferencing with Networked Virtual Environments</h1>
+
+ by John Towell and Elizabeth Towell appeared in <i>Internet Research</i> 5(3), 15-20, 1995. Following publication it will be available at the MCB worksite http://www.mcb.co.uk. 
+ <li>
+<hr>
+<ul>
+<li><a href="#ABSTRACT">ABSTRACT</a>
+</li><li><a href="#AUTHORS">AUTHORS</a>
+</li><li><a href="#INTRODUCTION">INTRODUCTION</a>
+</li><li><a href="#NETWORKED%20VIRTUAL%20ENVIRONMENTS">NETWORKED VIRTUAL ENVIRONMENTS</a>
+</li><li><a href="#THE%20VIRTUAL%20CONFERENCE%20CENTER">THE VIRTUAL CONFERENCE CENTER</a>
+</li><li><a href="#CONNECTING%20TO%20A%20NETWORKED%20VIRTUAL%20ENVIRONMENT">CONNECTING TO A NETWORKED VIRTUAL ENVIRONMENT</a>
+</li><li><a href="#OUTPUT%20CONTROL%20MANAGER">OUTPUT CONTROL MANAGER</a>
+</li><li><a href="#VCC%20REGISTRATION">VCC REGISTRATION</a>
+</li><li><a href="#GUESTS">GUESTS</a>
+</li><li><a href="#VIRTUAL%20CONFERENCE%20CENTER%20TOPOGRAPY">VIRTUAL CONFERENCE CENTER TOPOGRAPY</a>
+</li><li><a href="#RECORDING%20DISCUSSIONS">RECORDING DISCUSSIONS</a>
+</li><li><a href="#INTERNET%20LAG%20AND%20MODERATED%20ROOMS">INTERNET LAG AND MODERATED ROOMS</a>
+</li><li><a href="#SCHEDULING%20INTERNATIONAL%20CONFERENCES">SCHEDULING INTERNATIONAL CONFERENCES</a>
+</li><li><a href="#USERS%20VERSUS%20BUILDERS">USERS VERSUS BUILDERS</a>
+</li><li><a href="#STAGE%20TALK">STAGE TALK</a>
+</li><li><a href="#BUFFERS">BUFFERS</a>
+</li><li><a href="#DISCUSSION">DISCUSSION</a>
+</li><li><a href="#CONCLUSION">CONCLUSION</a>
+</li><li><a href="#ACKNOWLEDGEMENTS">ACKNOWLEDGEMENTS</a>
+</li><li><a href="#NOTES">NOTES</a>
+</li><li><a href="#REFERENCES">REFERENCES</a>
+</li></ul>
+ 
+ 
+ 
+ 
+  
+ 
+ 
+<p>
+ 
+                              <a name="ABSTRACT"><b>ABSTRACT</b></a> 
+ </p><p>
+	A networked virtual environment, a type of virtual reality most  
+commonly known as a "MUD" or a "MOO," was used at an internationally-attended  
+scientific conference held on the Internet.  Interviews with conference  
+attendees indicated enthusiasm for the effectiveness of the medium, and  
+revealed how the virtual environment can be modified to improve  
+conferencing efficacy.  Such alterations included novel input-output  
+control management; automation of conference registration;  control of  
+anonymous or guest connections;  simplification of conference center  
+topography;  an improved methodology for recording discussion sessions; use  
+of moderated rooms to compensate for network lag; and providing buffers to  
+update late arriving participants.  It is concluded that networked virtual  
+environments provide an inexpensive means for effective international  
+conferencing on the Internet.   
+ 
+ 
+ 
+</p><p> 
+                           <a name="AUTHORS"><b>AUTHORS</b></a> 
+ 
+ </p><p>
+                               John F. Towell, Ph.D., 
+                            Operations Management and 
+                         Information Systems Department, 
+                              College of Business, 
+                          Northern Illinois University, 
+                             DeKalb, Illinois 60115, 
+                              Phone: (815) 753-6377, 
+                               Fax: (815) 753-7460, 
+                           Email: towell@mcs.anl.gov
+</p><p>  
+John F. Towell (towell@mcs.anl.gov) completed his doctoral work  
+in computational biochemistry at Colorado State University and is currently  
+involved in postdoctoral research in Informatics at Northern Illinois  
+University.  His research interests include the use of networked virtual  
+environments as teaching and conferencing tools.  He is also an  
+administrator at BioMOO, a virtual meeting place for biologists, which is  
+located at the Weizmann Institute of Science in Rehovot Israel  
+(bioinfo.weizmann.ac.il 8888 and http://bioinfo.weizmann.ac.il:8888).
+</p><p> 
+                            Elizabeth R. Towell, Ph.D., 
+                            Operations Management and 
+                         Information Systems Department, 
+                              College of Business, 
+                          Northern Illinois University, 
+                             DeKalb, Illinois 60115, 
+                              Phone: (815) 753-6377, 
+                               Fax: (815) 753-7460, 
+                            Email: etowell@niu.edu    
+</p><p>
+Elizabeth R. Towell (etowell@niu.edu) obtained her Ph.D. in  
+Management Information Systems at the University of Wisconsin-Milwaukee.   
+She is an Assistant Professor in the Operations Management and Information  
+Systems Department of the College of Business, Northern Illinois  
+University, DeKalb, IL, 60115.  She teaches courses in Operating Systems  
+and  Database Management  Systems.  Her research interests are primarily in  
+database interoperability. 
+ 
+</p><p>
+<a name="INTRODUCTION"><b>INTRODUCTION</b></a>
+</p><p> 
+ 
+ 
+Traveling to conferences and meetings is expensive and time-consuming.  Recent  
+advances in Internet technology have included the development of multi-media  
+virtual realities which provide real-time communication in a programmable  
+object-oriented environment.  These virtual realities, referred to here as  
+networked virtual environments (NVE's), are also known as MUD's (Multi-User  
+Dimension/Dungeon).  Although primarily used for games,  the potential of  
+NVE's as a serious communication medium is beginning to be recognized.  An NVE  
+was used at an internationally-attended scientific conference held on the  
+Internet.  Interviews with the users helped identify common difficulties  
+encountered while using the NVE as a conferencing tool.  This manuscript  
+describes the NVE, the interview results, how the NVE was improved in response  
+to these results, and further studies planned to improve the NVE as an  
+effective Internet conferencing medium. 
+</p><p> 
+<a name="NETWORKED VIRTUAL ENVIRONMENTS"><b>Networked Virtual Environments</b></a> 
+ </p><p>
+A Networked Virtual Environment (NVE), is a server that provides information  
+to clients about a database that it also maintains.  The database contains  
+information about a collection of objects that can be characterized as rooms,  
+things and other connected persons.  The information in the NVE database is  
+organized in such a manner that the person using the client is presented with  
+a virtual representation of a real room in which there could be other people  
+with whom one may "talk."  Talking in this context means using the keyboard to  
+communicate with the other person(s) who share the same room with you;  
+likewise, "hearing" means to see the NVE output.  Typically NVE's are  
+compartmentalized into rooms joined by entrances and exits.  Hence, there is a  
+topography which can be navigated with simple commands such as: "go south."   
+When people move from one room to another they lose the communication they had  
+with the person(s) in the previous room and can hear and talk only with those  
+that are in the new room.  Hence, the NVE is  a type of virtual reality which  
+is aptly suited for use as a conferencing tool in any internet, such as a  
+university or corporation, or the Internet.
+</p><p> 
+     A recent survey of business schools indicated less than 5% considered  
+"networked virtual environments (MUD's)" as  very important topics <a href="#TOWELL1">(E. R.  
+Towell, in press)</a>.  Indeed, NVE's have been criticized because of their  
+prominent use by college students for recreational activities <a href="#EVARD">(Evard, 1994)</a>.   
+However, this criticism shows blindness toward the medium's capabilities  
+<a href="#THORNLEY">(Thornley, 1994)</a> and the potential of NVE's as a serious communication medium  
+is gaining recognition.  The National Institutes of Standards and Technology  
+have expressed their interest in NVE's as a communication tool in the  
+manufacturing industry .<a href="#note3">3</a>  A systems administration group in the College of  
+Computer Science at Northeastern University found that using an NVE for multi- 
+user real-time interactions provided, in many instances,  much better  
+communication than electronic mail  <a href="#EVARD">(Evard, 1994)</a>.  An NVE was accepted by the  
+scientific review committee at the first Electronic Computational Chemistry  
+Conference as a serious medium for conferencing <a href="#TOWELL2">(J. F. Towell, in press)</a>.
+</p><p> 
+     Although many types of NVE's are available, this manuscript reports  
+observations made using a MOO, an acronym for Multi-user dimension Object  
+Oriented.  In addition to the communication and navigation capabilities  
+discussed previously, a MOO is extensible.  Specific commands enable the user  
+to create their own rooms and objects in such a manner that the environment  
+becomes a medium of self-expression.  Thus, the server supports multiple  
+connections from Internet clients, provides database information, and modifies  
+the database in response to user commands <a href="http://www.mcs.anl.gov/home/towell/fig1.gif">(Figure 1</a>).
+</p><p> 
+     For additional background information about MOO's, the reader is referred  
+to the MOO Programming manual, Pavel Curtis's exposition <a href="#CURTIS">(1992) </a>and other MOO- 
+related documents, such as a mailing list which focuses on maintaining MOO's  
+and the MOO language.  The MOO server and standard database, which continues  
+to be developed and supported by Pavel Curtis, and the information mentioned  
+above are all available at the Xerox PARC Internet site.<a href="#NOTE1">1</a>  Also, an extensive  
+source of MOO-related documents and writings can be found on the World Wide  
+Web.<a href="#note2">2</a> 
+ </p><p>
+<a name="THE VIRTUAL CONFERENCE CENTER"><b>The Virtual Conference Center</b></a> 
+</p><p> 
+The observations presented here were made at the first Electronic Computational  
+Chemistry Conference organized by Steven Bachrach and colleagues at Northern  
+Illinois University, November 7-18, 1994 <a href="#KRIEGER">(Krieger and Illman, 1994</a>; <a href="#BACHRACH">Bachrach</a>,  
+in press; <a href="#HARDY">Hardy</a>, in press). This conference was conducted on the World Wide Web 
+with discussion of presented papers occurring via an electronic mailing 
+list.  To explore the use of NVE's in scientific conferencing, an NVE was 
+created as the prominent feature of a paper submitted to the conference<a href="#TOWELL2"> (J. F. 
+Towell, in press)</a>.  This NVE was prepared by the administrators of BioMOO, an 
+NVE for professionals in the biological sciences, which has been recognized for 
+its internationally-attended scientific seminars <a href="#ANDERSON">(Anderson, 1994)</a>.  The NVE 
+submitted to the conference was named the Virtual Conference Center (VCC).  Our 
+paper, entitled "Networked Virtual Environments and Electronic Conferencing," 
+consisted of the following information which was accessible via the World Wide 
+Web.  The first part contained instructions for connecting to the VCC; the 
+second part briefly discussed computational aspects of a networked virtual 
+environment; and the third part contained information about the authors.  Of the 
+294 conference registrants, 99 (34%) eventually registered to gain access to the 
+VCC.  During the meetings, extensive conferencing took place within the VCC.  
+Recordings of those discussions were submitted to the mailing list so that all 
+conference attendees could read and comment on the content of the discussions. 
+The following discussion is the result of the conference attendees' reactions 
+obtained either by interview within the VCC or electronically mailed comments.  
+This paper discusses the problems associated with the use of an NVE, such as the 
+VCC, at an Internet conference.
+</p><p>	 
+	In the following discussion, words in bold type indicate commands that  
+would be entered from the user's keyboard.  For example, if the user were to  
+issue a command to say, "hi,"  the reader will observe the command in bold type  
+like this: say hi.  It is assumed the user would type the command and then  
+strike the enter key of the keyboard.   
+ </p><p>
+<a name="CONNECTING TO A NETWORKED VIRTUAL ENVIRONMENT"><b>Connecting to a Networked Virtual Environment</b></a> 
+ </p><p>
+The most generally available method for connecting to an NVE is with the use 
+of telnet.  However, this type of connection is generally accompanied by a 
+surprising and confusing event.  While entering a command or statement, 
+output from the NVE disrupts the same line the user was trying to type.  
+Observing one's entry disappear is baffling which compounds the confusion 
+which usually exists from initial exposure to a virtual environment.  
+Experienced users employ clients programmed specifically for interacting 
+with NVE's. These clients separate NVE output from the user's input.  
+Clients are available on the Internet by ftp, but some users do not have the 
+skills or the time to acquire and install these programs on their own 
+systems.  To solve this problem VCC registrants were given instructions for 
+connecting to an Internet site that automatically provided a client for 
+connection to the VCC.  Providing this client proved to be an effective 
+means for bringing inexperienced users into an NVE.
+</p><p> 
+	The client, tinyfugue, was preset to the /visual on mode which presents  
+to the user a screen divided by a horizontal line about three fourths of the 
+way down the page.   Output from the NVE is displayed in the top part of the 
+screen while input from the user is displayed in the lower portion.  Some  
+participants complained of screen disruptions which were corrected when they 
+entered: /visual off.  Turning to /visual off mode no longer divides the 
+screen into output/input panels but does preserve the user's entries when 
+output from the NVE is displayed.  Normally users type: @quit to break their 
+connection to an NVE and then: /quit to discontinue the client.  The client 
+was programmed to quit following the @quit command which alleviated the 
+problem of people being able to disconnect from the VCC but not knowing how 
+to quit from the client.
+</p><p> 
+	We have programmed the VCC to provide telnet-connected users with a  
+method that allows them to enter their statements without interruptions  
+from the room.  This novel method is called the Output Control Manager. 
+</p><p> 
+<a name="OUTPUT CONTROL MANAGER"><b>Output Control Manager</b></a> 
+ </p><p>
+To understand the following discussion it is necessary to introduce the 
+commands for making statements within the VCC (and most NVE's).  Assume the 
+user's name is Beth.  To make declarative statements, Beth would type: say 
+<text>, where <text> would be the statement.  For example, to say hello, 
+Beth would type: say hello.  All people in the same room as Beth would 
+observe: Beth says, "hello." - except for Beth who would observe: You say, 
+"hello."  Note that say can be substituted with " (double quotation mark).  
+Hence, to say hello, Beth could also type: "hello.  A second frequently used 
+command for communicating actions or emotions is the emote command.  If Beth 
+wanted to smile she would type: emote smiles and others in the same room 
+(including Beth) would see: Beth smiles.  As with say, emote can also be 
+issued with an abbreviated command which is  : (the colon).
+</text></text></p><p>  
+	The output control manager is activated when users enter the say (") or 
+emote (:) command without any text following.   They are then shielded from 
+VCC output until their statement has been entered at which time they are 
+given a playback of any statements that had occurred while they were in the 
+input mode.  This feature has been received with great enthusiasm by many 
+NVE managers who have adopted the code.<a href="#note4">4</a>  
+ </p><p>
+<a name="VCC REGISTRATION"><b>VCC Registration</b></a> 
+</p><p>
+There was some frustration with the VCC registration procedure because of 
+several complicating factors associated with creating and debugging the VCC. 
+ Although these problems would not have occurred if the bugs had been 
+discovered earlier, it nevertheless prompted us to consider better ways to 
+conduct registration.
+</p><p> 
+	There are two standard registration procedures.  In the first, requests  
+are sent by NVE-connected users which contains their choice of a user 
+identification name (userID) and their Internet address.  The server checks 
+the userID for database redundancy and returns to the user the approved 
+userID along with a password via electronic mail.    In the second, an 
+administrator of the NVE performs the process manually.  The former is 
+undesirable because the user often selects a userID that provides 
+insufficient user identification.  Likewise, the latter requires excessive 
+time.  Having a suitable identification is important because recordings were 
+made of the discussions.  When users talk in an NVE, their name precedes 
+their statement.  For example, if Pavel_Curtis says, "Hi, I'm new here," 
+everyone in the same room plus readers of the recording transcript will see: 
+Pavel_Curtis says, "Hi, I'm new here."  Hence it is important that an 
+informative userID is assigned to the person.  If one plans to use an NVE as 
+part of an electronic conference, we suggest pre-registering the 
+participants and sending them an e-mail message containing their userIDs and 
+passwords for the VCC.  Pre-registration was not done in the conference 
+reported here because the VCC was not part of the conference organizational 
+structure.  Automatically issuing userID's is advantageous because the 
+userID can be set to the conference registrant's real name and thus provide 
+adequate identification of the participant within the VCC.  Also, with 
+regard to correct identification in the VCC, the @rename command should be 
+deactivated to prevent a particular user from assuming another identity.
+</p><p>   
+	The VCC database requires a server that can utilize external files.  
+Normally information stored in the standard MOO database is kept in memory 
+but the VCC keeps much of it's information on disk to be loaded when needed. 
+ This external file utilization requires the use of the File Utilities 
+Package (FUP) developed at the Weizmann Institute of Science by Gustavo 
+Glusman and Jaime Prilusky.<a href="#note5">5</a>  During registration for an Internet-based 
+conference, registrant information can be written to an external file which 
+in turn can be read by the VCC and used to create a character with an 
+appropriate userID. 
+</p><p> 
+<a name="GUESTS"><b>Guests</b></a> 
+ </p><p>
+Generally most NVE's permit a type of connection which does not demand a 
+userID or password.  Such anonymous connections are called guest connections 
+and they may be problematic.  The VCC was configured to permit guest 
+connections for several days preceding the commencement of the meetings.  
+This provided an opportunity for new users to come into the environment and 
+explore it anonymously.  However, once the meetings commenced, guest 
+connections were shunted into a room which instructed them on registration 
+procedures and barred them from the VCC discussion rooms.
+</p><p> 
+	It has been suggested that guests be given more opportunity to explore  
+the VCC anonymously after the meetings have started.  The VCC has been altered 
+by extending the guest room area to include rooms for running tutorials on 
+using the VCC.  Another suggestion was to allow guests to hear the 
+discussion taking place in various conference rooms without participating in 
+them.  Guests could be provided with a radio-like device with channels for  
+selecting among the various discussion sessions currently underway.  By 
+experiencing the interactive discussions, guests might eventually want to 
+come into the VCC as participants.  Allowing guests to take tutorials and 
+hear conference discussions will be studied at the upcoming conference 
+discussed in the discussion section of this paper. 
+ </p><p>
+<a name="VIRTUAL CONFERENCE CENTER TOPOGRAPHY"><b>Virtual Conference Center Topography</b></a> 
+ </p><p>
+The topography of the VCC was intended to be as simple and straightforward 
+as possible.  The VCC can be configured so that it brings a newly connected 
+user into any room.  The VCC starting point was a central room called the 
+PLAZA (<a href="http://www.mcs.anl.gov/home/towell/fig2.gif">Figure 2</a>).  The PLAZA was used for posting scheduling information 
+and, as in real conferences, contained bulletin boards which could be used 
+for a variety of messages such as employment opportunities and personal 
+messages.  From the PLAZA, the user needed to issue only one command to 
+enter any of ten rooms, eight of which  were named according to their 
+direction from the PLAZA (the COFFEE SHOP was down from the PLAZA and the 
+UPPER ROOM was up from the PLAZA).  For example, to attend a meeting in the 
+NORTH ROOM, users entered: north or n following their connection and arrival 
+in the PLAZA.  Each of the conference rooms, except for the PLAZA, had only 
+one entrance and one exit.  Thus, to go to the PLAZA from any of the 
+conference rooms, one merely had to type: out or exit.
+</p><p>
+<a name="RECORDING DISCUSSIONS"><b>Recording Discussions</b></a> 
+</p><p> 
+The VCC contained recorders in each of the rooms, except the PLAZA, and 
+recorded discussions were kept and archived.  The recorders were stopped and 
+reloaded daily.  Recordings from the previous day were then edited and sent 
+to the conference mailing list for all to read.  Some conference 
+participants had difficulty reading the transcripts from recorded 
+discussions.  One common problem was discomfort with personal comments 
+intertwined with serious discussion.
+</p><p> 
+	The interactive aspects of NVE's provide a surprisingly natural social 
+environment, and humans, being playful creatures, often behave as such.  
+This playfulness was generally reflected in the recordings of discussion 
+sessions even though the topic of discussion was serious and of a highly 
+technical nature.  Part of the playfulness is derived from the discovery of 
+the new and stimulating NVE environment.  Even those who were present at the 
+discussion and thought the personal comments were not distracting at the 
+time felt that reading the transcript afterwards was difficult.   The 
+interlaced personal comments seemed  mere distractions later on.  Hence, 
+this phenomenon seems appropriately described as, "You had to be there to 
+appreciate it."
+</p><p> 
+	How can we capture only the serious part of the discussion for the 
+transcripts?  This problem may be solved in several ways.  First, the VCC 
+has commands that permit interpersonal communication which is not captured 
+by the recorders.  These methods can be used effectively for side comments 
+and are used extensively by the more experienced NVE user.  As discussed 
+previously, the say command may be issued with a double quotation mark (").  
+We have modified this by designating two double quotation marks ("") and 
+emotes (:) when preceding text to be recognized by the recorder as an 
+off-the-record statement.  The recorder responds accordingly by placing a 
+pound sign (#) at the beginning of the statement.  Hence, when a transcript 
+is generated from the recording, off-the-record statements can be excluded 
+from the transcript.  Thus, the smiles, gestures, jokes and other personal 
+comments are kept as part of the moment but not formal history.  A 
+description in each of the conference rooms informs the users that 
+statements that are not intended for the record should be preceded with two 
+double quotation marks and that communications made via the emote command 
+will also be excluded from the record. Other changes have also been made to 
+filter messages generated by the server from the transcript of the 
+discussions.  For example, if someone in the room disconnects, an 
+announcement is made to everyone in the room, including the recorder.  The 
+VCC has been modified to place the pound sign in front of any general 
+announcements made by the server during discussions.  The results of the 
+modifications to the recording and transcript-generating procedures will 
+also be tested at the upcoming Electronic Glycosiences Conference discussed 
+later in this paper. 
+</p><p> 
+<a name="INTERNET LAG AND MODERATED ROOMS"><b>Internet Lag and Moderated Rooms</b></a> 
+ </p><p>
+A second common problem with reading transcripts involved statements that 
+seemed out of place or were not in the flow of the conversation.  The 
+appearance of disjointed comments can be due to many factors.  Depending on 
+the time of day, Internet lag can physically prevent a person's statements 
+from appearing on the screen in the temporal order of a natural 
+conversation.  Internet lag is defined here as simply a delay of signals 
+sent between the client and server due to communication delays on the 
+Internet.  Delays can also be due to the server, but that was not the cause 
+of the lagging reported here.  Hence, when such delayed signals are 
+received, they are not synchronized with the rest of the discussion and 
+appear disjointed.  During the conference, the European participants talked 
+of considerable transatlantic lag that worsened towards their afternoon.  
+What can be done to accommodate those who are having difficulty with 
+Internet lag?
+</p><p> 
+	Experienced NVE users typically announce when they are experiencing lag  
+so others in the conversation will understand and compensate by waiting for  
+the lagger's responses.  Inexperienced users will probably have difficulty 
+adopting this compensatory mechanism, and the VCC itself can be used to 
+help.  During seminars at BioMOO and discussion sessions at the VCC, we have 
+experimented with the use of a moderated room.<a href="#note6">6</a>  This room permits 
+communication only after the user has entered: request.  Following the 
+request command, users are placed in a queue and must wait for their turn to 
+talk.  Current speakers have the floor for their discussion until they are 
+finished at which time they enter the command: yield.  Then the next person 
+in the queue is allowed to talk.  The number of people who are permitted to 
+talk is adjustable.  A moderator can monitor the queue to see who is waiting 
+to talk and can encourage users to yield or, if necessary, force them to 
+yield.  With the use of the moderated room, the discussion was focused, and 
+those with lag problems, once they gained the floor, could make their 
+comments in the natural flow of the conversation.  More experimentation is 
+needed with this technique, but there were no complaints from VCC users 
+about adjusting to the request and yield commands in the moderated room. 
+ </p><p>
+<a name="SCHEDULING INTERNATONAL CONFERENCES"><b>Scheduling International Conferences</b></a> 
+ </p><p>
+One major problem with holding internationally-attended conferences is  
+deciding when to have them.  The time-zone distribution of the presenters  
+at the conference (<a href="http://www.mcs.anl.gov/home/towell/fig3.gif">Figure 3</a>) indicates that a meeting scheduled at 8:00  
+Pacific Standard Time (PST), which is Greenwich Mean Time (GMT) minus 8 hours,  
+would occur between 8:00 am and 5:00 pm for most of the people who were  
+presenters at the meetings.  However, Internet lag was most prevalent for the  
+Europeans at 8:00 pm PST which was also a time outside of normal working hours  
+for those located in Australia, Hawaii, and Hong Kong.  One group of conference 
+attendees decided to resolve these problems by scheduling two conference 
+times, the first at 08:00 GMT, the second at 23:00 GMT.  The transcript from 
+the morning session was sent to the mailing list so those attending the 
+later conference could discuss the topics from the earlier session.  Having 
+two conference sessions worked very well and should be considered as a 
+useful alternative to scheduling only one session when most attendees are in 
+their normal workday.  It also revealed the importance of the interplay 
+between the VCC real-time conferencing and the communication via the mailing 
+list.  There is no need to have one without the other, each has distinct 
+advantages. 
+</p><p> 
+<a name="USERS VERSUS BUILDERS"><b>Users Versus Builders</b></a> 
+ </p><p>
+When a person is connected to the VCC, the object that represents that 
+person in the virtual sense is referred to as a player-object.  There is a 
+hierarchical classification of player-objects that progressively allow 
+greater control of the NVE environment.  A "player"  can only connect to the 
+NVE, navigate it, talk with other users and manipulate the objects there.  A 
+"builder" has all the capabilities of the "player" and the additional 
+ability to create new objects such as rooms and things that can be placed in 
+the room.  The VCC registrants were automatically given "builder" status  
+and many of the scientists, with the use of the extensive help system, 
+quickly learned how to use the create commands.  Soon the VCC was littered 
+with lamps, sofas, cappuchino machines, liquor bottles, etc.  While the 
+ability to make objects is undoubtedly a fascinating property of the VCC for 
+many people, the result was the creation of distractions for others who 
+desired only to discuss science and not pass around wine bottles.  Thus, 
+while it is difficult to sanction restriction of personal freedom in the 
+VCC, it is perhaps best if conference attendees are given "player" status to 
+minimize potential problems with differing personal opinions of a proper VCC 
+environment. 
+</p><p> 
+<a name="STAGE TALK"><b>Stage Talk</b></a> 
+</p><p> 
+Stage talk is the term used to direct a comment or question to a particular 
+person in the same room.  For example, if Franz were in the same room with 
+John, and John typed: to Franz What do you mean?, all present in the room 
+would see on their screens: John[to Franz]: What do you mean?  Stage talk is 
+a useful tool when involved in multi-person discussions.  However, the VCC 
+did not explain how to use this feature in its help messages nor were 
+instructions provided in the preliminary instructions sent to VCC 
+registrants when they first registered.  The conferees were quick to learn 
+it when they were with someone else who was using it but we suggest 
+including this feature and appropriate instructions in any NVE to be used 
+for conferencing.  The VCC now provides use of the command to which permits 
+a combined ability for stage talk while protected by the output control 
+manager discussed earlier. 
+</p><p> 
+<a name="BUFFERS"><b>Buffers</b></a> 
+</p><p> 
+As can be expected at any conference, people arriving late would often ask 
+to be updated about the current topic of discussion.  Usually one or more of 
+the conferees would attempt to explain the current discussion to the 
+late-comer which was disruptive, wasteful and inefficient.  Hence, the VCC 
+rooms have been modified to contain buffers that can update a tardy attendee 
+with a replay of recent conversation in the room.  The buffer was set to 
+replay the last 50 lines of the conversation.  Each room description, which 
+is shown to users when they enter, contains instructions for using the 
+replay buffer.  However, this information should also be sent to  users upon 
+ registration.  Further work is planned to determine how many lines of 
+recent conversation are necessary to update a late-arriving participant. 
+</p><p> 
+ 
+<a name="DISCUSSION"><b>Discussion</b></a> 
+</p><p> 
+This discussion has centered on the experience gained during the 
+presentation of the Virtual Conference Center(VCC) at the first Electronic 
+Computational Chemistry Conference in 1994.  No formal scheduling was 
+attempted by the VCC presenters.  All VCC discussion sessions were either 
+spontaneous or organized by conference registrants.  Undoubtedly, greater 
+participation would have occurred if the VCC had been part of the conference 
+organization and prior planning and scheduling could have  been 
+accomplished.  The first  Electronic Computational Chemistry Conference was 
+an experiment in the use of the World Wide Web as a conferencing tool.  The 
+conference organizers had decided on the use of electronic mail as the means 
+to discuss the papers.  We think each medium has distinct advantages and the 
+use of one does not preclude the use of the other.<a href="#note7">7</a>  With the use of 
+recorders in the VCC, transcripts were made which were sent to the 
+conference mailing list.  Hence, all conference registrants shared the 
+discussions of those that occurred in real-time in the VCC.  The first 
+Electronic Glycoscience Conference to be held from September 18 to October 
+13, 1995 at Oxford University will include, as part of the conference, the 
+VCC.  The integration of the VCC into this conference will provide an 
+excellent opportunity to test those VCC changes that have been discussed 
+here, and identify new aspects of the NVE that can improve Internet 
+conferencing efficacy. 
+</p><p> 
+<a name="CONCLUSION"><b>Conclusion</b></a> 
+</p><p> 
+Networked virtual environments (NVE's) are a type of virtual reality that 
+are aptly suited for real-time conferences and seminars on the Internet.  We 
+have studied the use of  a particular type of NVE, called a MOO, by 
+scientists attending an international conference held on the Internet.  
+Real-time interviews and electronically mailed comments indicated that the 
+NVE was enthusiastically received.  Criticism from the scientists helped 
+identify many aspects of the NVE that can be modified to improve 
+conferencing efficacy.  The following are areas of concern when using an NVE 
+for an internationally-attended Internet conference:   providing 
+input-output control management; automation of conference registration;  
+control of anonymous or guest connections;  simplification of NVE 
+topography;  methodology for recording discussion sessions, use of moderated 
+rooms to compensate for network lag; and providing buffers to update late 
+participants.  NVE's catalyze the excitement and synergism that results when 
+people communicate in real-time and hence provide an inexpensive means for 
+effective international conferencing on the Internet. 
+</p><p> 
+<a name="ACKNOWLEDGEMENTS"><b>Acknowledgements</b></a> 
+</p><p> 
+We thank the Administrators of BioMOO and Jaime Prilusky, Head of 
+Bioinformatics at the Weizmann Institute  of Science, for their cooperation 
+during the preparation and presentation of the VCC.  A special thanks to 
+Paul Hansen and the Together Foundation who provided the site for the VCC, 
+and to Lisa Towell for first introducing us to LambdaMOO. 
+</p><p> 
+<a name="NOTES"><b>Notes</b></a> 
+</p><p> 
+<a name="note1">1. Available FTP:</a> Hostname:  parcftp.xerox.com Path:  /pub/MOO/. Also, Pavel Curtis was recently 
+recognized as among the top 50 influential people to watch in cyberspace. Staff (1995, February 27). 50 
+for the future, Newsweek,  pp. 42-45. 
+</p><p> 
+<a name="note2">2. Available http:</a> lucien.berkeley.edu Path: /moo.html. 
+</p><p> 
+<a name="note3">3.  This was</a> indicated in announcement NIST 52SBNB4C8231. 
+</p><p> 
+<a name="note4">4.  The output</a> control manager has also been referred to as SMOC (Spam Manager Output Control; spam 
+referring to unwanted text appearing on the user's screen).  Gustavo Glusman has recently extended the 
+SMOC such that all commands may be issued from the input mode, not just statements.  Code for SMOC 
+is available upon request from John Towell at m50jft1@hayek.cob.niu.edu.   
+</p><p> 
+<a name="note5">5.  The File Utilities</a> Package (FUP) contains a program that is added to MOO server programs at 
+compilation time.  The latest versions of the File Utilities Package and the MOO server combined are 
+available FTP: Hostname: bioinfo.weizmann.ac.il  Path:  /pub/software/MOOsupport/FUP  
+File: MOOFUP1.6.tar.Z. 
+</p><p> 
+<a name="note6">6.  The code</a> for this room was obtained from MediaMOO where it was programmed by Dan Rose. 
+ Available TELNET: Hostname: mediamoo.media.mit.edu 8888. 
+</p><p> 
+<a name="note7">7.  Although it</a> was not used as such at the conference, the VCC is also a 
+World Wide Web server and hence can be used to render real-time conferencing 
+as well as World Wide Web capabilities.  For more information, http: 
+Hostname: bioinfo.weizmann.ac.il:8888. 
+</p><p> 
+<a name="REFERENCES"><b>References</b></a> 
+</p><p> 
+<a name="ANDERSON">Anderson</a>, Christopher  (1994). Cyberspace offers chance to do 'virtually' 
+real science. Science  264, 900-901. 
+</p><p> 
+<a name="BACHRACH">Bachrach</a>, Steven M. (in press). Electronic conferencing on the Internet: The 
+first Electronic Computational Chemistry Conference. Journal of Chemical 
+Information and  Computer Science. 
+</p><p> 
+<a name="CURTIS">Curtis</a>, Pavel (1992). Mudding: Social phenomena in text-based virtual 
+realities. Proceedings of the 1992 Conference on Directions and Implications 
+of Advanced Computing. Available FTP: Hostname: parcftp.xerox.com Path: 
+/pub/MOO/papers/DIAC92.ps 
+</p><p> 
+<a name="EVARD">Evard</a>, Remy (1994). Collaborative networked communication: MUDS as systems 
+tools. Proceedings of the Seventh Systems Administration Conference (LISA 
+VII).   
+Available  http: Hostname: www.ccs.neu.edu Path: 
+/home/remy/documents/cncmast.html 
+</p><p> 
+<a name="HARDY">Hardy</a>, Barry J. (in press). Tales from the launching of global electronic 
+conferencing in computational chemistry.  Chemical Design Automation News. 
+</p><p> 
+<a name="KRIEGER">Krieger</a>, James H., &amp; Illman, Deborah L. (1994, December). Internet offers 
+alternative ways for chemists to hold conferences. Chemical and Engineering 
+News, pp. 29-40. 
+</p><p> 
+<a name="THORNLEY">Thornley</a>, Blair (1994, July). Travels on the net. Technology Review, pp. 
+20-31. 
+ </p><p>
+<a name="TOWELL1">Towell</a>, Elizabeth Rose, Yim, Anna, &amp; Lam, Terry (in press).  Utilization of 
+Internet Services and the Teaching of Internet in Business School. The 
+Journal of Computer Information Systems. 
+</p><p> 
+<a name="TOWELL2">Towell,</a> John Foster, Hansen, Paul, Mercer, Eric, Leach, Martin, Rubin, Irit, 
+Prilusky, Jaime &amp; Glusman, Gustavo (November, 1995). Networked virtual 
+environments and electronic conferencing.  In S.M. Bachrach,
+D.B. Boyd, S.K. Gray, W. Hase, and H.S. Rzepa (Ed.),
+Proceedings of the First Electronic Computational Chemistry Conference 
+[CD-ROM]. ARInternet: Landower, MD. 
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 0:08:57 Oct 7, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:06:21 Mar 26, 2012.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

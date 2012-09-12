@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <title>Realms, Collaboration, and Administration in MOO environments</title>
+  </head>
+  <body bgcolor="#FFFFFF">
+
+
+	<big><strong>The realms system, collaboration and administration in MOO environments</strong></big><hr noshade>
+  <DIV ALIGN=RIGHT>  
+
+	<em>Bradley Dilger
+<BR><A HREF="mailto:dilger@nwe.ufl.edu">dilger@nwe.ufl.edu</A>
+<BR>28 May 1998</em>
+</DIV>
+
+<P>
+I'm filling in for Elena Loftus who was unable to make it today, so
+please forgive me if this presentation seems hastily contrived; it
+was.
+
+<P>
+I'm one of the NWE staff, on an appointment for the English
+department, and I recently agreed to take on the task of digging a new
+MOO for the NWE. Our old MOO was plagued by tracebacks, lag, and
+general bloat, so I knew we needed a solution that would provide for
+easier system administration without reducing functionality. 
+<!-- {25 megabytes, starting to not be used.} -->
+ 
+<P>It was easy to identify some problems with the MOO -- I just asked
+a few instructors what they thought. I boiled down the real
+difficulties to three major issues:
+
+<P><STRONG>1. MOOville needs to provide a MOO environment that allows a
+wide variety of instructors to teach the way they want.</STRONG>
+
+<P>Historically, our system administrators have taken great pains to
+enable many teaching possibilities in the Networked Writing
+Environment. One can use asWe, WordPerfect, NavGold, Pico, or Emacs to
+create hypertexts or traditional papers -- whatever is compatible with
+teaching style. Though some classrooms seem to privilege a more
+traditional model of teaching, others allow a great deal of working
+space and make collaborative work easy for students and teachers
+alike. The web, for some, is a research tool; for others, it's the way
+students share work, perform peer review, and present to the class as
+a whole.
+
+<P>Likewise, there are many approaches to the MOO. Some teachers use
+NWE MOO spaces for discussion groups only, and insist on traditional
+architectural metaphors -- an environment that looks like a classroom,
+with whiteboards and the usual classroom tools. However, just as many
+instructors ask their students use the MOO as a writing tool, and
+require digging and construction of spaces which follow a logic of
+argument more than one of architecture. For these instructors, the
+presence of the wrong sort of metaphor can make it difficult to
+acclimate students to the styles needed for completing assignments for
+the class.
+
+<P> <strong>2. Collaboration needs to be more practical.</strong>
+
+<P>If students <TT>@dig</TT> from one student's room to another, the
+usual annoying message requesting the addition of exits comes up. Of
+course, the MOO assumes every room is private, and it does not allow
+one person to create an entrance and exit in another's room. But it
+DOES create the room, without connecting it to anything, and assumes
+that the student will connect it later. Frequently they do not -- in
+fact, the student will often assume they typed the command wrong, and
+try it again. And again. Soon there are multiple rooms and exits
+connected to nothing, creating a technical problem for the 'walk'
+verb, and frustrating the students.
+
+
+<P> <strong>3. System maintenance can be a nightmare.</strong>
+
+<P>The final major problem comes at the end of every semester, when
+the 1700 student accounts on our Unix system are deleted. Deleting the
+files from Unix is easy, much easier than reaping the accounts from
+the MOO. If a teacher wants to save a bit of a student's web work,
+they can copy it easily -- in fact, our system has commands which
+automate this process.
+
+<P>But in the MOO, the end of the semester can be hell. Students do
+manage to link their spaces by digging, which means eliminating a
+student makes it necessary to check other students to ensure no
+vestiges of collaboration lead, quite literally, to <TT>nowhere</TT>,
+and a navigation problem only a wizard can solve. Teachers want to
+save some student work, and it's not nearly as easy for a teacher to
+copy a MOO object as it is for he or she to save a set of web pages to
+a different directory. Copying a complex installation with integrated
+descriptions and objects is quite difficult, and certainly it's not
+easy to find a lot of spare time at the end of the semester to make
+sure it's done correctly.
+
+<P>
+So these were the main challenges. I consider the first two the most
+important. We can talk about agency and the potential of the MOO to
+redefine boundaries all we want, but that doesn't mean a damn thing if
+it's broken.
+
+<P> We have recently solved all three of these problems by adding
+realms to the new MOOville.
+
+<P>I had heard about the realms system from Tari Fanderclai, who
+manages the MOO Connections, and was
+intrigued by its possibilities. Realms were developed by Tari and Ken
+Fox, in order to make Connections more manageable for the diverse
+group of users there -- teachers and their classes, veteran mudders,
+people interested in social MOOing, and many with a combination of
+those interests.
+
+<P>Realms have several functions which answer our list of problems
+rather nicely. Before I point to those, I'd like to give a short
+technical introduction to realms since it's a very new thing.
+
+<P>Simply put, and quite literally in a MOO sense, a realm is a
+container in which one puts rooms connected by entrances and
+exits. Each realm connects only to nexus realms, which is a special
+realm used for the creation of new realms.
+
+<P> Here are two illustrations which show <A
+HREF="norealms.gif">nine rooms organized
+without realms,</A> and the same number and organization of rooms <A
+HREF="realm_illus.gif">with realms.</A>
+
+<P>Here are the digging rules:
+
+	<ul>
+	<LI>Every room must be in one, and only one, realm
+<LI>		Realms cannot be nested
+<LI>	Realms cannot be directly connected to each other
+<LI>	New realms can only be created in nexus realms
+<LI>	The number of exits in and out of a realm should be minimized.
+</UL>
+
+<P>And the rules for ownership:
+
+	<ul>
+	<LI>Each realm is owned by one person, who controls who can build there
+<LI>		Any builder for a realm can dig to or from any room in that realm
+<LI>Only the owner of a realm can remove it.
+</UL>
+
+<P><strong>What does the implementation of realms mean for collaboration?</strong>
+
+<P>The realms system imposes a new restriction on every would-be
+digger: it checks to see if they have permission to dig in the realm
+before it allows them to dig. However, realms also lift the old rules
+about exit and entrance restrictions. This is a great enabler for
+collaboration. <!-- add example demonstration -->
+
+<P>Like any object in the MOO, a realm is owned by one player. Only
+that player and administrators can build rooms in a freshly created
+realm. But any player has the ability to add others to their realm--
+so one player can pick a group of students, colleagues, or others to
+collaborate with them.
+
+<P>In the first image linked above, without realms, everyone can dig
+everywhere, potentially, as long as they get permission from the room
+owner. So if a student who wants to dig from a classmate's room to her
+own room has to get permission from the classmate who owns the
+room. And, if the student tries to dig to a third room, and finds a
+willing recipient, she can dig a web -- but only if the collaborees
+assent and <TT>@add-entrance</TT> or <TT>@add-exit</TT>.
+
+<P>But with realms, one can just dig. No extra steps are needed -- as
+long as the student is in her realm (the blue or orange zone on <A
+HREF="realm_illus.gif">this image</A> she can collaborate, dig, with
+the group she's assigned to.
+
+<P> An administrator can even assign a nexus to a teacher to allow
+different realms for student groups, as in <A
+HREF="four_realms.gif">this illustration.</A>
+
+<p> <strong>Pedagogy and MOO design</strong>
+
+<P>For teachers, the implications are great because connections
+between classroom areas and the rest of the MOO, whether intentional
+or unintentional, are much more difficult for students to make. The
+realm subset allows much better definitions of working groups, whether
+a topology like this is used or not. Instead of the instructor trying
+to facilitate a group working together and connecting their rooms,
+adding exits, and other mundane tasks, one can simply establish a
+realm for each group, make all students in the group builders in that
+realm, and focus on the content of the assignments.
+
+<P> Because the exits in and out of a realm are restricted, it is much
+easier for a builder to separate a realm from the rest of the MOO, and
+differentiate the characteristics of that realm from other metaphors
+used in other realms. For example, one can make the entrance to their
+realm a series of rooms that gradually acclimate the exploring digger
+to the realm as they are entering, and let them know they are leaving
+if they start to head out. Tari Fanderclai has used this technique at
+Connections with a great deal of success.
+
+<P>Realms also allow common spaces to be created easily and
+"firewalled" from the rest of the MOO, and managed by a group of a few
+selected builders. For example, in MOOville, the central classroom
+space is managed by the non-wizard characters of the administrators
+and a few other volunteers. Those people are the only ones allowed to
+alter that area -- but that's an improvement over past situations,
+where the permission of one person was required, and it took careful
+prearrangement to work together. With realms, collaboration can be
+much more asynchronous.
+
+<p><p>
+
+<P><em>Does the implementation of realms affect navigation?</em>
+
+<P>To the end user, realms are transparent -- the casual MOO traveler
+doesn't see anything different when moving from realm to realm, except
+a "realm_arrive" message if it is set. In fact, even those who are
+digging need not know the gory details about realms, nexuses, and the
+like -- they need only know where they can dig, and how to get there.
+
+<P>It would also possible to enact a proposed "pod" topology, with
+realms in the same MOO not connected to each other, but self-contained
+units, in effect creating several small MOOs within one MOO. Many
+instructors at UF have looked for some level of this capability in
+order to customize their spaces, but I think that if used properly,
+realms could be used for even more customization, with groups of
+students attached to one realm and one realm only.
+
+<P><em>What does realms do for management?</em>
+
+<P>For management purposes, realms make the removal of classrooom
+spaces very easy because problematic exits are seldom created in a
+realmed MOO. In the old MOOville, without realms, one of the problems
+we faced was locating student work spread out over a wide number of
+objects, and counting on the ownership of the object to be indicative
+of whether or not it should be recycled. <!-- The addition of the @rm-realm
+verb, which is still under development, will enable an realm owner or
+administrator to -->
+
+<!-- <P>If recycling a realm is not desirable, the place can be
+"walled up" but -->
+
+<!-- <P> You may be interested in this functionality for your own MOO. Let me conclude with a few words about that. Contact 
+
+<P>The realms system is currently developmental and is not yet ready for public release. The second summer session, which starts in late June and concludes in August, will be our first official testing period. We have committments from several instructors who plan to use the realm features of our MOO to organize the work of their classes. After this testing period is concluded, we'll prepare a report about the success of realms (yes, we're being optimistic here), and post information about them on our web site. At that time, if the experiment has been successful, I'll ask Ken and Tari to allow me to package realms for public distribution.
+
+<P>So please check back on my web site, or the NWE MOO web pages, later on in the summer, for more information about this possibility.
+
+      <P>At this time I'll be happy to entertain any questions. -->	
+
+<P> &nbsp; </P>
+
+       <P> Copyright &copy; 1998, 2000 C Bradley Dilger.
+	
+      <hr>
+      <A HREF="mailto:dilger@nwe.ufl.edu">dilger@nwe.ufl.edu</A>
+      <BR><TT>http://web.nwe.ufl.edu/~dilger/MOO/realms_long.html</TT>
+      <BR><SMALL>
+	<!-- hhmts start -->
+Last modified: 1 Apr 2000
+<!-- hhmts end -->
+      </SMALL>
+  </BODY>
+</HTML>
+
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 1:01:30 Aug 23, 2004 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:53:56 Mar 26, 2012.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

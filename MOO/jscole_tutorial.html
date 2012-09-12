@@ -1,0 +1,602 @@
+<html>
+<head>
+<TITLE>The Well Described Room</TITLE>
+<META NAME="description" CONTENT="MOO (Multi User Dimension, Object Oriented).  Tutorial on building a room on a MOO.  Tips for better descriptions and step by step process of digging the room, adding seats and details, and digging and detailing the exits.">
+<META NAME="keywords" CONTENT="moo, mush, mud, M*, ElderMOO, Felix">
+<style type="text/css">
+
+	newbody {
+		text-align: center;
+		font-size: 10px;
+		font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		}
+
+	.regtext {
+		text-align: left;
+		font-size: 10px/12px;
+		font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		}
+
+	.biginfo {
+		text-align: center;
+		font-size: 14px;
+		font-weight: bold;
+		font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		}
+
+
+	newem {
+		font-size: 12px;
+		font-style: italic;
+		font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		}
+
+	.mainpoints {
+		font-size: 12px;
+		font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		}
+
+	li {
+		font-size: 14px;
+		font-family: Times New Roman, Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+		list-style-image: url(jscole_tutorial/moocodebullet.jpg);
+		text-align: left;
+		padding-left: 3em;
+		}
+
+	body {
+		margin:0px 10px; padding:0px;
+		text-align:left;
+		color: #FFF0F5
+		}
+
+	a:link {
+		color: #6495ED
+		}
+
+	a:visited {
+		color: #8A2BE2
+		}
+
+	#frame {
+		padding:40px;
+		background-image:url(jscole_tutorial/mootutorleftback.jpg);
+		}
+
+	#contentframe {
+		margin: 0px auto;
+		margin-left:auto;
+		width: 570px;
+		padding:15px;
+		float:center;
+		text-align: left;
+
+	#contentcenter {
+		padding:30px;
+		float:center;
+		}
+
+</style>
+<script language="JavaScript">
+<!--
+if (window != window.top)
+  top.location.href = self.location.href
+//-->
+</script>
+</head>
+
+<BODY BGCOLOR=#000000>
+
+<!--<BODY BACKGROUND="moo/mootutorleftback.jpg" BGCOLOR="#000000" TEXT="#FFF0F5" LINK="#6495ED" ALINK="#FFC0CB" VLINK="#8A2BE2">-->
+<!--background black, text lavendarblush, link cornflowerblue, alink pink, vlink blueviolet-->
+
+
+<div id="frame">
+  <div id="contentframe">
+    <div id="contentcenter">
+
+<!--<P><TABLE WIDTH=600 align=left cellpadding=12>
+<TR>
+<TD WIDTH=50><img src=vspacer.gif height=10 width=50></TD>
+<TD WIDTH=550>-->
+
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutortitle.gif" WIDTH=210 HEIGHT=160 ALIGN=BOTTOM BORDER=0 alt="the well described room: how to build a room with the #854 parent">
+</CENTER></P>
+
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+<!--<h1>HOW TO BUILD A ROOM WITH THE #854 PARENT</h1>-->
+<h3>Acknowledgements</h3>
+<font size=-1><i>This tutorial describes a generic that is available on RiverMOO,
+which is located at rivermoo.com port 8888.  The specific
+syntax of some of the verbs is specific to the object #854 at RiverMOO, but
+the general concepts will apply to the generic seated secure room with integrated details which is available at most MOOs.  You'll have to
+@examine the room and read the help for it to adapt some of the instructions
+to a different generic on another MOO.  Seats, details and integration are pretty common MOO-technology, but the actual syntax of verbs to create them varies slightly from MOO to MOO.<br>
+The room generic #854 was programmed by Defender on RiverMOO and is a child of the basic $room object.  The exit generic #855 and door exit generic #1855 were programmed by Jedi-Knight on RiverMOO and both are children of the root object.<br>
+The author of this tutorial is Lelandra on RiverMOO, EdenMOO and ElderMOO.
+</i></font>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Introduction</h3>
+In this tutorial, we'll build a typical hotel room, as that is something we're all probably familiar with.  I should hope that by the time we're through, you can build an area with a little more imagination, whether it be a glittering crystal cave, a treehouse, a burbling brook, or quarters on a space station.  Our example room need not contain any additional objects simply to provide atmosphere - merely by taking good advantage of messages, details, and seats you can create a room with a surprising amount of interactive potential.
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Digging the Room and Setting its Parent</h3>
+The first step is to make an empty room out in limbo.  You need to think
+of a name that describes what the room is, ideally one that is both
+tantalizing and unique.  Our demonstration room isn't very tantalizing -
+we'll just call it "Rutherford Inn Economy Suite".  We're putting quotes
+around the room name because it contains space characters.
+<p>
+<B>   @dig "Rutherford Inn Economy Suite"</B>
+<p>
+When you type in the above command, a generic empty room will be created,
+and you'll be told the OBJECT NUMBER for the new room.  It's a good idea
+to write it down so you can go visit it later.  However, if you forget the
+object number you can just audit yourself and you'll see it listed in the
+things you own:
+<p>
+<B>   @audit me</B>
+<p>
+The next thing you should do is teleport your character to the new room.
+This will allow you to use the word "here" rather than needing to type in
+the object number in the commands to the MOO.  If you want to detail your
+room remotely (from inside a different room), everytime you see the word
+"here" put in the object number instead.  We'll assume that the MOO
+assigned the object number 9999 to the new room; you should fill in the
+number of the room actually assigned instead:
+<p>
+<B>   @go #9999</B>
+<p>
+MOOs are object oriented.  This means that everything is an object - your
+character is an object, this room is an object.  All objects are created
+from parent objects and inherit characteristics from the parent objects.
+When you @dig, a generic room is created - this has very few automatic
+characteristics, and you'll want to make your room the child of a parent
+object with more automatic characteristics.  This is done with the
+@chparent command.  Generic room #854 provides many of the commands we'll
+be using to detail our room, so to follow along you need to have #854 or
+one of its children as the parent object.
+<p>
+<B>   @chparent here to #854</B>
+<p>
+If you decide you always want to have #854 as the parent of the rooms you dig, set your build-option to use it.  Once you've set the build-option, every room you dig will automatically have #854 as a parent, and you won't need to issue the command @chparent here to #854.
+<p>
+<B>@build-option dig_room=#854</B>
+<p>
+As long as you are setting @build-options, you can go ahead and set the option for the accompanying exit for this room.  We'll make use of this later on in the tutorial.
+<p>
+<B>@build-option dig_exit=#855</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Describing the Room</h3>
+Now let's put in the description that anyone who enters the room sees
+automatically.  This is the most important and most difficult part of building your room.  If the description is boring, people probably won't stay long enough to look at the details, sit in the seats or play with the verbs.  Yet it should only be about a paragraph in length (6-8 lines or so).  You really need to tease your readers into wanting to look around at things more closely - don't give away the entire description at once.
+<p>
+Try to make every word in the description work to both describe what the thing IS and allude to its personality.  Think about the personality you are trying to convey - is it ominous?  nostalgic?  luxurious?  playful?  Spend some time with a thesaurus to collect the nouns and verbs that convey that kind of personality.  Try to find evocative nouns and verbs rather than piling on adjectives and adverbs.  This is a far more effective technique than using statements that bludgeon the reader with instructions telling them how they feel in the room, such as 'You feel very uneasy here.'  I never feel uneasy in the room when it contains such a phrase - though I do feel disappointed in the writer.
+<p>
+A good description is lyrical.  It uses interesting words, avoids cliches, and despises categorical statements.  A good description will describe a forest by describing the trees reaching heavenward, the wildflowers perfuming the air and carpeting the understory, the babbling brook splashing over stones and gleaming like crystal instead of stating 'You see a forest'.
+<p>
+A good description provides something for more than one sense rather than just describing how something looks.  How does it smell?  Can you hear any interesting background noises?  What is the quality of the light?  Is it cold or hot, dry or clammy?  Make use of colors, but use their full power.  "Blue" is boring: is it pale blue like a prairie sky on a winter day, or maybe an electric blue like that at the base of a candle flame.  Colors indicate fashion and can suggest a lot about the personality of a place - think about the difference between your reaction to the pairings of avocado green and orange or mauve and gray or turquoise and carnation.
+<p>
+Separate the mechanics of the room from the description of the room.  If you've programmed some interactive verbs that you want to tell players about, set the help_msg for the room with instructions for their use.  Or modify the verb :enterfunc to tell the player just when they come in.  Or make a detail, such as a plaque, that has the necessary information.
+<p>
+Correct your spelling and grammar.  Spelling errors are terribly discordant.  An extra five minutes with a dictionary looking up the spelling of unfamiliar words will prevent the discordant shock of seeing a description of 'tappestries' in a room that would otherwise succeed in transporting the reader into your own personal vision of a place.  The same is true of grammatical errors.  Every MOO I've visited is full of rooms that misuse its/it's and there/their/they're.  Remember: the only time there is an apostrophe between 'it' and 's' is when 'it's' is short for 'it is'.  When you are using 'it' in the possessive sense, there is no apostrophe: 'its'.  Furthermore, 'their' is always spelled with 'e' before 'i', and is only used when you are talking about something that 'they' possess.  'There' is a word referring to a location, and 'they're' is short
+for 'they are'.
+<p>
+Rutherford Inn is a downtown hotel that is starting to fall on hard times.  The ownership still cares about providing a high quality stay, but hasn't had the funds to redecorate the rooms lately.  It is also reasonably apparent that the ownership's aesthetic sense was never really the epitome of refinement...
+<p>
+<B>@describe here as "A faint scent of Pine Sol burns at your nostrils, while your eyes are accosted by the burnt orange draperies depicting peacocks strutting among eastern temples.  Small pools of light from imitation stained glass sconces play across the surface of a Moorish facade bureau brooding across from the double bed.  A threadbare coverlet in loud apricot and spruce green stripes gladdens the room.</B>
+<p>
+That's really enough to let your reader's imagination take it from there.
+They've probably seen similar examples of 70's fake ethnic decor and their
+mind's eye can better supply the combined horror and comfort of the visage
+than any excess of prose you supply.  Don't worry - you'll have plenty of
+opportunity to describe what else is in the room when you add details,
+thus rewarding the attentive explorer with more tiny bursts of description. <p>
+You'll notice I didn't describe the room as "a hotel room in horrible 70's
+fake ethnic decor" - I let the color scheme, the suggestions of age, the
+imitation sconces supply the category of what we were looking at.  The management's attentiveness to cleanliness was suggested by the Pine Sol
+which you can still smell (and subliminally echoed by the "spruce" green - spruce is a synonym for "neat", as well as being a kind of evergreen).  Horror and comfort were alluded to with 'accosted', 'brooding', and 'gladdens'.  You'll note that nowhere did I waste space by using a form of the verb 'to be'.   Every verb in the description carries its weight.
+<p>
+Now that we've got the wording down, let's make sure the formatting is set to make this as readable as we possibly can.  Two things should be addressed: spacing and word-wrap.  Readability will be improved if there is spacing before and after the paragraph of description.  The space between the title and the description could take the form of a blank line, use of hyphen characters to underline the title, or 80 characters of various ASCII characters, combined decoratively (such as %%%%%%%%% or ^*^*^*^*^*).  Since not everyone has the same line length on the MOO, it will look better if you don't force line breaks, but join all the lines in a paragraph into one line.  We'll pretend that the description got typed in as 5 separate lines. We'll add the spacing lines by inserting a blank line at the beginning and end of the description (before line 1 and after line 6), then join lines 2,3,4,5,6 into one line.
+<p>
+<B>@edit here.description<br>
+ins 1<br>
+" <br>
+ins 7<br>
+" <br>
+join 2-6<br>
+save<br>
+quit<br>
+</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Adding Details to the Room</h3>
+Make a little map of your room on paper.  Figure out what's in the room and
+how everything relates to everything else.  In our room, we'll assume
+that the entrance from the hall is at one end, and that's where
+the person stands when they first enter the room.  The smell of Pine Sol
+is coming from the bath, which is to our reader's right.  The drapes that
+caught our eye must be right across the room, so that's where the window is.
+Hotel rooms generally have a table and two chairs in front of the window.
+We could see the bureau when we started to turn to figure out where the smell was coming from.  Usually there's a TV sitting on the bureau.  That means that the headboard of the bed must be on the opposite wall.  Above is simply the ceiling, and below is the floor.  That's enough to go on, so we'll add our first details.
+<p>
+<B>  @detail bureau,dresser is "You see a television perched atop a massive
+dark veneer bureau.</B>
+<p>
+@detail is what the person in the room will see if they LOOK BUREAU.  Note
+that I have given the detail two names, with no spaces between the names.
+This will increase the chances that players hit on the name you chose to
+use for the detail when they are looking at details.  Also, any time
+you use compass directions, you should alias both versions of the
+direction name (e.g. "north,n").
+<p>
+Remember that bathroom?  Unless you wish to burn quota
+actually building the bathroom as a separate room, you can simply suggest
+its presence with details.  If you aren't planning to actually spend time
+in a room, and it's not the sort of room other players would want to spend
+time in, use a detail instead of building the room.
+<p>
+<B>@detail bathroom,bath,pine sol is "Through the open door you can see a
+sparkling expanse of harvest gold tile.  Towels are stacked on a glass
+shelf above the stool.  A small basket of soaps and shampoos has been
+left by the sink.</B>
+<p>
+We'll not belabor the point here, but the same efforts are put into
+filling in the rest of the details.  If it was important enough to mention
+in the description, you should make a detail for it.  For up and down,
+include likely synonyms:
+<p>
+<B>@detail up,u,ceiling is "You see white acoustic tile that has grown yellow
+over time.</B>
+<p>
+<B>@detail down,d,floor,rug,carpet is "You see a brown textured shag carpet
+that is compacted by years of heavy use.</B>
+<p>
+Now that you've finished describing the main details, you can
+describe some of the things found in the room.  Make a list of some of the
+more prominent objects that you might not have mentioned in the main description.  You of course have the bed, the chairs, the table,
+the nightstand.  Perhaps there's a telephone that the reader will only
+find out about if they look at the nightstand.  You might have something
+else to describe about the bureau or the television.  Maybe there's a
+horrible starving-artist painting on the east wall.
+<p>
+Save your quota by creating details instead of creating objects that don't
+actually DO anything.  If you only want to have an item in the room, but
+it won't have any verbs on it, use a detail instead.
+<p>
+<B>@detail television,tv is "You see an old behemoth of a set from the days
+prior to remote control.</B>
+<p>
+For all the other detail commands for room parent #854 you should not type in the list of all of the aliases.  In the example of the bureau, it has the aliases bureau and dresser.  Let's take a look at the other detail commands.
+<p>
+If you want to add more text to a detail, use the command @moredetail.  Whatever you type will be appended to the existing detail.
+<p>
+<B>@moredetail bureau is "The surface is spotted by a few ancient cigarette burns.</B>
+<p>
+You can not only look at a detail, you can smell it, touch it, listen to it, display a message to the room when someone looks at it (the <I>olook_msg</I>), or include a phrase about it in the description of the room (the <I>look_msg</I>).  Let's fully detail the television to show how this is done:
+<p>
+<B>@detail/smell television is "The television smells musty.<br>
+@detail/touch television is "An arc of static electricity shocks you.<br>
+@detail/listen television is "The sound is fuzzy and tinny... which seems appropriate given the old Johnny Carson rerun that's playing.<br>
+@detail/look_msg television is "The television blaring on the bureau dispels the quiet.
+@detail/olook_msg television is "%N studies the television intently.</B>
+<p>
+The <I>%N</I> in the olook message will be replaced with the player's name who looks at the detail.  Therefore, if Sluggo types 'look tv', he will see 'You see an old behemoth of a set from the days prior to remote control.'  Everyone else in the room with Sluggo will see 'Sluggo studies the television intently.'
+<p>
+If you decide you want to get rid of a detail, use the command @rmdetail.
+<p>
+<B>@rmdetail television</B>
+<p>
+To see a list of all the details defined on the room, use the command @details.  There are no permissions on running this command.  You can use @details in any room that has #854 as a parent, no matter who owns the room.
+<p>
+<B>@details</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Integration and Other Room Options</h3>
+To make your fellow players look at details to find the interesting
+objects you've planted in your room, define look_msgs on the objects and
+turn on detail integration.  Let's say you have a Gideon Bible object
+that has several interesting verbs built onto it.
+<p>
+<B>@create $thing called bible,Gideon Bible</B>
+<p>
+If you drop the bible, and look, you'll see the message "You see bible here." appended to the end of the room's description.  That's pretty boring, so let's improve it by setting the look_msg.
+<p>
+<B>@property bible.look_msg "A tattered Gideon Bible sits forlornly on the
+nightstand.</B>
+<p>
+Now set the room option for integration on.
+<p>
+<B>@room-option +integrate</B>
+<p>
+Now when you look at the room, you'll see the message "A tattered Gideon Bible sits forlornly on the nightstand." instead of "You see bible here." at the end of the room's description.
+<p>
+The following information will help you with a few tweaks you can perform on integration.  If you want the text in the look_msg to be added to the last line of the room's description instead of at the very bottom of the description, turn on the i_lastline option:
+<p>
+<B>@room-option +i_lastline</B>
+<p>
+You can turn any room option off by using a minus sign instead of a plus sign:
+<p>
+<B>@room-option -i_lastline</B>
+<p>
+If you'd rather have the look_msg information appear with the list of people sitting down, rather than having it in the room description, use the i_sitters room option:
+<p>
+<B>@room-option +i_sitters</B>
+<p>
+If both i_lastline and i_sitters are turned on, the integration text will be added to the last line of the list of sitters rather than appended to the very bottom.
+<p>
+If you want to prevent including the look_msg of player objects (who have look_msg defined), use the i_noplayers room option:
+<p>
+<B>@room-option +i_noplayers</B>
+<p>
+You can also customize the amount of space appearing between the description itself and the look_msg.  By default it's three spaces.  You can change it:
+<p>
+<B>@int_sep here is "   "</B>
+<p>
+Finally, if you want to limit the number of players who can crowd into the room at one time, you can set the room's capacity.  To set the capacity to four players (disconnected players not yet removed by the housekeeper are included in the count):
+<p>
+<B>@capacity 4</B>
+<p>
+To reset the room's capacity back to unlimited:
+<p>
+<B>@capacity unlimited</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Seats</h3>
+I like to make sure I've provided a seat for anything I mention in my room's description that people would sit on, sit in, lean on, or lay down on in real life.  In this case I'd add seats for the chairs, bed, and leaning against the bureau.  Use your imagination.  Seats give you a programming-free way to add interactivity to a room.  Every room can benefit from having seats defined, especially if the messages are set creatively.
+<p>
+To describe a seat, simply use the @addseat command.  It will prompt you
+through adding all of the messages displayed.
+<p>
+<B>@addseat chair</B>
+<p>
+The script will ask you for the capacity (the number of players who can use the seat at the same time.  You could say 'none' for unlimited capacity)
+<p>
+<B>2</B>
+<p>
+Next it will ask you for the <I>sit</I> message, the message shown to players when they sit down in the seat.  You can reset it later with the command <I>@sit chair is "whatever"</I>.
+<p>
+<B>You sit down in one of the chairs.  The acrylic upholstery
+feels scratchy against your skin.</B>
+<p>
+It will ask you for the <I>osit</I> message next.  This is the message shown to everyone else in the room when the player sits down in the chair.  You can use pronoun substitution for this message.
+<p>
+<B>%N sits down in one of the chairs, recoiling slightly from
+the touch of its upholstery.</B>
+<p>
+Then it will ask for the <I>stand</I> message, the message shown to players when they stand up.
+<p>
+<B>You get up from the chair.  It's a bit of a struggle as
+the springs are going.</B>
+<p>
+Then it asks for the <I>ostand</I> message which is shown to everyone else when a player stands up.
+<p>
+<B>%N struggles up out of the chair.</B>
+<p>
+Next you need to supply the <I>sitting</I> message, which people see when they look at the room and someone is sitting down in this seat.  You need to be a little careful with this message if the capacity of the seat is larger than one, as it should make equal sense if there's one sitter and one empty chair, or two sitters.  You should use %n where a player's name would be, and &lt;is/are&gt; for the verb.  Don't forget that "you" will get the "are" verb.
+<p>
+<B>%N &lt;is/are&gt; sitting in a plaid upholstered chair.</B>
+<p>
+The script is nice enough to automatically give you a chance to fill in the detail for the seat, the description shown when someone looks at the seat.
+<p>
+<B>A pair of brown and gold plaid upholstered hotel chairs.</B>
+<p>
+Now, the script asks if you want this to be a private seat.  Answer
+yes if you want things said or emoted in this seat to be heard only by
+other players sitting in the same seat.
+<p>
+<B>no</B>
+<p>
+Finally, the script asks if you want a message appended to the title and who display when someone sits in the seat.  Answer yes if you want the room's title modified in this way.   Be aware that the message will be 'sitting on the' seatname.
+<p>
+<B>no</B>
+<p>
+That's it.  The seat is added.  If you need to go back and change something, you can use @editseat or you can just change one message (@sit, @osit, @stand, @ostand, @sitting).
+<p>
+If you want to remove a seat, use <B>@rmseat seatname</B>.
+<p>
+To get a list of the seats defined in the room, use the command <B>@seats</B>.
+<p>
+To use a seat, a person will SIT SEATNAME.  To get up from the seat, a person will STAND.
+<p>
+Finally, you should set the standing and sleeping messages. The standing message is the list of players in the room who are not sitting on a seat which will be displayed with the list of sitters.  It defaults to 'name name and name are here.'  The sleeping message is displayed for disconnected players who are not in a seat and who have not been removed to their home room by the housekeeper.
+<p>
+<B>@standing here is "%N &lt;is/are&gt; standing by the window."</B>
+<p>
+<B>@sleeping here is "%N &lt;is/are&gt; sacked out on the floor."</B>
+<p>
+In the case of rooms where there are going to be a large number of people, you can use a room option to put the standing and sleeping people in a different paragraph from the sitting people.  To do this, set the following room option.
+<p>
+<B>@room-option +separate_seats</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Exits and Virtual Exits</h3>
+To connect your room to another room on the MOO you need to dig an exit.  If you want to go to the other room and come back to the room you started in,
+you need to dig TWO exits.  You can dig either a regular exit, which is an object in its own right, or a virtual exit which is more limited in how it can be customized, but consumes less quota.  If you want to dig an exit to a room you don't own, the owner will need to issue a command to make the exit work.  In the meantime, though, you can do all the customization you want on the exit.
+<p>
+Let's assume you want to make an exit to room #8888 (a parking lot) called "window".  While in the hotel room, issue the command:
+<p>
+<B>@dig window to #8888</B>
+<p>
+If you want to dig both exits, such as from the hotel room to a hallway, and a hallway to the hotel room, you can instead @dig hallway|suite to #7777.  To make a virtual exit, @vdig hallway|suite to #7777.
+<p>
+The output of that command will tell you the object number(s) of your exit(s), and may inform you that the other room's owner needs to add a legal entrance for you.  Let's change the parent of this exit to a more featureful parent than the generic exit, the $DC_exit.  For the $DC_exit, it's very important that you use the convert command and not @chparent.  If you set your build option for dig_exit at the beginning of the tutorial, the exit will automatically have the $DC_exit as its parent, and you won't need to convert it.
+<p>
+<B>convert window to $DC_exit</B>
+<p>
+First, you should describe the exit.  (You can only describe a real exit, not a virtual one.  If you make a virtual exit, you should also make a detail with the same aliases as the exit name which provides the description.)  You could simply describe what the window looks like:
+<p>
+<B>@describe window as "The window is sparkling clean.</B>
+<p>
+But you should be able to look through a window, especially if it's clean.
+<p>
+<B>@describe window as "Through the sparkling clean window, you can see %w in the parkling lot below.</B>
+<p>
+The <B>%w</B> in the description will be replaced with a list of players in room #8888.  You can also use <B>%c</B> to see a list of the contents in the other room.  You can use <B>%l</B> to see the complete description of the other room.  If no players are present in the other room, %w will show the <B>@no_one</B> message (which is by default "no one").  If no players or objects are present in the other room, %c will be replaced with the <B>@nothing</B> message, which defaults to "nothing".  These tricks are only available with the $DC_exit (#855) or $DC_door (#1855), not with the generic #7 exit or with a virtual exit.
+<p>
+On this exit parent (but not the generic or virtual kind) you can also use <B>%&lt;source&gt;</B> instead of typing the origin room's name, and <B>%&lt;dest&gt;</B> instead of the destination room's name.  This makes for less updating if a room should change its name in the future.
+<p>
+If you use a virtual exit rather than a real exit, you should still describe the exit.  You won't be able to @describe the exit, but you can make a detail for it.  A person who loooks at an exit should not receive the response "You see nothing special."
+<p>
+There are six basic exit messages that you can set.  The $DC_exit also has @smell, @osmell, @feel, @ofeel, @taste, @otaste, @listen, @olisten, and @olook.  The $DC_door, an openable and closeable door exit, has a number of messages relating to the door as well.  Type <B>@messages #855</B> and <B>@messages #1855</B> to see the list of messages available on each exit type.  For the purposes of this tutorial, we'll just set the basic messages.  As a user interface consideration, you should always at minimum set the oleave and oarrive messages to make it clear where a player is coming from or leaving to.
+<p>
+<B>@leave window is "You climb through the window."<br>
+@oleave window is "%N climbs out the window."<br>
+@arrive window is "You fall with a splat onto the asphalt parking lot."<br>
+@oarrive window is "%N has arrived in the form of a grease spot from a window high above here."<br>
+@nogo window is "You're much too large to fit through the window."<br>
+@onogo window is "%N tries to squish through the window and fails."</B>
+<p>
+If you use the $DC_exit or $DC_door, between the display of @leave and @arrive, you can optionally show the player a list of additional messages that describe the trip.  To do this <B>@edit window.travel_msgs</B> and add each message on a separate line.  For example:
+<p>
+<B>You start to realize that this may not have been such a good idea.</B>
+<p>
+By default this message will be shown 5 seconds after the @leave message, and 5 seconds before the @arrive message (making it a more than 10 second trip).  You can change the number of seconds it takes by setting travel_delay:
+<p>
+<B>@set window.travel_delay to 3</B>
+<p>
+You should also set a look_msg that will be integrated into the room's description.  With a generic exit, you'll need to add the property.  With the $DC_exit, just use <I>@look window is "whatever"</I>.  With a virtual exit, set a look_msg on the detail you made for the exit: <I>@detail/look_msg window is "whatever"</I>.  If you don't set a look message, any players who have <I>@ways off</I> may never know that there's an exit here.
+<p>
+<B>@property window.look_msg "The window offers the pleasant view of a parking lot."</B>
+<p>
+It is also possible to add a property to an exit that will prevent it from showing up in the list of available exits or displaying its look message.  To make a hidden exit like this, simply set the obvious property to 0 (zero).  There is no way to hide a virtual exit.
+<p>
+<B>@property window.obvious 0</B>
+<p>
+
+</font>
+</td></tr></table>
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+<table width=95% bgcolor=#e6e6fa cellpadding=12><tr><td>
+<font color="#000000">
+<p>
+
+<h3>Exit Display Options in the #854 room parent</h3>
+You may want to go back and revisit integration a little bit from the details section.  A big part of the user interface of a room is controlled by three @room-options settings: integrate, tell_exits, and i_exits.  On RiverMOO, for rooms using the #854 parent, players can make their preference for these three settings override the room builders'.  Players who always want to see a list of obvious exits after the description can issue the command <B>@ways on</B>.  Players who never want to see that list can <B>@ways off</B>.  For players who haven't set a preference, you can set the tell_exits option.  Set it to plus to show the list, set it to minus to hide the list.
+<p>
+<B>@room-options +tell_exits</B>
+<p>
+Players who set a property on their character object called integrate will override your room-options integrate setting.  Players who never want to see look messages, but just a raw list of object names can <B>@set me.integrate to 0</B>.  On a slightly less drastic note, you can integrate everything but exit look messages in the description.
+<p>
+@room-options +i_exits
+<p>
+In this case, players who <B>@set me.i_exits to 1</B> will never see exit look messages when they look at rooms that are children of #854.
+<p>
+Believe it or not, there is still quite a lot that you can do to tinker with the settings on this room.  Some of the topics that this tutorial has not covered include noises, connected outdoor rooms (where sound travels between two rooms), security, room morphing, and the computer.  If you are interested in these topics, you should read the on-line help for the DC_room.  Type <B>help dc-topics</B> for a list of general topics and <B>help dc-index</B> for help on specific settings whenever you are inside any room which is a child of #854.
+
+</font>
+
+</td></tr></table>
+
+<P><CENTER>
+<IMG SRC="jscole_tutorial/mootutordivider.jpg" WIDTH=450 HEIGHT=20 ALIGN=BOTTOM BORDER=0 alt="bar">
+</CENTER></P>
+
+<!--Created, Updated, Copyright-->
+
+<P><CENTER><FONT SIZE="-1">
+Copyright &copy; 1994-1999 Joan Schraith Cole. <br>
+Updated February 12, 1999<br>
+</FONT></CENTER></p>
+
+<!--Credit for Graphic Elements-->
+
+<font size=-1>
+<P><CENTER>
+<a href="http://ann-s-thesia.com/">Environmental Graphics from Ann-S-Thesia CD</a>
+</CENTER></P>
+</font>
+
+<!--The table ends here so that nothing overruns the border-->
+<!--<p>
+</TD></TR></TABLE>-->
+
+   </div>
+  </div>
+<br clear="all" /><!-- without this little <br /> NS6 and IE5PC do not stretch the frame div down to encompass the content DIVs -->
+</div>
+
+</BODY>
+</HTML>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 18:56:39 May 9, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:16:04 Mar 26, 2012.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
