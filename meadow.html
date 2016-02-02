@@ -1,42 +1,102 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>.\|/. H a y s e e d N e t w o r k s - The Meadow.\|/.</title>
-  <link rel="stylesheet" type="text/css" href="/styles/hayseeds.css">
+    <script>document.domain = document.domain</script>
+    <title>.\|/. H a y s e e d N e t w o r k s - The Meadow.\|/.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" href="/styles/hayseeds.css">
+    <style>
+        code {
+            font-weight: bold;
+            font-family: monospace;
+            padding: 1px;
+            border: 1px solid #ccc;
+        }
+        #interface {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0px auto;
+        }
+        #output {
+            border: 1px solid #464646;
+            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 5px;
+            font-family: monospace;
+            font-size: 13px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            width: 100%;
+        }
+        #login_form { display: none; }
+        #data_form {
+            display: none;
+            text-align: center;
+        }
+        .clear {clear: both; height: 10px; }
+        #user_input {
+            border: 1px solid #464646;
+            width: 100%;
+            padding: 5px;
+            font-family: monospace;
+        }
+        .tnc_default    { color: inherit; }
+        .tnc_bg_default { background: #transparent; }
+
+        .tnc_inverse    { color: white; background: black; }
+
+        .tnc_black      { color: #464646; }
+        .tnc_red        { color: red;     }
+        .tnc_green      { color: green;   }
+        .tnc_yellow     { color: yellow;  }
+        .tnc_blue       { color: blue;    }
+        .tnc_magenta    { color: magenta; }
+        .tnc_cyan       { color: cyan;    }
+        .tnc_white      { color: white;   }
+
+        .tnc_bg_black   { background-color: #242424; }
+        .tnc_bg_red     { background-color: maroon;  }
+        .tnc_bg_green   { background-color: green;   }
+        .tnc_bg_yellow  { background-color: olive;   }
+        .tnc_bg_blue    { background-color: navy;    }
+        .tnc_bg_magenta { background-color: purple;  }
+        .tnc_bg_cyan    { background-color: teal;    }
+        .tnc_bg_white   { background-color: silver;  }
+    </style>
+
 </head>
 <body>
 
-<h3><a href="/">Hayseed Networks</a> - The Meadow</h3>
-<p>Welcome to our little virtual world, "The Meadow."</p>
+    <h3><a href="/">Hayseed Networks</a> - The Meadow</h3>
+    <p>Welcome to our little virtual world, "The Meadow."  To connect and have a look around, type <code>connect guest</code> into the entry box below.</p>
 
-<p>To connect and have a look around, type 'connect guest' into the entry box below.</p>
+    <p>Once you connect, you'll arrive in "The Shelter," which is a low-traffic area that's set up so you won't be bothered while you get your bearings.  You'll be handed a pamphlet with basic hints as soon as you connect;  type <code>read pamphlet</code> at any time to read it.  We have a <a href="images/moo.jpg">map of the MOO</a> available, so feel free to look around!</p>
 
-<p>Once you connect, you'll arrive in "The Shelter," which is a low-traffic area that's set up so you won't be bothered while you get your bearings.  You'll be handed a pamphlet with basic hints as soon as you connect;  type 'read pamphlet' at any time to read it.</p>
+    <p>If you end up disconnecting, just reload the page to start over.  If you leave this page, you'll disconnect, so don't hit "Back" in the middle of a great conversation....</p>
 
-<p>If you end up disconnecting, just reload the page to start over.  If you leave this page, you'll disconnect, so don't hit "Back" in the middle of a great conversation....</p>
+    <p>Mail <a
+    href="mailto:wizards@hayseed.net">&#119;&#105;&#122;&#97;&#114;&#100;&#115;&#64;&#104;&#97;&#121;&#115;&#101;&#101;&#100;&#46;&#110;&#101;&#116;</a> if you have any questions or concerns.  Welcome aboard!</p>
 
-<p>We have a <a href="images/moo.jpg">map of the MOO</a> available!</p>
+    <p><small>The Meadow uses the <a href="http://www.phudbase.com/">PHudBase</a> PHP/Websocket MUD Client.</small></p>
+    <div id="interface">
+        <div id="output">
+            <form id="login_form">
+                Host: <input type="text" id="mhost" size="15" value="hayseed.net" readonly>
+                Port: <input type="text" id="mport" size="5" value="7777" readonly>
+                <input type="submit" value="Connect" id="connect_button">
+            </form>
+        </div>
 
-<p>Mail <a
-href="mailto:wizards@hayseed.net">&#119;&#105;&#122;&#97;&#114;&#100;&#115;&#64;&#104;&#97;&#121;&#115;&#101;&#101;&#100;&#46;&#110;&#101;&#116;</a> if you have any questions or concerns.</p>
+        <div class="clear"></div>
 
-<p>Welcome aboard!</p>
-
-<APPLET CODE="CupOmud.class" CODEBASE="cupomud/" height=500 width=750>
-  <PARAM NAME="host"    VALUE="hayseed.net">
-  <PARAM NAME="port"    VALUE="7777">
-  <PARAM NAME="sysname" VALUE="The Meadow">
-  <PARAM NAME="MCP"     VALUE="yes">
-  <PARAM NAME="input_bgcolor" VALUE="FFFFFF">
-  <PARAM NAME="input_fgcolor" VALUE="000000">
-  <PARAM NAME="output_bgcolor" VALUE="FFFFE8">
-  <PARAM NAME="output_fgcolor" VALUE="000000">
-  <PARAM NAME="font" VALUE="Courier.14">
-</APPLET>
-</div>
-
-<hr>
-<p><small>We use the <a href="http://tecfa.unige.ch/moo/clients/cupomud/CupOmud_docs.html">Cup-O Mud</a> java client for this page.  If you want a standalone MOO client, we strongly recommend <a href="http://www.awns.com/tkMOO-light/">tkMOO-light</a>, which runs on Windows, MacOS, and Unix.</small></p>
-</BODY>
-</HTML>
+        <form id="data_form">
+            <input id="user_input" type="text" value="">
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/wm_client.js"></script>
+</body>
+</html>
