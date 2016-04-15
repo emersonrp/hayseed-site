@@ -13,7 +13,15 @@
         }
         li { line-height: 1.4em; }
         td { padding: 5px; }
-        ul#missing li { text-decoration: line-through; }
+        ul.missing li, li.missing { text-decoration: line-through; }
+        div.notice { background: #eee; padding: 15px; font-size: smaller; }
+        #dome { float: left; margin-right: 2em; }
+        #credits ul { margin-left: 1em; }
+        #credits ul li {
+            position: relative;
+            left: 1em;
+            padding-right: 1em;
+        }
     </style>
 </head>
 <body>
@@ -21,35 +29,36 @@
 
 <h1>The Lost Library of MOO</h1>
 
-<div style="background: #eee; padding: 15px; font-size: smaller;">
-<p>Once again the Lost Library comes back to life.  Long spelunking in local backups and the <a href="http://web.archive.org">Wayback Machine</a> has turned up many of these documents.  Most links in documents hosted locally at the Library have been verified and updated.  Pages marked with <strike>strike-through</strike> have not been found, while those in <i>italics</i> might still be possible to reconstruct from the Wayback Machine.</p>
+<div class="notice">
+    <p>Once again the Lost Library comes back to life.  Long spelunking in local backups and the <a href="http://web.archive.org">Wayback Machine</a> has turned up many of these documents.  Most links in documents hosted locally at the Library have been verified and updated.  Pages marked with <strike>strike-through</strike> have not been found, while those in <i>italics</i> might still be possible to reconstruct from the Wayback Machine.</p>
 
-<p>If you know of locations of any of these, or have copies, please let us know.</p>
+    <p>If you know of locations of any of these, or have copies, please let us know.</p>
 
-<p>If you are the author or copyright holder of any document that we're hosting locally at the Library please <a href="#contact">let us know</a> if you'd like us to remove the document and/or link to a current correct location for it.</p>
+    <p>If you are the author or copyright holder of any document that we're hosting locally at the Library please <a href="#contact">let us know</a> if you'd like us to remove the document and/or link to a current correct location for it.</p>
 </div>
 
 <hr>
 
-<table>
-<tr><td><img src="geodome.gif" alt="geodome"></td>
+<img id="dome" src="geodome.gif" alt="geodome">
 
-<td>The Lost Library of MOO really did become lost, when lucien.[sims.]berkeley.edu was taken offline.  Bryan Lewis of SIMS was good enough to give us the top-level page of the site -- all the documents that had been kept onsite were gone, but we've done our best to rediscover them wherever they may be and to reconstruct them where they were not readily available.  
+<div id="credits">
+    <p>The Lost Library of MOO really did become lost, when lucien.[sims.]berkeley.edu was taken offline.  Bryan Lewis of SIMS was good enough to give us the top-level page of the site -- all the documents that had been kept onsite were gone, but we've done our best to rediscover them wherever they may be and to reconstruct them where they were not readily available.</p>
 
-<P>Thanks for helping recover these docs belong to:</P>
+    <p>Thanks for helping recover these docs belong to:</p>
 
-<ul>
-<li>Bryan Lewis</li>
-<li><a href="http://jasonnolan.net/">Jason Nolan</a></li>
-<li>Winslow</li>
-<li>Sam Gillis</li>
-<li>Tom Martin</li>
-</ul>
+    <ul>
+        <li>Bryan Lewis</li>
+        <li><a href="http://jasonnolan.net/">Jason Nolan</a></li>
+        <li>Winslow</li>
+        <li>Sam Gillis</li>
+        <li>Tom Martin</li>
+    </ul>
 
-<P>And thanks, finally, to Jerome McDonough, who first created this repository,
-and by whose kind permission we now host and maintain it.</P>
+    <p>And thanks, finally, to Jerome McDonough, who first created this repository, and by whose kind permission we now host and maintain it.</p>
 
-</td></tr></table>
+</div>
+
+<br clear="both">
 
 <h3>Manuals, Tutorials, and FAQs</h3>
 
@@ -60,8 +69,6 @@ and by whose kind permission we now host and maintain it.</P>
 <li><a href="manuals/LambdaCoreProgMan_toc.html">The LambdaCore Programmers Manual</a></li>
 
 <li><a href="manuals/LambdaCoreUserMan_toc.html">The LambdaCore User Manual</a></li>
-
-<li><a href="http://sourceforge.net/project/?group_id=3692">LambdaMOO Server Source at sourceforge.net</a></li>
 
 </ul>
 
@@ -75,8 +82,7 @@ and by whose kind permission we now host and maintain it.</P>
 
 <li><a href="cbecker_tut.txt">Canton Becker's MOO Tutorial</a></li>
 
-<li><a
-href="yduj-duck-tutorial.text">A Duck Tutorial</a> by yduJ</li>
+<li><a href="yduj-duck-tutorial.text">A Duck Tutorial</a> by yduJ</li>
 
 <li><a href="duck2.txt">Yet Another Duck Tutorial</a></li>
 
@@ -99,7 +105,7 @@ Server README</a></li>
 
 </ul>
 
-<h3>Clients, Servers, Tools</h3>
+<h3>Clients, Servers, Cores, Tools</h3>
 
 <ul>
     <li>Clients
@@ -108,7 +114,25 @@ Server README</a></li>
         </ul>
     </li>
 
-    <li>Servers</li>
+    <li>Servers
+        <ul>
+            <li><a href="https://github.com/wrog/lambdamoo">LambdaMOO</a></li>
+            <li><a href="http://luke.dashjr.org/programs/gammamoo/">GammaMOO</a></li>
+            <li><a href="https://github.com/toddsundsted/stunt">Stunt</a></li>
+            <li><a href="https://codepoint.the-b.org/Main_Page">Codepoint</a></li>
+        </ul>
+    </li>
+
+    <li>Cores
+        <ul>
+            <li><a href="http://lambda.moo.mud.org/pub/MOO/">LambdaCore</a> -- start here if you're unsure</li>
+            <li><a href="https://sourceforge.net/projects/ele/">enCore</a></li>
+            <li><a href="http://www.foomoo.org/FooCORE/">FooCORE</a></li>
+            <li><a href="https://sourceforge.net/projects/hero-core/">Hero Core</a></li>
+            <li><a href="http://hellmoo.org/wiki/index.php/HellCore">HellCore</a></li>
+            <li><a href="http://jhcore.sourceforge.net/">JHCore</a></li>
+        </ul>
+    </li>
 
     <li>Tools
         <ul>
@@ -131,11 +155,10 @@ Server README</a></li>
 
 <li><A href="ftp://ftp.cc.gatech.edu/pub/people/asb/papers/necc94.txt">Programming for Fun: MUDs as a Context for Collaborative Learning</a> by Amy Bruckman</li>
 
-<li><a href="http://www.cc.gatech.edu/~asb/papers/convergence.html">The
-MediaMOO Project: Constructionism and Professional Community</a> by Amy
-Bruckman and Mitchel Resnick</li>
+<li><a href="http://www.cc.gatech.edu/~asb/papers/convergence.html">The MediaMOO Project: Constructionism and Professional Community</a> by Amy Bruckman and Mitchel Resnick</li>
 
 <li><a href="moose-crossing-proposal.ps">Moose Crossing Proposal</a> (PostScript) by Amy Bruckman</li>
+
 <li><a href="http://www.encore-consortium.org/Barn/files/docs/cve98.html">Defining a Design Language in text-based Virtual Community</a> by Anna Cicognani</li>
 
 <li><a href="http://www.springerlink.com/content/rj6211470t19x33n/">On the Linguistic Nature of Cyberspace and Virtual Communities</a> (PDF) by Anna Cicognani</li>
@@ -239,7 +262,8 @@ MOO Papers</a></li>
 
 <li><a href="http://ei.cs.vt.edu/~cs5724/projects97f/MOOsburg1/biomoo.html">BioMOO</a></li>
 
-<li><a href="http://moolist.yeehaw.net/">Rachel's Super MOO List</a></li>
+<li class="missing"><!-- <a href="http://moolist.yeehaw.net/">Rachel's Super MOO List</a> -->
+    Rachel's Super MOO List</li>
 
 <li><a href="http://tecfa.unige.ch/edu-comp/WWW-VL/eduVR-page.html">The
 WWW VL: Educational Technology -- Educational VR (MUD) sub-page</a></li>
@@ -248,7 +272,7 @@ WWW VL: Educational Technology -- Educational VR (MUD) sub-page</a></li>
 
 <h4>Lost Resource Pages</h4>
 
-<ul id="missing">
+<ul class="missing">
 
 <li>The Semi-Official MOO Patch Repository and Archive</li>
 
@@ -301,7 +325,7 @@ WWW VL: Educational Technology -- Educational VR (MUD) sub-page</a></li>
 </ul>
 
 <hr>
-<p id="contact">Last updated5 April 2016, by <a href="mailto:emerson@hayseed.net">&#101;&#109;&#101;&#114;&#115;&#111;&#110;&#64;&#104;&#97;&#121;&#115;&#101;&#101;&#100;&#46;&#110;&#101;&#116;</a>.</P>
+<p id="contact">Last updated 5 April 2016, by <a href="mailto:emerson@hayseed.net">&#101;&#109;&#101;&#114;&#115;&#111;&#110;&#64;&#104;&#97;&#121;&#115;&#101;&#101;&#100;&#46;&#110;&#101;&#116;</a>.</P>
 
 <p>(Previous hayseed.net updates and maintenance by Leigh Ann Hussey.)</p>
 <hr>
