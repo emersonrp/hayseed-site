@@ -66,7 +66,7 @@ function send()
 {
     s = document.getElementById("user_input").value;
 
-    print(s, "#999");
+    // print(s, "#999");
 
     socket.send(s);
 
